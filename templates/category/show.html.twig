@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ 'title.category_view'|trans({'%id%': category.id|default('') }) }}
+{% endblock %}
+
+{% block body %}
+<h1>{{ 'title.category_view'|trans({ '%id%': category.title|default('')}) }} </h1>
+{% if category is defined and category|length %}
+{#<table class="table table-striped">#}
+    <dl>
+        <dt>{{ 'label.title'|trans }}</dt>
+        <dd>{{ category.title }}</dd>
+        <dt>{{ 'title.book_list'|trans }}</dt>
+        <dd>
+        {% for books in category.books %}
+        <a href="{{ url('book_show', { id: books.id }) }}" title="{{ books.title }}">
+            {{ books.title }}
+        </a>
+        </dd>
+        {% endfor %}
+        <dt>{{ 'label.actions'|trans }}</dt>
+        <dd>
+            <a href="{{ url('category_index') }}" title="{{ 'action_back_to_list'|trans }}">
+                {{ 'action_back_to_list'|trans }}
+            </a>
+        </dd>
+    </dl>
+
+{#    <tr>#}
+{#        <th>{{ 'label.id'|trans }}</th>#}
+{#        <th>{{ 'label.createdAt'|trans }}</th>#}
+{#        <th>{{ 'label.updatedAt'|trans }}</th>#}
+{#        <th>{{ 'label.titleAt'|trans }}</th>#}
+{#        <th>{{ 'label.actions'|trans }}</th>#}
+{#    </tr>#}
+
+
+{#    {% for category in categories %}#}
+{#    <tr>#}
+{#        <td>{{ category.id }}</td>#}
+{#        <td>{{ category.createdAt }}</td>#}
+{#        <td>{{ category.updatedAt }}</td>#}
+{#        <td>{{ category.title }}</td>#}
+{#        <td>#}
+{#            <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.view'|trans }}">#}
+{#                {{ 'action.view'|trans }}#}
+{#            </a>#}
+{#        </td>#}
+
+
+
+
+{% else %}
+<p>{{ 'message.empty_list'|trans }}</p>
+{% endif %}
+{% endblock %}

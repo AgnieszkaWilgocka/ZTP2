@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.book_view'|trans({'%id%': book.id|default('') }) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.book_view'|trans({'%id%': book.title|default('') }) }}</h1>
+    {% if book is defined and book|length %}
+        <dl>
+            <dt>{{ 'label.title'|trans }}</dt>
+            <dd>{{ book.title }}</dd>
+            <dt>{{ 'label.author'|trans }}</dt>
+            <dd>{{ book.author }}</dd>
+            <dt>{{ 'title.category_list'|trans }}</dt>
+            <dd>{{ book.category.title }}</dd>
+            <dt>{{ 'label.actions'|trans }}</dt>
+
+            <dd>
+                <a href="{{ url('book_index') }}" title="{{ 'action_back_to_list'|trans }}">
+                    {{ 'action_back_to_list'|trans }}
+                </a>
+            </dd>
+        </dl>
+
+
+    {% else %}
+        <p>{{ 'message.empty_list'|trans }}</p>
+    {% endif %}
+{% endblock %}

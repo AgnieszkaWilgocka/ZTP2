@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ 'title.tag_view'|trans({ '%id%': tag.id|default('') }) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.tag_view'|trans({ '%id%': tag.title|default('')}) }} </h1>
+    {% if tag is defined and tag|length %}
+    {#<table class="table table-striped">#}
+    <dl>
+        <dt>{{ 'label.title'|trans }}</dt>
+        <dd>{{ tag.title }}</dd>
+        <dt>{{ 'label.actions'|trans }}</dt>
+        <dd>
+            <a href="{{ url('tag_index') }}" title="{{ 'action_back_to_list'|trans }}">
+                {{ 'action_back_to_list'|trans }}
+            </a>
+        </dd>
+    </dl>
+    {% else %}
+        <p>{{ 'message.empty_list'|trans }}</p>
+    {% endif %}
+{#{% endif %}#}
+{% endblock %}

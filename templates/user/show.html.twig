@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ 'title.user_view'|trans({'%id%': user.id|default('') }) }}
+{% endblock %}
+
+{% block body %}
+<h1>{{ 'title.user_view'|trans({'%id%': user.userData.nick|default('') }) }}</h1>
+{% if user is defined and user|length %}
+    {#<table class="table table-striped">#}
+    <dl>
+        <dt>{{ 'label.id'|trans }}</dt>
+        <dd>{{ user.id }}</dd>
+        <dt>{{ 'label.email'|trans }}</dt>
+        <dd>{{ user.email }}</dd>
+        <dt>{{ 'label.nick'|trans }}</dt>
+        <dd>{{ user.userData.nick }}</dd>
+        <dt>{{ 'label.actions'|trans }}</dt>
+
+        <dd>
+            <a href="{{ url('user_index') }}" title="{{ 'action_back_to_list'|trans }}">
+                {{ 'action_back_to_list'|trans }}
+            </a>
+            <a href="{{ url('user_data_edit', {id: user.userData.id}) }}" title="{{ 'action.change_user_data'|trans }}">
+                {{ 'action.change_user_data'|trans }}
+            </a>
+        </dd>
+    </dl>
+{% endif %}
+{% endblock %}

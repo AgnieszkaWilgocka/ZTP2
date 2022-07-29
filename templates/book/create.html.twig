@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ 'title.book_create'|trans}}
+{% endblock %}
+
+{% block body %}
+<h1>{{ 'title.book_create'|trans }}</h1>
+
+{{ form_start(form, {method: 'POST', action: url('book_create')}) }}
+{{ form_widget(form) }}
+
+<div class="form-group row float-sm_right">
+    <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary">
+
+</div>
+
+<div>
+    <a href="{{ url('category_index') }}">
+        {{ 'powrot' }}
+    </a>
+</div>
+
+{{ form_end(form) }}
+{% endblock %}
