@@ -105,7 +105,7 @@ class FavouriteController extends AbstractController
                 $this->translator->trans('message.created_successfully')
             );
 
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('favourite_index');
         }
 
         return $this->render(

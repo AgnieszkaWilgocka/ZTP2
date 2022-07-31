@@ -36,5 +36,7 @@
     {% else %}
         <p>{{ 'message.empty_list'|trans }}</p>
     {% endif %}
-{#    {% endif %}#}
+    <p><a href="{{ url('favourite_create') }}">Dodaj do ulubionych</a></p>
+
+    {#    {% endif %}#}
 {% endblock %}
