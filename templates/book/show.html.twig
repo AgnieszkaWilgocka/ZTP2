@@ -14,14 +14,48 @@
             <dd>{{ book.author }}</dd>
             <dt>{{ 'title.category_list'|trans }}</dt>
             <dd>{{ book.category.title }}</dd>
-            <dt>{{ 'label.actions'|trans }}</dt>
+            <dt>{{ 'label.comments' }}</dt>
+            <dd>
+                {% for comments in book.comments %}
+{#                    <dt>{{ 'label_author'|trans }}</dt>#}
+                    {% if comments.author.userData.nick is defined and comments.author.userData.nick is not null %}
+                    <p>{{ comments.author.userData.nick }}</p>
+                    {% endif %}
+{#                    </dl>#}
+                    <p>{{ comments.content }}</p>
+                    {% if is_granted('DELETE', comments)  %}
+                    <a href="{{ url('comment_delete', {id: comments.id}) }}" title="{{ 'action.delete'|trans }}">
+                        {{ 'action.delete'|trans }}
+                    </a>
+                    {% endif %}
 
+                {% endfor %}
+            </dd>
+            <dt>{{ 'label.actions'|trans }}</dt>
             <dd>
                 <a href="{{ url('book_index') }}" title="{{ 'action_back_to_list'|trans }}">
                     {{ 'action_back_to_list'|trans }}
                 </a>
             </dd>
+{#            <dt>{{ 'label_author'|trans }}</dt>#}
+{#            {% for comments in book.comments %}#}
+{#                {% for user in comments.author %}#}
+{#                <dd>{{ comments.author.email }}</dd>#}
+{#                    <dd>{{ user.userData.nick }}<dl>#}
+{#                    {% endfor %}#}
+{#            <dd>{{ user.email }}</dd>#}
+{#            {% endfor %}#}
         </dl>
+
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="form-group row float-sm_right">
+            <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary">
+
+        </div>
+        {{ form_end(form) }}
+        {% endif %}
 
 
     {% else %}

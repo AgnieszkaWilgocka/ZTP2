@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
+use App\Entity\User;
 use App\Form\Type\BookType;
+use App\Form\Type\CommentType;
+use App\Repository\CommentRepository;
 use App\Service\BookService;
 use App\Service\BookServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -70,13 +74,30 @@ class BookController extends AbstractController
         '/{id}',
         name: 'book_show',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET'
+        methods: 'GET|POST'
     )]
-    public function show(Book $book): Response
+    public function show(Request $request, Book $book, CommentRepository $commentRepository): Response
     {
+        $comment = new Comment();
+        $id = $book->getId();
+        $author = $this->getUser();
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setBook($book);
+            $comment->setAuthor($author);
+            $commentRepository->save($comment);
+
+            return $this->redirectToRoute('book_show', ['id' => $id]);
+        }
+
         return $this->render(
             'book/show.html.twig',
-            ['book' => $book]
+            ['book' => $book,
+                'form' => $form->createView()
+                ]
         );
     }
 

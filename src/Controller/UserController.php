@@ -54,6 +54,11 @@ class UserController extends AbstractController
      * @param User $user
      *
      * @return Response
+     *
+     * @IsGranted(
+     *     "USER_VIEW",
+     *     subject="user",
+     * )
      */
     #[Route(
         '/{id}',
@@ -72,6 +77,8 @@ class UserController extends AbstractController
      * @param UserPasswordHasherInterface $passwordHasher
      *
      * @return Response
+     *
+     * @IsGranted("USER_EDIT", subject="user")
      */
     #[Route(
         '/{id}/edit',

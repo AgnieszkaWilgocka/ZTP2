@@ -38,6 +38,11 @@
                     <a class="nav-link" href="{{ url('user_index') }}">Lista użytkowników</a>
                 </li>
                 {% endif %}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('user_show', {id: app.user.id}) }}">Moje konto</a>
+                </li>
+                {% endif %}
 {#                {% if is_granted("ROLE_ADMIN") %}#}
 {#                <li class="nav-item dropdown">#}
 {#                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}

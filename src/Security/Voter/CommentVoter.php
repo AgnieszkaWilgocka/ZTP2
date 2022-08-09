@@ -2,21 +2,32 @@
 
 namespace App\Security\Voter;
 
+use App\Entity\Comment;
+use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class BookVoter extends Voter
+class CommentVoter extends Voter
 {
-    public const EDIT = 'POST_EDIT';
-    public const VIEW = 'POST_VIEW';
+    public const DELETE = 'DELETE';
+
+    private Security $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
+//    public const VIEW = 'POST_VIEW';
 
     protected function supports(string $attribute, $subject): bool
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, [self::EDIT, self::VIEW])
-            && $subject instanceof \App\Entity\Book;
+        return in_array($attribute, [self::DELETE])
+            && $subject instanceof Comment;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -29,16 +40,16 @@ class BookVoter extends Voter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case self::EDIT:
+            case self::DELETE:
+                return $this->canDelete($subject, $user);
                 // logic to determine if the user can EDIT
                 // return true or false
-                break;
-            case self::VIEW:
-                // logic to determine if the user can VIEW
-                // return true or false
-                break;
+//                break;
         }
-
         return false;
+    }
+
+    private function canDelete(Comment $comment, User $user):bool {
+        return $comment->getAuthor() === $user || $this->security->isGranted("ROLE_ADMIN", $user);
     }
 }
