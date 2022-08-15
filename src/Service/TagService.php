@@ -51,4 +51,9 @@ class TagService implements TagServiceInterface
     {
         $this->tagRepository->delete($tag);
     }
+
+    public function findOneByTitle(string $title): ?Tag
+    {
+        return $this->tagRepository->findOneByTitle($title);
+    }
 }

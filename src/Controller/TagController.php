@@ -102,12 +102,14 @@ class TagController extends AbstractController
 
             $this->tagService->save($tag);
 
+            var_dump($tag);
+
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.created_successfully')
             );
 
-            return $this->redirectToRoute('tag_index');
+            return $this->redirectToRoute('category_index');
         }
 
         return $this->render(

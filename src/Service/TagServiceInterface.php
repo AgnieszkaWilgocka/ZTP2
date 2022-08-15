@@ -13,4 +13,5 @@ interface TagServiceInterface
     public function getPaginatedList(int $page):PaginationInterface;
     public function save(Tag $tag);
     public function delete(Tag $tag);
+    public function findOneByTitle(string $title): ?Tag;
 }
