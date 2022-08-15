@@ -11,4 +11,5 @@ interface BookServiceInterface
     public function save(Book $book);
     public function delete(Book $book);
     public function canBeDeleted(Book $book): bool;
+    public function prepareFilters(array $filters): array;
 }

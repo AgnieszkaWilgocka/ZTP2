@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Book;
 use App\Entity\Category;
+use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -35,15 +36,31 @@ class BookRepository extends ServiceEntityRepository
      *
      * @return QueryBuilder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(array $filters = []): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
+        $queryBuilder =  $this->getOrCreateQueryBuilder()
             ->select(
                 'partial book.{id, author, title}',
-                'partial category.{id, title}'
+                'partial category.{id, title}',
+                'partial tags.{id, title}'
             )
             ->join('book.category', 'category')
+            ->leftJoin('book.tags', 'tags')
             ->orderBy('book.title', 'DESC');
+
+        return $this->applyFiltersToList($queryBuilder, $filters);
+    }
+
+    public function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+
+        if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
+            $queryBuilder->andWhere('tags IN (:tag)')
+                ->setParameter('tag', $filters['tag']);
+        }
+
+        return $queryBuilder;
+
     }
 
 
@@ -98,6 +115,8 @@ class BookRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
         }
+
+//        public function qu
 }
 //    /**
 //     * @return Book[] Returns an array of Book objects

@@ -36,23 +36,38 @@ class BookService implements BookServiceInterface
      */
     private CategoryRepository $categoryRepository;
 
+
+    /**
+     * Tag Service
+     *
+     * @var TagService
+     */
+    private TagService $tagService;
+
+
     /**
      * Constructor
      *
      * @param BookRepository $bookRepository
      * @param PaginatorInterface $paginator
      */
-    public function __construct(BookRepository $bookRepository, PaginatorInterface $paginator, CategoryRepository $categoryRepository)
+    public function __construct(BookRepository $bookRepository,
+                                PaginatorInterface $paginator,
+                                CategoryRepository $categoryRepository,
+                                TagService $tagService)
     {
         $this->bookRepository = $bookRepository;
         $this->paginator = $paginator;
         $this->categoryRepository = $categoryRepository;
+        $this->tagService = $tagService;
     }
 
-    public function getPaginatedList(int $page): PaginationInterface
+    public function getPaginatedList(int $page, array $filters = []): PaginationInterface
     {
+        $filters = $this->prepareFilters($filters);
+
         return $this->paginator->paginate(
-            $this->bookRepository->queryAll(),
+            $this->bookRepository->queryAll($filters),
             $page,
             BookRepository::PAGINATOR_ITEMS_PER_PAGE
         );
@@ -77,5 +92,19 @@ class BookService implements BookServiceInterface
         } catch (NoResultException|NonUniqueResultException) {
             return false;
         }
+    }
+
+    public function prepareFilters(array $filters): array
+    {
+        $resultFilters = [];
+
+        if (!empty($filters['tag_id'])) {
+            $tag = $this->tagService->findOneById($filters['tag_id']);
+            if (null !== $tag) {
+                $resultFilters['tag'] = $tag;
+            }
+        }
+
+        return $resultFilters;
     }
 }

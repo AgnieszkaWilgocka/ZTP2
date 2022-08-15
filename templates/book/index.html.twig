@@ -18,6 +18,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.author'|trans, 'book.author') }}</th>
                 <th>{{ 'title.category_list'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
+                <th>{{ 'label.tagi'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -52,6 +53,17 @@
                         </a>
                         {% endif %}
 
+                    </td>
+                    <td>
+                        {% if book.tags is defined and book.tags|length %}
+                            {% for tag in book.tags %}
+                                <a href="{{ url('book_index', {'filters.tag.id' : tag.id}) }}" title="{{ tag.title }}">
+                                    {{ tag.title }}
+                                </a>
+                                {% endfor %}
+                        {% else %}
+                            &nbsp;
+                            {% endif %}
                     </td>
                 </tr>
             {% endfor %}

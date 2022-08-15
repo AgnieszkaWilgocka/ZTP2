@@ -14,4 +14,5 @@ interface TagServiceInterface
     public function save(Tag $tag);
     public function delete(Tag $tag);
     public function findOneByTitle(string $title): ?Tag;
+    public function findOneById(int $id);
 }
