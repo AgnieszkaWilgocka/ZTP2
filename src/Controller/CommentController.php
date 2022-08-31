@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Form\Type\CommentType;
 use App\Repository\CommentRepository;
+use App\Service\CommentServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -21,11 +22,11 @@ use Symfony\Component\Routing\Annotation\Route;
 )]
 class CommentController extends AbstractController
 {
-    private CommentRepository $commentRepository;
+    private CommentServiceInterface $commentService;
 
-    public function __construct(CommentRepository $commentRepository)
+    public function __construct(CommentServiceInterface $commentService)
     {
-        $this->commentRepository = $commentRepository;
+        $this->commentService = $commentService;
     }
 
     /**
@@ -52,7 +53,7 @@ class CommentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->commentRepository->delete($comment);
+            $this->commentService->delete($comment);
 
             return $this->redirectToRoute('category_index');
         }

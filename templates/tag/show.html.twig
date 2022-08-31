@@ -6,6 +6,9 @@
 
 {% block body %}
     <h1>{{ 'title.tag_view'|trans({ '%id%': tag.title|default('')}) }} </h1>
+    <div class="container">
+    <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
     {% if tag is defined and tag|length %}
     {#<table class="table table-striped">#}
     <dl>
@@ -13,13 +16,18 @@
         <dd>{{ tag.title }}</dd>
         <dt>{{ 'label.actions'|trans }}</dt>
         <dd>
-            <a href="{{ url('tag_index') }}" title="{{ 'action_back_to_list'|trans }}">
-                {{ 'action_back_to_list'|trans }}
-            </a>
+            <div>
+                <a class="btn btn-primary"  href="{{ url('tag_index') }}" role="button">
+                    {{ 'action_back_to_list'|trans }}
+                </a>
+            </div>
         </dd>
     </dl>
     {% else %}
         <p>{{ 'message.empty_list'|trans }}</p>
     {% endif %}
+    </div>
+    </div>
+    </div>
 {#{% endif %}#}
 {% endblock %}

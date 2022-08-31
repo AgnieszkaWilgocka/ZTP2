@@ -6,6 +6,9 @@
 
 {% block body %}
 <h1>{{ 'title.category_view'|trans({ '%id%': category.title|default('')}) }} </h1>
+    <div class="container">
+    <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
 {% if category is defined and category|length %}
 {#<table class="table table-striped">#}
     <dl>
@@ -21,7 +24,7 @@
         {% endfor %}
         <dt>{{ 'label.actions'|trans }}</dt>
         <dd>
-            <a href="{{ url('category_index') }}" title="{{ 'action_back_to_list'|trans }}">
+            <a class="btn btn-primary"  href="{{ url('category_index') }}" role="button">
                 {{ 'action_back_to_list'|trans }}
             </a>
         </dd>
@@ -54,4 +57,7 @@
 {% else %}
 <p>{{ 'message.empty_list'|trans }}</p>
 {% endif %}
+    </div>
+    </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,124 @@
+h1 {
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+}
+.mine-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /*flex-shrink: 0;*/
+}
+
+.card {
+    /*width: 50%;*/
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.card-text a {
+    text-decoration: none;
+    color: #7b878b;
+}
+
+.bg-light {
+    background-color: #e3f2fd;
+}
+
+nav a{
+    padding-left: 20px;
+}
+
+nav li {
+    padding-left: 10px
+}
+
+/*przyciski*/
+.btn-info {
+    color: white;
+}
+
+
+/*ikonki*/
+span {
+    color: #0dcaf0;
+}
+
+
+.mine-btn {
+    padding-top: 15px;
+}
+
+ul.justify-content-end li {
+    padding-right: 15px;
+}
+
+ul.justify-content-end li a {
+    color: black;
+    text-decoration: none;
+}
+
+.btn-primary {
+    margin-top: 10px;
+}
+
+/*.mine-hidden {*/
+/*    display: none;*/
+/*}*/
+
+ /**!*/
+/*.bg-light {*/
+/*    background-color: red;*/
+/*}*/
+
+/*.btn-info a {*/
+/*    color: white;*/
+/*}*/
+/*nav .navigation {*/
+/*    max-width: 1400px;*/
+/*    margin: 0 auto;*/
+/*    background-color: #0c5460;*/
+
+/*}*/
+
+/*.navigation ul {*/
+/*    display: flex;*/
+/*    list-style: none;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.navigation li {*/
+/*    position: relative;*/
+/*    width: 10%;*/
+/*    padding: 10px 5px;*/
+/*    font-size: 18px;*/
+/*    font-family: 'Open Sans', sans-serif;*/
+/*    text-align: center;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.navigation a {*/
+/*    display: block;*/
+/*    text-decoration: none;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*ul.drop-menu li {*/
+/*    width: 100%;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*div.dropmenu {*/
+/*    display: none;*/
+/*    position: absolute;*/
+/*    top: 50px;*/
+/*    left: 0;*/
+/*    border-radius: 10%;*/
+/*    margin-top: 15px;*/
+/*    background-color: #ddd;*/
+/*    z-index: 1;*/
+/*}*/

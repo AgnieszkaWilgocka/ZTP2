@@ -9,6 +9,7 @@ use App\Form\Type\CommentType;
 use App\Repository\CommentRepository;
 use App\Service\BookService;
 use App\Service\BookServiceInterface;
+use App\Service\CommentService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Book;
@@ -36,15 +37,19 @@ class BookController extends AbstractController
      */
     private TranslatorInterface $translator;
 
+    private CommentService $commentService;
+
     /**
      * Constructor.
      *
      * @param TranslatorInterface $translator
      */
-    public function __construct(BookServiceInterface $bookService, TranslatorInterface $translator)
+    public function __construct(BookServiceInterface $bookService, TranslatorInterface $translator,
+                                CommentService $commentService)
     {
         $this->bookService = $bookService;
         $this->translator = $translator;
+        $this->commentService = $commentService;
     }
 
     /**
@@ -86,7 +91,7 @@ class BookController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|POST'
     )]
-    public function show(Request $request, Book $book, CommentRepository $commentRepository): Response
+    public function show(Request $request, Book $book): Response
     {
         $comment = new Comment();
         $id = $book->getId();
@@ -98,7 +103,7 @@ class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setBook($book);
             $comment->setAuthor($author);
-            $commentRepository->save($comment);
+            $this->commentService->save($comment);
 
             return $this->redirectToRoute('book_show', ['id' => $id]);
         }

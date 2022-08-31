@@ -11,7 +11,7 @@
     {{ form_widget(form) }}
 
     <div class="form-group row float-sm_right">
-        <input type="submit" value="{{ 'action.delete'|trans }}" class="btn btn-primary">
+        <input type="submit" value="Usun" class="btn btn-primary">
 
     </div>
 
@@ -20,6 +20,9 @@
             {{ 'action.back_to_list'|trans }}
         </a>
     </div>
+    <a class="btn btn-primary"  href="{{ url('category_index') }}" role="button">
+        {{ 'action_back_to_list'|trans }}
+    </a>
 
     {{ form_end(form) }}
 {% endblock %}

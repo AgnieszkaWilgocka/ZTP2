@@ -11,8 +11,24 @@
         <target>Change password</target>
       </trans-unit>
        <trans-unit id = "action.change_user_data">
-                  <source>action.change_user_data</source>
-                  <target>Change user data</target>
+        <source>action.change_user_data</source>
+        <target>Change user data</target>
+      </trans-unit>
+      <trans-unit id = "action.create">
+        <source>action.create</source>
+        <target>Create</target>
+      </trans-unit>
+      <trans-unit id = "action_create_favourite">
+        <source>action_create_favourite</source>
+        <target>Create Favourite</target>
+      </trans-unit>
+      <trans-unit id = "action.delete">
+        <source>action.delete</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id = "action.edit">
+        <source>action.edit</source>
+        <target>Edit</target>
       </trans-unit>
       <trans-unit id = "action_login">
         <source>action_login</source>
@@ -98,6 +114,10 @@
       <trans-unit id="title.category_view">
         <source>title.category_view</source>
         <target>Category view %id%</target>
+      </trans-unit>
+      <trans-unit id="title.favourite_list">
+        <source>title.favourite_list</source>
+        <target>Favourite view</target>
       </trans-unit>
       <trans-unit id="title.tag_list">
         <source>title.tag_list</source>

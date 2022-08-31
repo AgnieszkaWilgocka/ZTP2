@@ -102,7 +102,7 @@ class TagController extends AbstractController
 
             $this->tagService->save($tag);
 
-            var_dump($tag);
+
 
             $this->addFlash(
                 'success',

@@ -11,8 +11,24 @@
         <target>Zmiana hasła</target>
       </trans-unit>
        <trans-unit id = "action.change_user_data">
-                  <source>action.change_user_data</source>
-                  <target>Zmiana danych użytkownika</target>
+        <source>action.change_user_data</source>
+        <target>Zmiana danych użytkownika</target>
+      </trans-unit>
+       <trans-unit id = "action.create">
+        <source>action.create</source>
+        <target>Stwórz</target>
+      </trans-unit>
+      <trans-unit id = "action_create_favourite">
+        <source>action_create_favourite</source>
+        <target>Dodaj do ulubionych</target>
+      </trans-unit>
+      <trans-unit id = "action.delete">
+        <source>action.delete</source>
+        <target>Usuń</target>
+      </trans-unit>
+      <trans-unit id = "action.edit">
+        <source>action.edit</source>
+        <target>Edytuj</target>
       </trans-unit>
       <trans-unit id = "action_login">
         <source>action_login</source>
@@ -34,6 +50,7 @@
         <source>action.show</source>
         <target>Podgląd</target>
       </trans-unit>
+
       <trans-unit id="label.actions">
         <source>label.actions</source>
         <target>Akcje</target>
@@ -65,7 +82,7 @@
            </trans-unit>
       <trans-unit id="label.title">
         <source>label.title</source>
-        <target>Nazwa</target>
+        <target>Tytuł</target>
       </trans-unit>
       <trans-unit id="label.tags">
         <source>label.tags</source>
@@ -98,6 +115,10 @@
       <trans-unit id="title.category_view">
         <source>title.category_view</source>
         <target>Podgląd kategorii %id%</target>
+      </trans-unit>
+      <trans-unit id="title.favourite_list">
+        <source>title.favourite_list</source>
+        <target>Ulubione</target>
       </trans-unit>
       <trans-unit id="title.tag_list">
         <source>title.tag_list</source>

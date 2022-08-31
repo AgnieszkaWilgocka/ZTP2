@@ -17,7 +17,7 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
     {
         $this->createMany(10, 'comments', function(int $i) {
             $comment = new Comment();
-            $comment->setContent($this->faker->paragraph);
+            $comment->setContent($this->faker->title());
             $comment->setBook($this->getRandomReference('books'));
             $comment->setAuthor($this->getRandomReference('users'));
 

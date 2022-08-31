@@ -6,12 +6,14 @@
 
 {% block body %}
 <h1>{{ 'title.book_create'|trans }}</h1>
-
+    <div class="container">
+    <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
 {{ form_start(form, {method: 'POST', action: url('book_create')}) }}
 {{ form_widget(form) }}
 
 <div class="form-group row float-sm_right">
-    <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary">
+    <input type="submit" value="Zapisz" class="btn btn-primary">
 
 </div>
 
@@ -21,5 +23,14 @@
     </a>
 </div>
 
+        <div>
+            <a class="btn btn-primary"  href="{{ url('category_index') }}" role="button">
+                {{ 'action_back_to_list'|trans }}
+            </a>
+        </div>
+
 {{ form_end(form) }}
+    </div>
+    </div>
+    </div>
 {% endblock %}

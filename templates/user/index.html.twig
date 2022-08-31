@@ -7,6 +7,9 @@
 {% block body %}
 <h1>{{ 'title.user_list'|trans }}</h1>
 
+    <div class="container">
+    <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center"></div>
@@ -25,13 +28,16 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.email }}</td>
                     <td>
-                        <a href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action.show'|trans }}">
+                        <a class="btn btn-info" href="{{ url('user_show', {id: user.id}) }}" role="button" title="{{ 'action.show'|trans }} ">
                             {{ 'action.show'|trans }}
                         </a>
-                        <a href="{{ url('change_password', {id: user.id}) }}" title="{{ 'action.change_password'|trans }}">
+{#                        <a href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action.show'|trans }}">#}
+{#                            {{ 'action.show'|trans }}#}
+{#                        </a>#}
+                        <a class="btn btn-info" href="{{ url('change_password', {id: user.id}) }}" role="button" title="{{ 'action.change_password'|trans }}">
                             {{ 'action.change_password'|trans }}
                         </a>
-                        <a href="{{ url('user_data_edit', {id: user.userData.id}) }}" title="{{ 'action.change_user_data'|trans }}">
+                        <a class="btn btn-info" href="{{ url('user_data_edit', {id: user.userData.id}) }}" role="button" title="{{ 'action.change_user_data'|trans }}">
                             {{ 'action.change_user_data'|trans }}
                         </a>
                     </td>
@@ -44,4 +50,7 @@
             {{ knp_pagination_render(pagination) }}
         </div>
     {% endif %}
+    </div>
+    </div>
+    </div>
 {% endblock %}

@@ -7,36 +7,91 @@
 {% block body %}
     <h1>{{ 'title.book_view'|trans({'%id%': book.title|default('') }) }}</h1>
     {% if book is defined and book|length %}
-        <dl>
-            <dt>{{ 'label.title'|trans }}</dt>
-            <dd>{{ book.title }}</dd>
-            <dt>{{ 'label.author'|trans }}</dt>
-            <dd>{{ book.author }}</dd>
-            <dt>{{ 'title.category_list'|trans }}</dt>
-            <dd>{{ book.category.title }}</dd>
-            <dt>{{ 'label.comments' }}</dt>
-            <dd>
-                {% for comments in book.comments %}
-{#                    <dt>{{ 'label_author'|trans }}</dt>#}
-                    {% if comments.author.userData.nick is defined and comments.author.userData.nick is not null %}
-                    <p>{{ comments.author.userData.nick }}</p>
-                    {% endif %}
-{#                    </dl>#}
-                    <p>{{ comments.content }}</p>
-                    {% if is_granted('DELETE', comments)  %}
+
+    <div class="card" style="width: 25rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ 'label.title'|trans }}: {{ book.title }}</h5>
+            <p class="card-text">{{'label.author'|trans}}: {{ book.author }}</p>
+            <p class="card-text"> {{ 'label.comments'|trans }}:</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for comments in book.comments %}
+            {% if comments.author.userData.nick is defined and comments.author.userData.nick is not null %}
+            <li class="list-group-item">
+                {{ comments.author.userData.nick }}: {{ comments.content }}
+                {% if is_granted('DELETE', comments)  %}
                     <a href="{{ url('comment_delete', {id: comments.id}) }}" title="{{ 'action.delete'|trans }}">
                         {{ 'action.delete'|trans }}
                     </a>
-                    {% endif %}
+                {% endif %}
+            </li>
+            {% endif %}
+            {% endfor %}
+{#            <li class="list-group-item">Dapibus ac facilisis in</li>#}
+{#            <li class="list-group-item">Vestibulum at eros</li>#}
+        </ul>
+        <div class="card-body">
+            <a href="{{ url('book_index') }}" title="{{ 'action_back_to_list'|trans }}" class="card-link">
+                {{ 'action_back_to_list'|trans }}
+            </a>
+            <a href="#" class="card-link">{{ 'action.add_comment'|trans }}</a>
+        </div>
+        <div class="card-body mine-hidden">
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <div class="form-group row float-sm_right">
+                    <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary">
 
-                {% endfor %}
-            </dd>
-            <dt>{{ 'label.actions'|trans }}</dt>
-            <dd>
-                <a href="{{ url('book_index') }}" title="{{ 'action_back_to_list'|trans }}">
-                    {{ 'action_back_to_list'|trans }}
-                </a>
-            </dd>
+                </div>
+                {{ form_end(form) }}
+            {% endif %}
+{#            <a href="#" class="card-link">Another link</a>#}
+        </div>
+    </div>
+{#    {% endif %}#}
+
+
+{#    <div class="container">#}
+{#    <div class="card border-0 shadow my-5">#}
+{#    <div class="card-body p-5">#}
+
+
+{#        </div>#}
+
+
+
+{#        ////#}
+{#        <dl>#}
+{#            <dt>{{ 'label.title'|trans }}</dt>#}
+{#            <dd>{{ book.title }}</dd>#}
+{#            <dt>{{ 'label.author'|trans }}</dt>#}
+{#            <dd>{{ book.author }}</dd>#}
+{#            <dt>{{ 'title.category_list'|trans }}</dt>#}
+{#            <dd>{{ book.category.title }}</dd>#}
+{#            <dt>{{ 'label.comments' }}</dt>#}
+{#            <dd>#}
+{#                {% for comments in book.comments %}#}
+{#                    <dt>{{ 'label_author'|trans }}</dt>#}
+{#                    {% if comments.author.userData.nick is defined and comments.author.userData.nick is not null %}#}
+{#                    <p>{{ comments.author.userData.nick }}</p>#}
+{#                    {% endif %}#}
+{#                    </dl>#}
+{#                    <p>{{ comments.content }}</p>#}
+{#                    {% if is_granted('DELETE', comments)  %}#}
+{#                    <a href="{{ url('comment_delete', {id: comments.id}) }}" title="{{ 'action.delete'|trans }}">#}
+{#                        {{ 'action.delete'|trans }}#}
+{#                    </a>#}
+{#                    {% endif %}#}
+
+{#                {% endfor %}#}
+{#            </dd>#}
+{#            <dt>{{ 'label.actions'|trans }}</dt>#}
+{#            <dd>#}
+{#                <a href="{{ url('book_index') }}" title="{{ 'action_back_to_list'|trans }}">#}
+{#                    {{ 'action_back_to_list'|trans }}#}
+{#                </a>#}
+{#            </dd>#}
 {#            <dt>{{ 'label_author'|trans }}</dt>#}
 {#            {% for comments in book.comments %}#}
 {#                {% for user in comments.author %}#}
@@ -45,20 +100,28 @@
 {#                    {% endfor %}#}
 {#            <dd>{{ user.email }}</dd>#}
 {#            {% endfor %}#}
-        </dl>
+{#        </dl>#}
 
-        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <div class="form-group row float-sm_right">
-            <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary">
+{#        {% if is_granted("IS_AUTHENTICATED_FULLY") %}#}
+{#        {{ form_start(form) }}#}
+{#        {{ form_widget(form) }}#}
+{#        <div class="form-group row float-sm_right">#}
+{#            <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary">#}
 
-        </div>
-        {{ form_end(form) }}
-        {% endif %}
+{#        </div>#}
+{#        {{ form_end(form) }}#}
+{#        {% endif %}#}
 
 
     {% else %}
         <p>{{ 'message.empty_list'|trans }}</p>
     {% endif %}
+{#        <div>#}
+{#        <a class="btn btn-primary"  href="{{ url('book_index') }}" role="button">#}
+{#            {{ 'action_back_to_list'|trans }}#}
+{#        </a>#}
+{#        </div>#}
+{#    </div>#}
+{#    </div>#}
+{#    </div>#}
 {% endblock %}

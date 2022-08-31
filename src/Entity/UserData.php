@@ -16,22 +16,22 @@ class UserData
     /**
      * Primary key
      *
-     * @var int
+     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     /**
      * nick
      *
-     * @var string
+     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Assert\Type('string')]
     #[Assert\Length(min: 3, max: 64)]
-    private $nick;
+    private ?string $nick;
 
     /**
      * Getter for id

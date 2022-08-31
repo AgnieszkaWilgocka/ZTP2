@@ -6,20 +6,29 @@
 
 {% block body %}
 <h1>{{ 'action_registration'|trans }}</h1>
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
 
 {{ form_start(form, {method: 'POST', action: url('app_register') }) }}
 {{ form_widget(form) }}
 
 <div class="form-group row float-sm_right">
-    <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary">
+    <input type="submit" value="Zapisz" class="btn btn-primary">
 
 </div>
 
 <div>
-    <a href="{{ url('category_index') }}">
+{#    <a class="btn btn-info " href="{{ url('category_index') }}" role="button" title="{{ 'action.create'|trans }} ">#}
+{#        {{ 'action_back_to_link'|trans }}#}
+{#    </a>#}
+    <a class="btn btn-primary"  href="{{ url('category_index') }}" role="button">
         {{ 'action_back_to_list'|trans }}
     </a>
 </div>
 {{ form_end(form) }}
+        </div>
+    </div>
+</div>
 {% endblock %}
 

@@ -6,7 +6,9 @@
 
 {% block body %}
 <h1>{{ 'book.title_delete'|trans }}</h1>
-
+    <div class="container">
+    <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
     {{ form_start(form) }}
     {{ form_widget(form) }}
 
@@ -15,11 +17,14 @@
 
     </div>
 
-    <div class="form-group row float-sm-left">
-        <a href="{{ url('book_index') }}" class="btn btn-link">
-            {{ 'action.back_to_list'|trans }}
+    <div>
+        <a class="btn btn-primary"  href="{{ url('book_index') }}" role="button">
+            {{ 'action_back_to_list'|trans }}
         </a>
     </div>
 
     {{ form_end(form) }}
+    </div>
+    </div>
+    </div>
 {% endblock %}

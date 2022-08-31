@@ -41,7 +41,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $this->getOrCreateQueryBuilder()
             ->select(
                 'partial user.{id, email, roles, password}',
-            );
+                'partial userData.{id, nick}'
+            )
+            ->join('user.userData', 'userData');
     }
 
     /**
