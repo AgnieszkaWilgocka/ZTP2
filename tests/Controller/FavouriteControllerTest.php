@@ -28,7 +28,6 @@ class FavouriteControllerTest extends WebTestCase
         $this->httpClient = static::createClient();
     }
 
-///// NIE DZIAŁA BEZ $AUTHORA   /////
     public function testRouteIndex(): void
     {
         //given
@@ -49,7 +48,6 @@ class FavouriteControllerTest extends WebTestCase
         //then
         $this->assertEquals($expectedStatusCode, $result);
     }
-//druga wersja - tworzona tylko encja bez submitForm
     public function testCreateFavourite(): void
     {
         //given

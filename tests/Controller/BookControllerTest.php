@@ -146,7 +146,7 @@ class BookControllerTest extends WebTestCase
 
 
     }
-//////////////////////// NIE DA SIE USUNAC BOOK JAK MA W NIM KATEGORIE ////////////////////
+
 //    public function testDeleteBook(): void
 //    {
 //        //given
