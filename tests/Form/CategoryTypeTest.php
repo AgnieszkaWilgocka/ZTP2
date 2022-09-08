@@ -1,13 +1,21 @@
 <?php
-
+/**
+ * CategoryType test
+ */
 namespace App\Tests\Form;
 
 use App\Entity\Category;
 use App\Form\Type\categoryType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * Class CategoryTypeTest
+ */
 class CategoryTypeTest extends TypeTestCase
 {
+    /**
+     * SubmitValidDate test
+     */
     public function testSubmitValidDate(): void
     {
 //        $dateTime = new \DateTimeImmutable();

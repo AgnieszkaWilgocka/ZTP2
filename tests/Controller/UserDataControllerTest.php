@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * UserData controller test
+ */
 namespace App\Tests\Controller;
 
 use App\Entity\User;
@@ -9,17 +11,26 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class UserDataControllerTest
+ */
 class UserDataControllerTest extends WebTestCase
 {
     public const TEST_ROUTE = '/userData';
 
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
+    /**
+     * Edit user data test
+     */
     public function testEditUserData(): void
     {
         //given
@@ -47,6 +58,13 @@ class UserDataControllerTest extends WebTestCase
 
     }
 
+    /**
+     * Create user for tests
+     *
+     * @param string $name
+     *
+     * @return User
+     */
     private function createUser(string $name): User
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Favourite controller test
+ */
 namespace App\Tests\Controller;
 
 use App\Entity\Book;
@@ -17,17 +19,26 @@ use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class FavouriteControllerTest
+ */
 class FavouriteControllerTest extends WebTestCase
 {
     public const TEST_ROUTE = '/favourite';
 
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
+    /**
+     * Test index route
+     */
     public function testRouteIndex(): void
     {
         //given
@@ -40,14 +51,18 @@ class FavouriteControllerTest extends WebTestCase
 
         }
         $this->httpClient->loginUser($user);
+
         //when
         $this->httpClient->request('GET', self::TEST_ROUTE);
         $result = $this->httpClient->getResponse()->getStatusCode();
 
-
         //then
         $this->assertEquals($expectedStatusCode, $result);
     }
+
+    /*
+     * Create favourite test
+     */
     public function testCreateFavourite(): void
     {
         //given
@@ -72,38 +87,15 @@ class FavouriteControllerTest extends WebTestCase
 
         $this->assertEquals($expectedStatusCode, $result);
         $this->assertNotNull($favouriteRepository->findOneById($newFavourite->getId()));
-
-
     }
-//    public function testCreateFavourite(): void
-//    {
-//        //given
-//        $user = $this->createUser('create');
-//        $this->httpClient->loginUser($user);
-//
-//        $expectedStatusCode = 200;
-////        $titleNewFavourite = 'testFavourite';
-//        $categoryForFavourite = $this->createCategory('create');
-//        $book = $this->createBook('create', $categoryForFavourite);
-//        $favouriteRepository = static::getContainer()->get(FavouriteRepository::class);
-//
-//        $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
-//
-//        //when
-//        $this->httpClient->submitForm(
-//            'Zapisz',
-//            ['favourite' => ['book' => $book->getTitle(), 'author' => $user]]
-//        );
-//
-//        $result = $this->httpClient->getResponse()->getStatusCode();
-//        $newFavourite = $favouriteRepository->findOneByBook($book);
-//
-//        $this->assertEquals($expectedStatusCode, $result);
-//        $this->assertEquals($book, $newFavourite->getBook);
-//    }
 
+    /**
+     * Delete favourite test
+     *
+     */
     public function testDeleteFavourite(): void
     {
+        //given
         $user = $this->createUser('deleteFavourite');
         $this->httpClient->loginUser($user);
 
@@ -123,10 +115,16 @@ class FavouriteControllerTest extends WebTestCase
         );
 
         //then
-//        $this->assertNull($favouriteRepository->findOneById($favouriteToDelete));
         $this->assertNull($favouriteRepository->findOneByBook($book));
     }
 
+    /**
+     * Create category for favourite's tests
+     *
+     * @param string $title
+     *
+     * @return Category
+     */
     private function createCategory(string $title): Category
     {
         $category = new Category();
@@ -140,6 +138,14 @@ class FavouriteControllerTest extends WebTestCase
         return $category;
     }
 
+    /**
+     * Create book for favourite's tests
+     *
+     * @param string $title
+     * @param Category $category
+     *
+     * @return Book
+     */
     public function createBook(string $title, Category $category): Book
     {
         $book = new Book();
@@ -153,6 +159,13 @@ class FavouriteControllerTest extends WebTestCase
         return $book;
     }
 
+    /**
+     * Create user for favourite's tests
+     *
+     * @param string $name
+     *
+     * @return User
+     */
     private function createUser(string $name): User
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');

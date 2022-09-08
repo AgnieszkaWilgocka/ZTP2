@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Tag controller test
+ */
 namespace App\Tests\Controller;
 
 use App\Entity\Tag;
@@ -9,17 +11,26 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class TagControllerTest
+ */
 class TagControllerTest extends WebTestCase
 {
     public const TEST_ROUTE = '/tag';
 
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
+    /**
+     * Test index route
+     */
     public function testRouteIndex(): void
     {
         //given
@@ -31,10 +42,14 @@ class TagControllerTest extends WebTestCase
         //when
         $this->httpClient->request('GET', self::TEST_ROUTE);
         $result = $this->httpClient->getResponse()->getStatusCode();
+
         //then
         $this->assertEquals($expectedStatusCode, $result);
     }
 
+    /**
+     * Show tag test
+     */
     public function testShowTag(): void
     {
         //given
@@ -43,8 +58,6 @@ class TagControllerTest extends WebTestCase
         $this->httpClient->loginUser($user);
 
         $tag = new Tag();
-//        $createdAt = new \DateTimeImmutable();
-//        $updatedAt = new \DateTimeImmutable();
         $tag->setCreatedAt(new \DateTimeImmutable());
         $tag->setUpdatedAt(new \DateTimeImmutable());
         $tag->setTitle('TestShowTag');
@@ -62,11 +75,11 @@ class TagControllerTest extends WebTestCase
         $result = $this->httpClient->getResponse()->getStatusCode();
 
         $this->assertEquals($expectedStatusCode, $result);
-//        $this->assertEquals($createdAt, $tag->getCreatedAt());
-//        $this->assertEquals($updatedAt, $tag->getUpdatedAt());
     }
 
-
+    /**
+     * Create tag test
+     */
     public function testCreateTag(): void
     {
         //given
@@ -77,6 +90,7 @@ class TagControllerTest extends WebTestCase
         $tagRepository = static::getContainer()->get(TagRepository::class);
 
         $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
+
         //when
         $this->httpClient->submitForm(
             'Zapisz',
@@ -88,6 +102,10 @@ class TagControllerTest extends WebTestCase
         $this->assertEquals($titleForCreateTag, $createdTag->getTitle());
     }
 
+    /**
+     * Edit tag test
+     *
+     */
     public function testEditTag(): void
     {
         //given
@@ -116,6 +134,10 @@ class TagControllerTest extends WebTestCase
         $this->assertEquals($expectedTagEditedTitle, $editedTag->getTitle());
     }
 
+    /**
+     * Delete tag test
+     *
+     */
     public function testDeleteTag(): void
     {
         //given
@@ -140,10 +162,15 @@ class TagControllerTest extends WebTestCase
 
         //then
         $this->assertNull($tagRepository->findOneByTitle('TestDeleteTag'));
-//        $this->assertNull($tagRepository->findOneByCreatedAt($createdAt));
-//        $this->assertNull($tagRepository->findOneByUpdatedAt($updatedAt));
     }
 
+    /**
+     * Create user for tag's tests
+     *
+     * @param string $name
+     *
+     * @return User
+     */
     private function createUser(string $name): User
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');
@@ -162,5 +189,4 @@ class TagControllerTest extends WebTestCase
 
         return $user;
     }
-
 }

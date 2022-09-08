@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Comment controller test
+ */
 namespace App\Tests\Controller;
 
 use App\Entity\Book;
@@ -13,6 +15,9 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class CommentControllerTest
+ */
 class CommentControllerTest extends WebTestCase
 {
 
@@ -20,11 +25,17 @@ class CommentControllerTest extends WebTestCase
 
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
+    /**
+     * Delete comment test
+     */
     public function testDeleteComment(): void
     {
         //given
@@ -47,14 +58,16 @@ class CommentControllerTest extends WebTestCase
         );
 
         //then
-//        $this->assertNull($commentRepository->findOneByContent('TestCommentDelete'));
         $this->assertNull($commentRepository->findOneByBook($book));
     }
 
-
-
-
-
+    /**
+     * Create category for comment's tests
+     *
+     * @param string $title
+     *
+     * @return Category
+     */
     private function createCategory(string $title): Category
     {
         $category = new Category();
@@ -68,6 +81,14 @@ class CommentControllerTest extends WebTestCase
         return $category;
     }
 
+    /**
+     * Create book for comment's tests
+     *
+     * @param string $title
+     * @param Category $category
+     *
+     * @return Book
+     */
     private function createBook(string $title, Category $category): Book
     {
         $book = new Book();
@@ -82,7 +103,13 @@ class CommentControllerTest extends WebTestCase
     }
 
 
-
+    /**
+     * Create user for comment's tests
+     *
+     * @param string $name
+     *
+     * @return User
+     */
     private function createUser(string $name): User
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');
@@ -100,6 +127,4 @@ class CommentControllerTest extends WebTestCase
 
         return $user;
     }
-
-
 }

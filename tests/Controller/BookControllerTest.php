@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Book controller test
+ */
 namespace App\Tests\Controller;
 
 use App\Entity\Book;
@@ -13,19 +15,26 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class BookControllerTest
+ */
 class BookControllerTest extends WebTestCase
 {
     public const TEST_ROUTE = '/book';
 
     private KernelBrowser $httpClient;
 
-
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
-
+    /**
+     * Test index route for anonymous user
+     */
     public function testIndexRouteAnonymousUser(): void
     {
         //given
@@ -34,10 +43,14 @@ class BookControllerTest extends WebTestCase
         //when
         $this->httpClient->request('GET', self::TEST_ROUTE);
         $result = $this->httpClient->getResponse()->getStatusCode();
+
         //then
         $this->assertEquals($expectedStatusCode, $result);
     }
 
+    /**
+     * Test index route for admin
+     */
     public function testIndexRouteAdminUser(): void
     {
         //given
@@ -48,10 +61,14 @@ class BookControllerTest extends WebTestCase
         //when
         $this->httpClient->request('GET', self::TEST_ROUTE);
         $result = $this->httpClient->getResponse()->getStatusCode();
+
         //then
         $this->assertEquals($expectedStatusCode, $result);
     }
 
+    /**
+     * Show book test
+     */
     public function testShowBook(): void
     {
         //given
@@ -66,7 +83,6 @@ class BookControllerTest extends WebTestCase
 
         $comment = new Comment();
         $comment->setAuthor($user);
-//        $comment->setAuthor($this->createUser('comment'));
         $comment->setContent('comment');
         $comment->setBook($expectedBook);
 
@@ -79,33 +95,14 @@ class BookControllerTest extends WebTestCase
         //when
         $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$bookId);
         $result = $this->httpClient->getResponse()->getStatusCode();
+
+        //then
         $this->assertEquals($expectedStatusCode, $result);
-//        $this->assertEquals($comment, $commentRepository->findOneByBook($expectedBook));
     }
 
-//    public function testCreateBook(): void
-//    {
-//        $titleForNewBook = 'BookTitle';
-//        $bookRepository = static::getContainer()->get(BookRepository::class);
-//
-//        $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
-//
-//        //when
-//        $this->httpClient->submitForm(
-//            'Zapisz',
-//            ['book' => [
-//                'title' => $titleForNewBook,
-//                'category' => 'categoryTitle',
-//                'tag' => 'tagTitle'
-//            ]]
-//        );
-//
-//        //then
-//        $resultBook = $bookRepository->findOneByTitle('BookTitle');
-//        $this->assertEquals($titleForNewBook, $resultBook->getTitle());
-//
-//    }
-
+    /**
+     * Edit book test
+     */
     public function testEditBook(): void
     {
 
@@ -114,12 +111,6 @@ class BookControllerTest extends WebTestCase
         $this->httpClient->loginUser($user);
 
         $bookToEdit = new Book();
-
-//        $commentForBook = new Comment();
-//        $commentForBook->setAuthor($user);
-//        $commentForBook->setBook($bookToEdit);
-//        $commentForBook->setContent('edit');
-
         $bookToEdit->setTitle('TestBookToEdit');
         $bookToEdit->setAuthor('TestBookToEdit');
         $bookToEdit->setCategory($this->createCategory('edit'));
@@ -137,53 +128,27 @@ class BookControllerTest extends WebTestCase
         );
 
         $result = $bookRepository->findOneById($bookToEdit->getId());
-//        var_dump($result);
+
+        //then
         $this->assertEquals($expectedEditedTitleBook, $result->getTitle());
-//        $this->assertEquals($editedTitleBook, $result->getTitle());
-//        var_dump($expectedBook);
-
-//        $resultBook = $bookRepository->findOneById($expectedBook->getId());
-//        $this->assertEquals($editedTitle, $resultBook->getTitle());
-//        $editedAuthor = $bookRepository->findOneByAuthor('EditedAuthor');
-//        $this->assertEquals('EditedAuthor', $editedAuthor->getAuthor());
-
-
     }
 
-//    public function testDeleteBook(): void
-//    {
-//        //given
-//        $user = $this->createUser('delete');
-//        $this->httpClient->loginUser($user);
-//
-//        $bookToDelete = new Book();
-//        $bookToDelete->setTitle('TestBookToDelete');
-//        $bookToDelete->setAuthor('TestBookToDelete');
-//        $bookToDelete->setCategory($this->createCategory('delete'));
-//        $bookRepository = static::getContainer()->get(BookRepository::class);
-//        $bookRepository->save($bookToDelete);
-//        $bookToDeleteId = $bookToDelete->getId();
-//
-//
-//        var_dump($this->httpClient->request('GET', self::TEST_ROUTE.'/'.$bookToDeleteId.'/delete'));
-//
-//        //when
-//        $this->httpClient->submitForm(
-//            'Usun'
-//        );
-//
-//        $this->assertNull($bookRepository->findOneByTitle('TestBookToDelete'));
-//    }
-
+    /**
+     * Create user for book's tests
+     *
+     * @param string $name
+     *
+     * @return User
+     */
     private function createUser(string $name): User
     {
-        $paswordHasher = static::getContainer()->get('security.password_hasher');
+        $passwordHasher = static::getContainer()->get('security.password_hasher');
 
         $user = new User();
         $user->setRoles(['ROLE_ADMIN']);
         $user->setEmail($name.'example@com');
         $user->setPassword(
-            $paswordHasher->hashPassword(
+            $passwordHasher->hashPassword(
                 $user,
                 '1234'
             )
@@ -194,6 +159,12 @@ class BookControllerTest extends WebTestCase
         return $user;
     }
 
+    /**
+     * Create category for book's tests
+     * @param string $name
+     *
+     * @return Category
+     */
     private function createCategory(string $name): Category
     {
         $category = new Category();
@@ -206,6 +177,4 @@ class BookControllerTest extends WebTestCase
 
         return $category;
     }
-
-
 }

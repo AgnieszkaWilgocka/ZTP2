@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Favourite service test
+ *
+ */
 namespace App\Tests\Service;
 
 use App\Entity\Book;
@@ -47,26 +50,19 @@ class FavouriteServiceTest extends KernelTestCase
         $this->bookService = $container->get(BookService::class);
     }
 
+    /**
+     * Save test
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function testSave():void
     {
         //given
-        $testCategory = new Category();
-        $testCategory->setTitle('Test Category');
-        $testCategory->setCreatedAt(new \DateTimeImmutable());
-        $testCategory->setUpdatedAt(new \DateTimeImmutable());
-        $this->categoryService->save($testCategory);
-
-        $testUser = new User();
-        $testUser->setEmail('testUser0@example.com');
-        $testUser->setRoles(['ROLE_USER']);
-        $testUser->setPassword('testUser1234');
-        $this->userService->save($testUser);
-
-        $testBook = new Book();
-        $testBook->setTitle('Test Book');
-        $testBook->setAuthor('Test Author');
-        $testBook->setCategory($testCategory);
-        $this->bookService->save($testBook);
+        //create entity for favourite
+        $testCategory = $this->createCategory('favourite_save');
+        $testUser = $this->createUser('favourite_save');
+        $testBook = $this->createBook('favourite_save', $testCategory);
 
         $expectedFavourite = new Favourite();
         $expectedFavourite->setAuthor($testUser);
@@ -88,27 +84,17 @@ class FavouriteServiceTest extends KernelTestCase
         $this->assertEquals($expectedFavourite, $resultFavourite);
     }
 
+    /**
+     * Delete test
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function testDelete():void
     {
         //given
-        $testCategory = new Category();
-        $testCategory->setTitle('Test Category');
-        $testCategory->setCreatedAt(new \DateTimeImmutable());
-        $testCategory->setUpdatedAt(new \DateTimeImmutable());
-        $this->categoryService->save($testCategory);
-
-        $testUser = new User();
-        $testUser->setEmail('testUser1@example.com');
-        $testUser->setRoles(['ROLE_USER']);
-        $testUser->setPassword('testUser1234');
-        $this->userService->save($testUser);
-
-        $testBook = new Book();
-        $testBook->setTitle('Test Book');
-        $testBook->setAuthor('Test Author');
-        $testBook->setCategory($testCategory);
-        $this->bookService->save($testBook);
-
+        $testCategory = $this->createCategory('favouriteDelete');
+        $testUser = $this->createUser('favourite_delete');
+        $testBook = $this->createBook('favourite_delete', $testCategory);
 
         $favouriteToDelete = new Favourite();
         $favouriteToDelete->setBook($testBook);
@@ -130,53 +116,15 @@ class FavouriteServiceTest extends KernelTestCase
         ->getOneOrNullResult();
 
         $this->assertNull($resultFavourite);
-
-        //
-
     }
 
-    //  TRZEBA PARAMETR AUTHOR //
-//    public function testGetPaginatedList(): void
-//    {
-//        //given
-//        $page = 1;
-//
-//        $dataSetSize = 3;
-//        $expectedResultSize = 3;
-//
-//        $counter = 0;
-//        while ($counter < $dataSetSize) {
-//            $testCategory = new Category();
-//            $testCategory->setTitle('Test Category #'.$counter);
-//            $testCategory->setCreatedAt(new \DateTimeImmutable());
-//            $testCategory->setUpdatedAt(new \DateTimeImmutable());
-//            $this->categoryService->save($testCategory);
-
-//            $testUser = new User();
-//            $testUser->setEmail('testUser@example.com#'.$counter);
-//            $testUser->setRoles(['ROLE_USER']);
-//            $testUser->setPassword('testUser1234');
-//            $this->userService->save($testUser);
-
-//            $testBook = new Book();
-//            $testBook->setTitle('Test Book #'.$counter);
-//            $testBook->setAuthor('Test Author #'.$counter);
-//            $testBook->setCategory($thi);
-//            $this->bookService->save($testBook);
-
-//            $favourite = new Favourite();
-//            $favourite->setAuthor($this->createUser('testPaginated'.$counter));
-//            $favourite->setBook($this->createBook('testPaginated'.$counter, $this->createCategory('testPaginated'.$counter)));
-//            $this->favouriteService->save($favourite);
-//            ++$counter;
-//        }
-//
-//        //when
-//        $result = $this->favouriteService->getPaginatedList($page, $this->createUser('user'));
-//
-//        $this->assertEquals($expectedResultSize, $result->count());
-//    }
-
+    /**
+     * Create category for favourite's tests
+     *
+     * @param string $name
+     *
+     * @return Category
+     */
     private function createCategory(string $name): Category
     {
         $category = new Category();
@@ -188,6 +136,14 @@ class FavouriteServiceTest extends KernelTestCase
         return $category;
     }
 
+    /**
+     * Create book for favourite's tests
+     *
+     * @param string $title
+     * @param Category $category
+     *
+     * @return Book
+     */
     private function createBook(string $title, Category $category): Book
     {
         $book = new Book();
@@ -200,6 +156,13 @@ class FavouriteServiceTest extends KernelTestCase
         return $book;
     }
 
+    /**
+     * Create user for favourite's tests
+     *
+     * @param $name
+     *
+     * @return User
+     */
     private function createUser($name): User
     {
         $user = new User();
@@ -210,5 +173,4 @@ class FavouriteServiceTest extends KernelTestCase
 
         return $user;
     }
-
 }

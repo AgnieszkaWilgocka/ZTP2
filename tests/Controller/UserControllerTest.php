@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * User controller test
+ */
 namespace App\Tests\Controller;
 
 use App\Entity\User;
@@ -13,19 +15,26 @@ use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class UserControllerTest
+ */
 class UserControllerTest extends WebTestCase
 {
     public const TEST_ROUTE = '/user';
 
     private KernelBrowser $httpClient;
 
-
-
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
+    /**
+     * Show user test
+     */
     public function testShowUser(): void
     {
         //given
@@ -44,21 +53,17 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $result);
     }
 
+    /**
+     * Change password test
+     *
+     */
     public function testChangePassword(): void
     {
         //given
-//        $passwordHasher = static::getContainer()->get('security.password_hasher');
-
         $userData = $this->createUserData('nick');
         $user = $this->createUser('changePassword', $userData);
         $this->httpClient->loginUser($user);
         $userId = $user->getId();
-//        $newPassword = $passwordHasher->hashPassword(
-//            $user,
-//            '12345'
-//        );
-
-//        $userRepository = static::getContainer()->get(UserRepository::class);
 
         $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$userId.'/edit');
 
@@ -72,74 +77,19 @@ class UserControllerTest extends WebTestCase
             ]]]
 
         );
-//            ['change_password' => ['password' =>
-//                [
-//                    'first_options' => ['1234'],
-//                    'second_options' => ['1234']]]]
-////                [
 
-//                    'first_options' => ['1234'],
-//                    'second_options' => ['1234']
-//                ]
-//            ]]
-//        );
-//        $this->assertEquals('1234', $user->getPassword());
-//        $this->assertNotNull($user->getPassword());
-        $this->assertNotNull($user->getPassword());
         //then
-//        $this->assertEquals($newPassword, $user->getPassword());
-
-
+        $this->assertNotNull($user->getPassword());
     }
 
-//////////// nie dziala z tym nickiem //////
-//    public function testIndexRoute(): void
-//    {
-//        $expectedCodeStatus = 200;
-//        $userData = $this->createUserData('index');
-//
-//        $user = $this->createUser('indexTestUser', $userData);
-//
-//        $this->httpClient->loginUser($user);
-//
-//        //when
-//        var_dump($this->httpClient->request('GET',self::TEST_ROUTE));
-//
-//        //then
-//        $resultHttpCode = $this->httpClient->getResponse()->getStatusCode();
-//
-////        var_dump($resultHttpCode);
-//        $this->assertEquals($expectedCodeStatus, $resultHttpCode);
-//    }
-//
-//////        $userData = null;
-//////        $user->setUserData($this->createUserData('index'));
-//////        try {
-//////            $userData = $this->createUserData('testIndex');
-//////        } catch (OptimisticLockException|NotFoundExceptionInterface|ContainerExceptionInterface|ORMException $e)
-//////        {
-////
-//////        }
-////        $this->httpClient->loginUser($user);
-////
-////
-////
-////////        $user->setUserData($this->createUserData('userDataForUser'));
-//////
-//////        $this->httpClient->loginUser($user);
-//////
-////        //when
-////       $this->httpClient->request('GET', self::TEST_ROUTE);
-////////        var_dump($user);
-//////
-////        //then
-////        $result = $this->httpClient->getResponse()->getStatusCode();
-////
-////        $this->assertEquals($expectedCodeStatus, $result);
-//////
-////    }
-////////
-////////
+    /**
+     * Create user for tests
+     *
+     * @param string $name
+     * @param UserData $userData
+     *
+     * @return User
+     */
     private function createUser(string $name, UserData $userData): User
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');
@@ -153,21 +103,19 @@ class UserControllerTest extends WebTestCase
             )
         );
         $user->setUserData($userData);
-//        $user->setUserData($userData);
-////        $user->setUserData($userData);
-////////        $user->setUserData($this->createUserData('userDataForUser'));
-////////        $userData = new UserData();
-////        $userData->setNick($name);
-////////        $userDataRepository = static::getContainer()->get(UserrDataRepository::class);
-////////        $userDataRepository->save($userData);
-////////        $user->setUserData($userData);
-////////
         $userRepository = static::getContainer()->get(UserRepository::class);
         $userRepository->save($user);
-////////
+
         return $user;
     }
-////////
+
+    /**
+     * Create user data for tests
+     *
+     * @param $nick
+     *
+     * @return UserData
+     */
     private function createUserData($nick): UserData
     {
 
@@ -177,12 +125,6 @@ class UserControllerTest extends WebTestCase
         $userDataRepository = static::getContainer()->get(UserrDataRepository::class);
         $userDataRepository->save($userData);
 
-//        $newUser = $user;
-//        $newUser->setUserData($userData);
-
         return $userData;
     }
-//////////
-//////////
-//////////
 }

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Book service test
+ */
 namespace App\Tests\Service;
 
 use App\Entity\Book;
@@ -9,12 +11,19 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * Class BookServiceTest
+ */
 class BookServiceTest extends KernelTestCase
 {
+
     private ?EntityManagerInterface $entityManager;
 
     private ?BookService $bookService;
 
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $container = static::getContainer();
@@ -22,7 +31,12 @@ class BookServiceTest extends KernelTestCase
         $this->bookService = $container->get(BookService::class);
     }
 
-
+    /**
+     * Save test
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function testSave(): void
     {
         //given
@@ -54,6 +68,11 @@ class BookServiceTest extends KernelTestCase
         $this->assertEquals($expectedBook, $resultBook);
     }
 
+    /**
+     * Delete test
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function testDelete(): void
     {
         //given

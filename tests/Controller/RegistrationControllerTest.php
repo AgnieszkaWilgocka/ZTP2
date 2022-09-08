@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Registration controller test
+ */
 namespace App\Tests\Controller;
 
 use App\Entity\User;
@@ -9,25 +11,34 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class RegistrationControllerTest
+ */
 class RegistrationControllerTest extends WebTestCase
 {
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
+    /**
+     * Registration test
+     */
     public function testRegistration(): void
     {
-//        $passwordHasher = static::getContainer()->get('security.password_hasher');
-//        $passwordForUser = $passwordHasher->hashPassword('1234');
+
+        //given
         $emailForNewUser = 'register@example.com';
         $userRepository = static::getContainer()->get(UserRepository::class);
 
         $this->httpClient->request('GET', '/registration');
 
-        //then
+        //when
         $this->httpClient->submitForm(
             'Zapisz',
             ['registration' => [
@@ -42,34 +53,20 @@ class RegistrationControllerTest extends WebTestCase
                 ]]
         );
 
-//        $resultHttpCode = $this->httpClient->getResponse()->getStatusCode();
+        //then
         $result = $userRepository->findOneByEmail('register@example.com');
         $this->assertEquals($emailForNewUser, $result->getEmail());
-//        $this->assertEquals(200, $resultHttpCode);
-
     }
 
 
-//    public function testRegister(): void
-//    {
-//        $userData = $this->createUserData('register');
-//
-//
-//        $user = $this->createUser('register', $userData);
-////        $this->httpClient->loginUser($user);
-////        $user->setUserData($userData);
-//
-//        $userRepository = static::getContainer()->get(UserRepository::class);
-//        //when
-//        $this->httpClient->request('GET', '/registration');
-//
-//        //then
-//        $result = $this->httpClient->getResponse()->getStatusCode();
-//        $this->assertEquals($user, $userRepository->findOneByEmail('register@example.com'));
-//        $this->assertEquals(200, $result);
-//
-//    }
-
+    /**
+     * Create user for tests
+     *
+     * @param $name
+     * @param UserData $userData
+     *
+     * @return User
+     */
     public function createUser($name, UserData $userData): User
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');

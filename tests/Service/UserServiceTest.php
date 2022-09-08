@@ -1,6 +1,7 @@
 <?php
-
-
+/**
+ * User service test
+ */
 namespace App\Tests\Service;
 
 use App\Entity\User;
@@ -11,6 +12,9 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * Class UserServiceTest
+ */
 class UserServiceTest extends KernelTestCase
 {
     private ?EntityManager $entityManager;
@@ -19,6 +23,9 @@ class UserServiceTest extends KernelTestCase
 
     private ?UserDataService $userDataService;
 
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $container = static::getContainer();
@@ -27,7 +34,9 @@ class UserServiceTest extends KernelTestCase
         $this->userDataService = $container->get(UserDataService::class);
     }
 
-
+    /**
+     * Paginated list test
+     */
     public function testPaginatedList(): void
     {
         //given
@@ -61,6 +70,12 @@ class UserServiceTest extends KernelTestCase
     }
 
 
+    /**
+     * Save test
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function testSave(): void
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');
@@ -94,6 +109,11 @@ class UserServiceTest extends KernelTestCase
 
     }
 
+    /**
+     * Delete test
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function testDelete(): void
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');
@@ -126,6 +146,12 @@ class UserServiceTest extends KernelTestCase
         $this->assertNull($result);
     }
 
+    /**
+     * Create user data test
+     * @param $nick
+     *
+     * @return UserData
+     */
     private function createUserData($nick): UserData
     {
         $userData = new UserData();
@@ -134,5 +160,4 @@ class UserServiceTest extends KernelTestCase
 
         return $userData;
     }
-
 }

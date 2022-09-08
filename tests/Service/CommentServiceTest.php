@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Comment service test
+ */
 namespace App\Test\Service;
 
 use App\Entity\Book;
@@ -17,6 +19,9 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * Class CommentServiceTest
+ */
 class CommentServiceTest extends KernelTestCase
 {
 
@@ -26,6 +31,8 @@ class CommentServiceTest extends KernelTestCase
 
 
     /**
+     * Set up test
+     *
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
@@ -38,7 +45,12 @@ class CommentServiceTest extends KernelTestCase
     }
 
 
-
+    /**
+     * Save test
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function testSave(): void
     {
         //given
@@ -84,6 +96,11 @@ class CommentServiceTest extends KernelTestCase
         $this->assertEquals($expectedComment->getContent(), $resultComment->getContent());
     }
 
+    /**
+     * Delete test
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function testDelete(): void
     {
         //given

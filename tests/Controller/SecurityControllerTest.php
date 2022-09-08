@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Security controller test
+ */
 namespace App\Tests\Controller;
 
 use App\Entity\User;
@@ -11,15 +13,24 @@ use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class SecurityControllerTest
+ */
 class SecurityControllerTest extends WebTestCase
 {
     private KernelBrowser $httpClient;
 
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
+    /**
+     * Test log in route
+     */
     public function testLogInRoute(): void
     {
         //given
@@ -34,44 +45,19 @@ class SecurityControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $result);
     }
 
+    /**
+     * Test log out route
+     */
     public function testLogOutRoute(): void
     {
+        //given
         $expectedStatusCode = 302;
-//        $user = null;
-//        try {
-//            $user = $this->createUser('logout');
-//        } catch (OptimisticLockException|NotFoundExceptionInterface|ContainerExceptionInterface|ORMException $e){
-//
-//        }
-//        $user = $this->createUser('logoutTest');
-//        $this->httpClient->loginUser($user);
 
         //when
         $this->httpClient->request('GET', '/logout');
 
         //then
         $result = $this->httpClient->getResponse()->getStatusCode();
-
-
         $this->assertEquals($expectedStatusCode, $result);
-//        $this->assertResponseRedirects('');
     }
-
-//    private function createUser(string $name): User
-//    {
-//        $passwordHasher = static::getContainer()->get('security.password_hasher');
-//        $userRepository = static::getContainer()->get(UserRepository::class);
-//        $user = new User();
-//        $user->setRoles(['ROLE_ADMIN']);
-//        $user->setEmail($name.'example.com');
-//        $user->setPassword(
-//            $passwordHasher->hashPassword(
-//                $user,
-//                '1234'
-//            )
-//        );
-//        $userRepository->save($user);
-//
-//        return $user;
-//    }
 }

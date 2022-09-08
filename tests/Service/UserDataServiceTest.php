@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * UserData service test
+ */
 namespace App\Tests\Service;
 
 use App\Entity\UserData;
@@ -8,18 +10,30 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * Class UserDataServiceTest
+ */
 class UserDataServiceTest extends KernelTestCase
 {
     private ?EntityManagerInterface $entityManager;
 
     private ?UserDataService $userDataService;
 
+    /**
+     * Set up test
+     */
     public function setUp(): void
     {
         $this->entityManager = static::getContainer()->get('doctrine.orm.entity_manager');
         $this->userDataService = static::getContainer()->get(UserDataService::class);
     }
 
+    /**
+     * UserData save test
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function testUserDataSave(): void
     {
         //given
@@ -28,7 +42,6 @@ class UserDataServiceTest extends KernelTestCase
 
         //when
         $this->userDataService->save($expectedUserData);
-
 
         //then
         $expectedUserDataId = $expectedUserData->getId();
