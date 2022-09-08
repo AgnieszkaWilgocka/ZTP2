@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Favourite repository
+ */
 namespace App\Repository;
 
 use App\Entity\Favourite;
@@ -9,6 +11,8 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class FavouriteRepository
+ *
  * @extends ServiceEntityRepository<Favourite>
  *
  * @method Favourite|null find($id, $lockMode = null, $lockVersion = null)
@@ -26,15 +30,19 @@ class FavouriteRepository extends ServiceEntityRepository
     public const PAGINATOR_ITEMS_PER_PAGE = 3;
 
 
+    /**
+     * Constructor
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Favourite::class);
     }
 
-
-
-
     /**
+     * Query all records
+     *
      * @return QueryBuilder
      */
     public function queryAll(): QueryBuilder
@@ -44,6 +52,8 @@ class FavouriteRepository extends ServiceEntityRepository
     }
 
     /**
+     * Get or create new query builder
+     *
      * @param QueryBuilder|null $queryBuilder
      *
      * @return QueryBuilder
@@ -54,6 +64,8 @@ class FavouriteRepository extends ServiceEntityRepository
     }
 
     /**
+     * Query by author
+     *
      * @param User $user
      *
      * @return QueryBuilder
@@ -69,9 +81,9 @@ class FavouriteRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param Favourite $favourite
+     * Action save
      *
-     * @return void
+     * @param Favourite $favourite
      */
     public function save(Favourite $favourite): void
     {
@@ -80,9 +92,9 @@ class FavouriteRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param Favourite $favourite
+     * Action delete
      *
-     * @return void
+     * @param Favourite $favourite
      */
     public function delete(Favourite $favourite): void
     {

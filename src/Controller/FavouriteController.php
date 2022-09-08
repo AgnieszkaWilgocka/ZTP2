@@ -1,12 +1,12 @@
 <?php
-
+/**
+ * Favourite controller
+ */
 namespace App\Controller;
 
 use App\Entity\Favourite;
 use App\Form\Type\FavouriteType;
-use App\Repository\FavouriteRepository;
 use App\Service\FavouriteService;
-use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -27,6 +27,12 @@ class FavouriteController extends AbstractController
 
     private TranslatorInterface $translator;
 
+    /**
+     * Constructor
+     *
+     * @param FavouriteService    $favouriteService
+     * @param TranslatorInterface $translator
+     */
     public function __construct(FavouriteService $favouriteService, TranslatorInterface $translator)
     {
         $this->favouriteService = $favouriteService;
@@ -34,6 +40,8 @@ class FavouriteController extends AbstractController
     }
 
     /**
+     * Function index
+     *
      * @param Request $request
      *
      * @return Response
@@ -52,32 +60,10 @@ class FavouriteController extends AbstractController
         return $this->render('favourite/own.html.twig', ['pagination' => $pagination]);
     }
 
-//    /**
-//     * @param Favourite $favourite
-//     *
-//     * @return Response|void
-//     */
-//    #[Route(
-//        '/{id}',
-//        name: 'favourite_show',
-//        requirements: ['id' => '[1-9]\d*'],
-//        methods: 'GET'
-//    )]
-//    public function show(Favourite $favourite)
-//    {
-//        if($favourite->getAuthor() !== $this->getUser()) {
-//            $this->addFlash(
-//                'warning',
-//                $this->translator->trans('message.record_not_found')
-//            );
-//
-//            return $this->render(
-//                'favourite/show.html.twig',
-//                ['favourite' => $favourite]
-//            );
-//        }
-//    }
+
     /**
+     * Function create favourite
+     *
      * @param Request $request
      *
      * @return Response
@@ -96,7 +82,7 @@ class FavouriteController extends AbstractController
         $form = $this->createForm(FavouriteType::class, $favourite);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $favourite->setAuthor($user);
             $this->favouriteService->save($favourite);
 
@@ -115,7 +101,9 @@ class FavouriteController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * Function delete favourite
+     *
+     * @param Request   $request
      * @param Favourite $favourite
      *
      * @return Response
@@ -138,7 +126,7 @@ class FavouriteController extends AbstractController
         }
         $form = $this->createForm(FormType::class, $favourite, [
             'method' => 'DELETE',
-            'action' => $this->generateUrl('favourite_delete', ['id' => $favourite->getId()])
+            'action' => $this->generateUrl('favourite_delete', ['id' => $favourite->getId()]),
         ]);
 
         $form->handleRequest($request);
@@ -158,7 +146,7 @@ class FavouriteController extends AbstractController
             'favourite/delete.html.twig',
             [
                 'form' => $form->createView(),
-                'favourite' => $favourite
+                'favourite' => $favourite,
             ]
         );
     }

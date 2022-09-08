@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Registration controller
+ */
 namespace App\Controller;
 
 use App\Entity\User;
@@ -21,20 +23,23 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class RegistrationController extends AbstractController
 {
     /**
-     * @param Request $request
-     * @param UserRepository $userRepository
-     * @param UserPasswordHasherInterface $passwordHasher
-     * @param UserAuthenticatorInterface $userAuthenticator
-     * @param LoginFormAuthenticator $formAuthenticator
+     * Function register
      *
-     * @return Response
+     * @param Request                     $request
+     * @param UserRepository              $userRepository
+     * @param UserrDataRepository         $userDataRepository
+     * @param UserPasswordHasherInterface $passwordHasher
+     * @param UserAuthenticatorInterface  $userAuthenticator
+     * @param LoginFormAuthenticator      $formAuthenticator
+     *
+     * @return Response|null
      */
     #[Route(
         '/registration',
         name: "app_register",
         methods: "GET|POST"
     )]
-    public function register(Request $request, UserRepository $userRepository, UserrDataRepository $userDataRepository, UserPasswordHasherInterface $passwordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $formAuthenticator): Response
+    public function register(Request $request, UserRepository $userRepository, UserrDataRepository $userDataRepository, UserPasswordHasherInterface $passwordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $formAuthenticator): ?Response
     {
         $user = new User();
         $userData = new UserData();
@@ -64,7 +69,7 @@ class RegistrationController extends AbstractController
             'registration/register.html.twig',
             [
                 'form' => $form->createView(),
-                'user' => $user
+                'user' => $user,
             ]
         );
     }

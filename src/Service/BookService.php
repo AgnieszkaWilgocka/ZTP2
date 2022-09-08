@@ -1,17 +1,20 @@
 <?php
-
+/**
+ * Book service
+ */
 namespace App\Service;
 
 use App\Entity\Book;
 use App\Repository\BookRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\TagRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * class BookService
+ * Class BookService
  */
 class BookService implements BookServiceInterface
 {
@@ -46,15 +49,12 @@ class BookService implements BookServiceInterface
 
 
     /**
-     * Constructor
-     *
-     * @param BookRepository $bookRepository
+     * @param BookRepository     $bookRepository
      * @param PaginatorInterface $paginator
+     * @param CategoryRepository $categoryRepository
+     * @param TagService         $tagService
      */
-    public function __construct(BookRepository $bookRepository,
-                                PaginatorInterface $paginator,
-                                CategoryRepository $categoryRepository,
-                                TagService $tagService)
+    public function __construct(BookRepository $bookRepository, PaginatorInterface $paginator, CategoryRepository $categoryRepository, TagService $tagService)
     {
         $this->bookRepository = $bookRepository;
         $this->paginator = $paginator;
@@ -62,6 +62,14 @@ class BookService implements BookServiceInterface
         $this->tagService = $tagService;
     }
 
+    /**
+     * Paginated list
+     *
+     * @param int   $page
+     * @param array $filters
+     *
+     * @return PaginationInterface
+     */
     public function getPaginatedList(int $page, array $filters = []): PaginationInterface
     {
         $filters = $this->prepareFilters($filters);
@@ -73,27 +81,37 @@ class BookService implements BookServiceInterface
         );
     }
 
+    /**
+     * Action save
+     *
+     * @param Book $book
+     *
+     * @return void
+     */
     public function save(Book $book)
     {
         $this->bookRepository->save($book);
     }
 
+    /**
+     * Action delete
+     *
+     * @param Book $book
+     *
+     * @return void
+     */
     public function delete(Book $book)
     {
         $this->bookRepository->delete($book);
     }
 
-    public function canBeDeleted(Book $book): bool
-    {
-        try {
-            $result = $this->categoryRepository->countByBook($book);
-
-            return !($result > 0);
-        } catch (NoResultException|NonUniqueResultException) {
-            return false;
-        }
-    }
-
+    /**
+     * @param array $filters
+     *
+     * @return \App\Entity\Tag[]
+     *
+     * @psalm-return array{tag?: \App\Entity\Tag}
+     */
     public function prepareFilters(array $filters): array
     {
         $resultFilters = [];
@@ -107,4 +125,15 @@ class BookService implements BookServiceInterface
 
         return $resultFilters;
     }
+
+//    public function canBeDeleted(Book $book): bool
+//    {
+//        try {
+//            $result = $this->tagRepository->countByBook($book);
+//
+//            return !($result > 0);
+//        } catch (NoResultException|NonUniqueResultException) {
+//            return false;
+//        }
+//    }
 }

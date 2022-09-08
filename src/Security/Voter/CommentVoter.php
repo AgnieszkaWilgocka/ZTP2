@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Comment voter
+ */
 namespace App\Security\Voter;
 
 use App\Entity\Comment;
@@ -9,12 +11,21 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class CommentVoter
+ *
+ */
 class CommentVoter extends Voter
 {
     public const DELETE = 'DELETE';
 
     private Security $security;
 
+    /**
+     * Constructor
+     *
+     * @param Security $security
+     */
     public function __construct(Security $security)
     {
         $this->security = $security;
@@ -22,6 +33,14 @@ class CommentVoter extends Voter
 
 //    public const VIEW = 'POST_VIEW';
 
+    /**
+     * Determines if the attribute and subject are supported by this voter
+     *
+     * @param string $attribute
+     * @param $subject
+     *
+     * @return bool
+     */
     protected function supports(string $attribute, $subject): bool
     {
         // replace with your own logic
@@ -30,6 +49,16 @@ class CommentVoter extends Voter
             && $subject instanceof Comment;
     }
 
+    /**
+     * Perform a single access check operation on a given attribute, subject and token.
+     * It is safe to assume that $attribute and $subject already passed the "supports()" method check
+     *
+     * @param string         $attribute
+     * @param $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
@@ -46,10 +75,18 @@ class CommentVoter extends Voter
                 // return true or false
 //                break;
         }
+
         return false;
     }
 
-    private function canDelete(Comment $comment, User $user):bool {
+    /**
+     * @param Comment $comment
+     * @param User    $user
+     *
+     * @return bool
+     */
+    private function canDelete(Comment $comment, User $user):bool
+    {
         return $comment->getAuthor() === $user || $this->security->isGranted("ROLE_ADMIN", $user);
     }
 }

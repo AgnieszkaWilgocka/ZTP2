@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * User voter
+ */
 namespace App\Security\Voter;
 
 use App\Entity\User;
@@ -41,6 +43,11 @@ class UserVoter extends Voter
      */
     private Security $security;
 
+    /**
+     * Constructor
+     *
+     * @param Security $security
+     */
     public function __construct(Security $security)
     {
         $this->security = $security;
@@ -50,7 +57,7 @@ class UserVoter extends Voter
      * Determines if the attribute and subject are supported by this voter
      *
      * @param string $attribute
-     * @param $subject
+     * @param        $subject
      *
      * @return bool
      */
@@ -68,8 +75,8 @@ class UserVoter extends Voter
      * Perform a single access check operation on a given attribute, subject and token.
      * It is safe to assume that $attribute and $subject already passed the "supports()" method check
      *
-     * @param string $attribute
-     * @param $subject
+     * @param string         $attribute
+     * @param                $subject
      * @param TokenInterface $token
      *
      * @return bool
@@ -95,7 +102,7 @@ class UserVoter extends Voter
                 // return true or false
 //                break;
             case 'USER_DELETE':
-                if($subject === $user || $this->security->isGranted('ROLE_ADMIN', $user)) {
+                if ($subject === $user || $this->security->isGranted('ROLE_ADMIN', $user)) {
                     return true;
                 }
                 break;

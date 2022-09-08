@@ -1,10 +1,13 @@
 <?php
-
+/**
+ * Comment fixtures
+ */
 namespace App\DataFixtures;
 
 use App\DataFixtures\AbstractBaseFixtures;
 use App\Entity\Comment;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+
 /**
  * Class CommentFixtures
  */
@@ -15,7 +18,7 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
      */
     public function loadData(): void
     {
-        $this->createMany(10, 'comments', function(int $i) {
+        $this->createMany(10, 'comments', function (int $i) {
             $comment = new Comment();
             $comment->setContent($this->faker->title());
             $comment->setBook($this->getRandomReference('books'));
@@ -25,11 +28,14 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
         });
 
         $this->manager->flush();
-
     }
 
     /**
+     * Function getDependencies
+     *
      * @return string[]
+     *
+     * @psalm-return array{0: BookFixtures::class, 1: UserFixtures::class}
      */
     public function getDependencies():array
     {

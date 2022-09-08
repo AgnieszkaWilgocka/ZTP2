@@ -1,13 +1,18 @@
 <?php
-
+/**
+ * Tag repository
+ */
 namespace App\Repository;
 
+use App\Entity\Book;
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class TagRepository
+ *
  * @extends ServiceEntityRepository<Tag>
  *
  * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
@@ -25,12 +30,19 @@ class TagRepository extends ServiceEntityRepository
     public const PAGINATOR_ITEMS_PER_PAGE = 3;
 
 
+    /**
+     * Constructor
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tag::class);
     }
 
     /**
+     * Query all records
+     *
      * @return QueryBuilder
      */
     public function queryAll(): QueryBuilder
@@ -43,6 +55,8 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
+     * Get or create new query builder
+     *
      * @param QueryBuilder|null $queryBuilder
      *
      * @return QueryBuilder
@@ -52,9 +66,9 @@ class TagRepository extends ServiceEntityRepository
         return $queryBuilder ?? $this->createQueryBuilder('tag');
     }
 
-
-
     /**
+     * Action save
+     *
      * @param Tag $tag
      */
     public function save(Tag $tag): void
@@ -64,6 +78,8 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
+     * Action delete
+     *
      * @param Tag $tag
      */
     public function delete(Tag $tag): void
@@ -71,6 +87,16 @@ class TagRepository extends ServiceEntityRepository
         $this->_em->remove($tag);
         $this->_em->flush($tag);
     }
+
+//    public function countByBook(Book $book): int {
+//        $qb = $this->getOrCreateQueryBuilder();
+//
+//        return $qb->select($qb->expr()->countDistinct('tag.id'))
+//            ->where('tag.books = :books')
+//            ->setParameter(':books', $book)
+//            ->getQuery()
+//            ->getSingleScalarResult();
+//    }
 //    /**
 //     * @return Tag[] Returns an array of Tag objects
 //     */

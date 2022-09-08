@@ -1,10 +1,11 @@
 <?php
-
+/**
+ * UserData controller
+ */
 namespace App\Controller;
 
 use App\Entity\UserData;
 use App\Form\Type\UserDataType;
-use App\Repository\UserDataRepository;
 use App\Service\UserDataServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,8 +24,19 @@ class UserDataController extends AbstractController
 
     private UserDataServiceInterface $userDataService;
 
+    /**
+     * Translator
+     *
+     * @var TranslatorInterface
+     */
     private TranslatorInterface $translator;
 
+    /**
+     * Constructor
+     *
+     * @param UserDataServiceInterface $userDataService
+     * @param TranslatorInterface      $translator
+     */
     public function __construct(UserDataServiceInterface $userDataService, TranslatorInterface $translator)
     {
         $this->userDataService = $userDataService;
@@ -32,7 +44,9 @@ class UserDataController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * Function edit user data
+     *
+     * @param Request  $request
      * @param UserData $userData
      *
      * @return Response
@@ -46,9 +60,11 @@ class UserDataController extends AbstractController
     public function edit(Request $request, UserData $userData): Response
     {
         $form = $this->createForm(UserDataType::class, $userData, ['method' => 'PUT',
-            'action' => $this->generateUrl('user_data_edit',
-            ['id' => $userData->getId()]),
-            ]);
+            'action' => $this->generateUrl(
+                'user_data_edit',
+                ['id' => $userData->getId()]
+            ),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -58,6 +74,7 @@ class UserDataController extends AbstractController
                 'success',
                 $this->translator->trans('message.updated_successfully')
             );
+
             return $this->redirectToRoute('category_index');
         }
 
@@ -65,7 +82,7 @@ class UserDataController extends AbstractController
             'userData/edit.html.twig',
             [
                 'form' => $form->createView(),
-                'userData' => $userData
+                'userData' => $userData,
             ]
         );
     }

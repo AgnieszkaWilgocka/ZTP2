@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Category entity
+ */
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
@@ -9,7 +11,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * Class Category
@@ -62,6 +63,9 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Book::class)]
     private $books;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->books = new ArrayCollection();
@@ -96,7 +100,6 @@ class Category
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
-
     }
 
     /**
@@ -118,7 +121,6 @@ class Category
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
-
     }
 
     /**
@@ -140,7 +142,6 @@ class Category
     public function setTitle(string $title): void
     {
         $this->title = $title;
-
     }
 
     /**

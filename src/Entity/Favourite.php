@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Favourite entity
+ */
 namespace App\Entity;
 
 use App\Repository\FavouriteRepository;
@@ -15,18 +17,28 @@ class Favourite
     /**
      * Primary key
      *
-     * @var int
+     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
+    /**
+     * User entity
+     *
+     * @var User|null
+     */
     #[ORM\ManyToOne(targetEntity: User::class)]
-    private $author;
+    private ?User $author;
 
+    /**
+     * Book entity
+     *
+     * @var Book|null
+     */
     #[ORM\ManyToOne(targetEntity: Book::class)]
-    private $book;
+    private ?Book $book;
 
     /**
      * Getter for id
@@ -52,6 +64,7 @@ class Favourite
      * Setter for author
      *
      * @param User|null $author
+     *
      * @return void
      */
     public function setAuthor(?User $author): void

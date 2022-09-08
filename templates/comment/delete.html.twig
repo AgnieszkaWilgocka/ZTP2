@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'comment.title_delete'|trans }}
+    {{ 'title.comment_delete'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'comment.title_delete'|trans }}</h1>
-
+    <h1>{{ 'title.comment_delete'|trans }}</h1>
+    <div class="container">
+    <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
     {{ form_start(form) }}
     {{ form_widget(form) }}
 
@@ -15,14 +17,17 @@
 
     </div>
 
-    <div class="form-group row float-sm-left">
-        <a href="{{ url('book_index') }}" class="btn btn-link">
-            {{ 'action.back_to_list'|trans }}
-        </a>
-    </div>
-    <a class="btn btn-primary"  href="{{ url('category_index') }}" role="button">
+{#    <div class="form-group row float-sm-left">#}
+{#        <a href="{{ url('book_index') }}" class="btn btn-link">#}
+{#            {{ 'action.back_to_list'|trans }}#}
+{#        </a>#}
+{#    </div>#}
+    <a class="btn btn-primary"  href="{{ url('book_index') }}" role="button">
         {{ 'action_back_to_list'|trans }}
     </a>
 
     {{ form_end(form) }}
+    </div>
+    </div>
+    </div>
 {% endblock %}

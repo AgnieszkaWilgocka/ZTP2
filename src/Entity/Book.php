@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Book entity
+ */
 namespace App\Entity;
 
 use App\Repository\BookRepository;
@@ -59,14 +61,14 @@ class Book
     #[ORM\OneToMany(mappedBy: 'book', targetEntity: Comment::class)]
     private $comments;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
-
-
-
 
     /**
      * Getter for id
@@ -183,6 +185,11 @@ class Book
         return $this->comments;
     }
 
+    /**
+     * @param Comment $comment
+     *
+     * @return $this
+     */
     public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
@@ -193,6 +200,11 @@ class Book
         return $this;
     }
 
+    /**
+     * @param Comment $comment
+     *
+     * @return $this
+     */
     public function removeComment(Comment $comment): self
     {
         if ($this->comments->removeElement($comment)) {
@@ -204,6 +216,4 @@ class Book
 
         return $this;
     }
-
-
 }

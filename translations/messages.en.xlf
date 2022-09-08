@@ -2,17 +2,21 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+    <trans-unit id = "action.add_comment">
+       <source>action.add_comment</source>
+       <target>Add comment</target>
+     </trans-unit>
      <trans-unit id = "action_back_to_list">
         <source>action_back_to_list</source>
         <target>Back to list</target>
       </trans-unit>
       <trans-unit id = "action.change_password">
-        <source>action.change_password</source>
-        <target>Change password</target>
+          <source>action.change_password</source>
+          <target>Change password</target>
       </trans-unit>
-       <trans-unit id = "action.change_user_data">
-        <source>action.change_user_data</source>
-        <target>Change user data</target>
+      <trans-unit id = "action.change_user_data">
+          <source>action.change_user_data</source>
+          <target>Change user data</target>
       </trans-unit>
       <trans-unit id = "action.create">
         <source>action.create</source>
@@ -32,7 +36,7 @@
       </trans-unit>
       <trans-unit id = "action_login">
         <source>action_login</source>
-        <target>Log in</target>
+        <target>Log in!</target>
       </trans-unit>
       <trans-unit id = "action_logout">
         <source>action_logout</source>
@@ -50,6 +54,10 @@
         <source>action.show</source>
         <target>Show</target>
       </trans-unit>
+      <trans-unit id = "action.sign_in">
+         <source>action.sign_in</source>
+         <target>Sign in</target>
+      </trans-unit>
       <trans-unit id="label.actions">
         <source>label.actions</source>
         <target>Actions</target>
@@ -58,9 +66,21 @@
          <source>label.author</source>
          <target>Author</target>
       </trans-unit>
+      <trans-unit id="label.book_catalog">
+          <source>label.book_catalog</source>
+          <target>Book catalog</target>
+      </trans-unit>
+      <trans-unit id="label.categories">
+          <source>label.categories</source>
+          <target>Categories</target>
+      </trans-unit>
       <trans-unit id="label.content">
-              <source>label.content</source>
-              <target>Content</target>
+          <source>label.content</source>
+          <target>Content</target>
+      </trans-unit>
+      <trans-unit id="label.comments">
+         <source>label.comments</source>
+         <target>Comments</target>
       </trans-unit>
       <trans-unit id="label.createdAt">
                <source>label.created_at</source>
@@ -75,21 +95,53 @@
         <source>label.id</source>
         <target>Id</target>
       </trans-unit>
+      <trans-unit id="label.my_account">
+          <source>label.my_account</source>
+          <target>My account</target>
+      </trans-unit>
       <trans-unit id="label.nick">
-                <source>label.nick</source>
-                <target>Nick</target>
-           </trans-unit>
-      <trans-unit id="label.title">
-        <source>label.title</source>
-        <target>Title</target>
+        <source>label.nick</source>
+        <target>Nick</target>
+      </trans-unit>
+      <trans-unit id="label.password">
+        <source>label.password</source>
+        <target>Password</target>
       </trans-unit>
       <trans-unit id="label.tags">
         <source>label.tags</source>
         <target>Tags</target>
       </trans-unit>
+      <trans-unit id="label_text">
+        <source>label.text</source>
+        <target>Text</target>
+      </trans-unit>
+      <trans-unit id="label.title">
+        <source>label.title</source>
+        <target>Title</target>
+      </trans-unit>
       <trans-unit id="label.updatedAt">
          <source>label.updated_at</source>
          <target>UpdatedAt</target>
+      </trans-unit>
+      <trans-unit id="message.book_contains_comments">
+          <source>message.book_contains_comments</source>
+          <target>Book contains comments</target>
+      </trans-unit>
+      <trans-unit id="message.book_contains_tags">
+          <source>message.book_contains_tags</source>
+          <target>Book contains tags</target>
+      </trans-unit>
+      <trans-unit id="message.category_contains_books">
+         <source>message.category_contains_books</source>
+         <target>Category contains books</target>
+      </trans-unit>
+      <trans-unit id="message.created_successfully">
+         <source>message.created_successfully</source>
+         <target>Created successfully</target>
+      </trans-unit>
+      <trans-unit id="message.deleted_successfully">
+         <source>message.deleted_successfully</source>
+         <target>Deleted successfully</target>
       </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
@@ -99,13 +151,45 @@
         <source>message.record_not_found</source>
         <target>Record not found.</target>
       </trans-unit>
+      <trans-unit id="message.updated_successfully">
+         <source>message.updated_successfully</source>
+         <target>Updated successfully</target>
+      </trans-unit>
       <trans-unit id="title.book_list">
          <source>title.book_list</source>
          <target>Books list</target>
       </trans-unit>
+      <trans-unit id="title.category_create">
+        <source>title.category_create</source>
+        <target>Category create</target>
+      </trans-unit>
+      <trans-unit id="title.category_edit">
+         <source>title.category_edit</source>
+         <target>Category edit</target>
+      </trans-unit>
+      <trans-unit id="title.category_delete">
+        <source>title.category_delete</source>
+        <target>Category delete</target>
+      </trans-unit>
       <trans-unit id="title.category_list">
         <source>title.category_list</source>
         <target>Categories list</target>
+      </trans-unit>
+      <trans-unit id="title.comment_delete">
+         <source>title.comment_delete</source>
+         <target>Comment delete</target>
+      </trans-unit>
+      <trans-unit id="title.book_create">
+         <source>title.book_create</source>
+         <target>Book create</target>
+      </trans-unit>
+      <trans-unit id="title.book_edit">
+         <source>title.book_edit</source>
+         <target>Book edit</target>
+      </trans-unit>
+      <trans-unit id="title.book_delete">
+         <source>title.book_delete</source>
+         <target>Book delete</target>
       </trans-unit>
       <trans-unit id="title.book_view">
          <source>title.book_view</source>
@@ -115,9 +199,29 @@
         <source>title.category_view</source>
         <target>Category view %id%</target>
       </trans-unit>
+      <trans-unit id="title.favourite_create">
+         <source>title.favourite_create</source>
+         <target>Favourite create</target>
+      </trans-unit>
+      <trans-unit id="title.favourite_delete">
+         <source>title.favourite_delete</source>
+         <target>Favourite delete</target>
+      </trans-unit>
       <trans-unit id="title.favourite_list">
         <source>title.favourite_list</source>
         <target>Favourite view</target>
+      </trans-unit>
+      <trans-unit id="title.tag_create">
+         <source>title.tag_create</source>
+         <target>Tags create</target>
+      </trans-unit>
+      <trans-unit id="title.tag_delete">
+          <source>title.tag_delete</source>
+          <target>Tag delete</target>
+      </trans-unit>
+      <trans-unit id="title.tag_edit">
+         <source>title.tag_edit</source>
+         <target>Tag edit</target>
       </trans-unit>
       <trans-unit id="title.tag_list">
         <source>title.tag_list</source>
@@ -127,14 +231,22 @@
          <source>title.tag_view</source>
          <target>Tag view %id%</target>
       </trans-unit>
+      <trans-unit id="title.user_change_data">
+          <source>title.user_change_data</source>
+          <target>User change data</target>
+      </trans-unit>
+      <trans-unit id="title.user_change_password">
+          <source>title.user_change_password</source>
+          <target>User change password</target>
+      </trans-unit>
       <trans-unit id="title.user_list">
           <source>title.user_list</source>
           <target>Users list</target>
       </trans-unit>
-       <trans-unit id="title.user_view">
-                  <source>title.user_view</source>
-                  <target>User view %id%</target>
-              </trans-unit>
+      <trans-unit id="title.user_view">
+          <source>title.user_view</source>
+          <target>User view %id%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

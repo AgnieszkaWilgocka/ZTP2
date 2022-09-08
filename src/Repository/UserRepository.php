@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * User repository
+ */
 namespace App\Repository;
 
 use App\Entity\User;
@@ -11,6 +13,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
+ * Class UserRepository
+ *
  * @extends ServiceEntityRepository<User>
  *
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -27,13 +31,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 3;
 
-
+    /**
+     * Constructor
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
     }
 
     /**
+     * Query all records
+     *
      * @return QueryBuilder
      */
     public function queryAll(): QueryBuilder
@@ -47,6 +57,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
+     * Get or create new query builder
+     *
      * @param QueryBuilder|null $queryBuilder
      *
      * @return QueryBuilder
@@ -56,6 +68,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $queryBuilder ?? $this->createQueryBuilder('user');
     }
 
+    /**
+     * Action add
+     *
+     * @param User $entity
+     * @param bool $flush
+     */
     public function add(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -65,6 +83,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
     }
 
+    /**
+     * Action remove
+     *
+     * @param User $entity
+     * @param bool $flush
+     */
     public function remove(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -76,6 +100,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
+     *
+     * @param PasswordAuthenticatedUserInterface $user
+     * @param string                             $newHashedPassword
+     *
+     * @return void
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
@@ -89,6 +118,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
+     * Action save
+     *
      * @param User $user
      *
      * @return void
@@ -99,6 +130,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush($user);
     }
 
+    /**
+     * Action delete
+     *
+     * @param User $user
+     */
     public function delete(User $user)
     {
         $this->_em->remove($user);

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Book type
+ */
 namespace App\Form\Type;
 
 use App\Entity\Book;
@@ -23,7 +25,6 @@ class BookType extends AbstractType
      */
     private TagsDataTransformer $tagsDataTransformer;
 
-
     /**
      * Constructor
      *
@@ -35,8 +36,10 @@ class BookType extends AbstractType
     }
 
     /**
+     * Builds the form
+     *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      *
      * @return void
      */
@@ -48,7 +51,7 @@ class BookType extends AbstractType
             [
                 'label' => 'label_title',
                 'required' => true,
-                'attr' => ['max_length' => 64]
+                'attr' => ['max_length' => 64],
             ]
         );
 
@@ -58,7 +61,7 @@ class BookType extends AbstractType
             [
                 'label' => 'label_author',
                 'required' => true,
-                'attr' => ['max_length' => 64]
+                'attr' => ['max_length' => 64],
             ]
         );
 
@@ -67,7 +70,7 @@ class BookType extends AbstractType
             EntityType::class,
             [
                 'class' => Category::class,
-                'choice_label' => function($category): string {
+                'choice_label' => function ($category): string {
                     return $category->getTitle();
                 },
                 'label' => 'label.category',
@@ -92,6 +95,8 @@ class BookType extends AbstractType
     }
 
     /**
+     * Configures the options for this type.
+     *
      * @param OptionsResolver $resolver
      *
      * @return void
@@ -102,7 +107,14 @@ class BookType extends AbstractType
     }
 
     /**
-     * @return string
+     * Returns the prefix of the template block name for this type.
+     *
+     * The block prefix defaults to the underscored short class name with
+     * the "Type" suffix removed (e.g. "UserProfileType" => "user_profile").
+     *
+     * @return string The prefix of the template block name
+     *
+     * @psalm-return 'book'
      */
     public function getBlockPrefix(): string
     {

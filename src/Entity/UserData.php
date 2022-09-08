@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * UserData entity
+ */
 namespace App\Entity;
 
 use App\Repository\UserrDataRepository;
@@ -24,7 +26,7 @@ class UserData
     private ?int $id;
 
     /**
-     * nick
+     * Nick
      *
      * @var string|null
      */

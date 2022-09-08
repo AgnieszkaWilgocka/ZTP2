@@ -1,6 +1,7 @@
 <?php
-
-
+/**
+ * UserData repository
+ */
 namespace App\Repository;
 
 use App\Entity\UserData;
@@ -8,6 +9,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class UserrDataRepository
+ *
  * @extends ServiceEntityRepository<UserData>
  *
  * @method UserData|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,12 +21,21 @@ use Doctrine\Persistence\ManagerRegistry;
 class UserrDataRepository extends ServiceEntityRepository
 {
 
-
+    /**
+     * Constructor
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, UserData::class);
     }
 
+    /**
+     * Action save
+     *
+     * @param UserData $userData
+     */
     public function save(UserData $userData): void
     {
         $this->_em->persist($userData);
@@ -54,4 +66,3 @@ class UserrDataRepository extends ServiceEntityRepository
 //        ;
 //    }
 }
-

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Category repository
+ */
 namespace App\Repository;
 
 use App\Entity\Book;
@@ -9,9 +11,10 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
+ * Class CategoryRepository
+ *
  * @extends ServiceEntityRepository<Category>
  *
  * @method Category|null find($id, $lockMode = null, $lockVersion = null)
@@ -29,6 +32,11 @@ class CategoryRepository extends ServiceEntityRepository
     public const PAGINATOR_ITEMS_PER_PAGE = 3;
 
 
+    /**
+     * Constructor
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Category::class);
@@ -44,7 +52,7 @@ class CategoryRepository extends ServiceEntityRepository
         return $this->getOrCreateQueryBuilder()
             ->select(
                 'partial category.{id, title, createdAt, updatedAt}',
-//                'partial books.{id, title, author}'
+                //                'partial books.{id, title, author}'
             )
             ->leftJoin('category.books', 'books')
             ->orderBy('category.title', 'DESC');
@@ -62,38 +70,29 @@ class CategoryRepository extends ServiceEntityRepository
         return $queryBuilder ?? $this->createQueryBuilder('category');
     }
 
+    /**
+     * Action save
+     *
+     * @param Category $category
+     *
+     */
     public function save(Category $category): void
     {
         $this->_em->persist($category);
         $this->_em->flush($category);
     }
 
+    /**
+     * Action delete
+     *
+     * @param Category $category
+     *
+     */
     public function delete(Category $category): void
     {
         $this->_em->remove($category);
         $this->_em->flush($category);
     }
-
-    /**
-     * @param Book $book
-     * @return int
-     *
-     * @throws  NoResultException
-     * @throws NonUniqueResultException
-     */
-//    public function countByBook(Book $book): int
-//    {
-//        $qb = $this->getOrCreateQueryBuilder();
-//
-//        return $qb->select($qb->expr()->countDistinct('category.id'))
-//            ->where('category.books = :book')
-//            ->setParameter(':book', $book)
-//            ->getQuery()
-//            ->getSingleScalarResult();
-//    }
-
-
-
 
 //    /**
 //     * @return Category[] Returns an array of Category objects

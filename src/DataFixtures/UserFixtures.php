@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * User fixtures
+ */
 namespace App\DataFixtures;
 
 use App\DataFixtures\AbstractBaseFixtures;
@@ -7,12 +9,18 @@ use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-
+/**
+ * Class UserFixtures
+ */
 class UserFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     private UserPasswordHasherInterface $passwordHasher;
 
-
+    /**
+     * Constructor
+     *
+     * @param UserPasswordHasherInterface $passwordHasher
+     */
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
@@ -23,7 +31,7 @@ class UserFixtures extends AbstractBaseFixtures implements DependentFixtureInter
      *
      * @return void
      */
-    protected function loadData(): void
+    public function loadData(): void
     {
         $this->createMany(5, 'users', function ($i) {
             $user = new User();
@@ -59,7 +67,11 @@ class UserFixtures extends AbstractBaseFixtures implements DependentFixtureInter
     }
 
     /**
+     * Function getDependencies
+     *
      * @return string[]
+     *
+     * @psalm-return array{0: UserDataFixtures::class}
      */
     public function getDependencies(): array
     {

@@ -64,8 +64,8 @@ abstract class AbstractBaseFixtures extends Fixture
     /**
      * Create many objects at once
      *
-     * @param int $count
-     * @param string $groupName
+     * @param int      $count
+     * @param string   $groupName
      * @param callable $factory
      *
      */
@@ -116,9 +116,11 @@ abstract class AbstractBaseFixtures extends Fixture
      * Get array of objects references based on count
      *
      * @param string $groupName
-     * @param int $count
+     * @param int    $count
      *
-     * @return array
+     * @return object[]
+     *
+     * @psalm-return list<object>
      */
     protected function getRandomReferences(string $groupName, int $count): array
     {
@@ -129,5 +131,4 @@ abstract class AbstractBaseFixtures extends Fixture
 
         return $references;
     }
-
 }

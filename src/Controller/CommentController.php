@@ -1,11 +1,10 @@
 <?php
-
+/**
+ * Comment controller
+ */
 namespace App\Controller;
 
-
 use App\Entity\Comment;
-use App\Form\Type\CommentType;
-use App\Repository\CommentRepository;
 use App\Service\CommentServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,14 +21,24 @@ use Symfony\Component\Routing\Annotation\Route;
 )]
 class CommentController extends AbstractController
 {
+    /**
+     * @var CommentServiceInterface
+     */
     private CommentServiceInterface $commentService;
 
+    /**
+     * Constructor
+     *
+     * @param CommentServiceInterface $commentService
+     */
     public function __construct(CommentServiceInterface $commentService)
     {
         $this->commentService = $commentService;
     }
 
     /**
+     * Function delete comment
+     *
      * @param Request $request
      * @param Comment $comment
      *
@@ -45,17 +54,20 @@ class CommentController extends AbstractController
     )]
     public function delete(Request $request, Comment $comment): Response
     {
-        $form = $this->createForm(FormType::class, $comment,
-        [
+        $form = $this->createForm(
+            FormType::class,
+            $comment,
+            [
             'method' => 'DELETE',
-            'action' => $this->generateUrl('comment_delete', ['id' => $comment->getId()])
-        ]);
+            'action' => $this->generateUrl('comment_delete', ['id' => $comment->getId()]),
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commentService->delete($comment);
 
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('book_index');
         }
 
         return $this->render(
@@ -66,34 +78,4 @@ class CommentController extends AbstractController
             ]
         );
     }
-
-//    /**
-//     * @param Request $request
-//     *
-//     * @return Response
-//     */
-//    #[Route(
-//        '/create',
-//        name: 'comment_create',
-//        methods: 'POST|GET'
-//    )]
-//    public function create(Request $request): Response
-//    {
-//        $comment = new Comment();
-//        $form = $this->createForm(CommentType::class, $comment);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $this->commentRepository->save($comment);
-//
-//            return $this->redirectToRoute('category_index');
-//        }
-//
-//        return $this->render(
-//            'comment/create.html.twig',
-//            [
-//                'form' => $form->createView(),
-//            ]
-//        );
-//    }
 }

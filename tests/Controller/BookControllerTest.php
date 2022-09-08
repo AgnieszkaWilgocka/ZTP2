@@ -55,6 +55,8 @@ class BookControllerTest extends WebTestCase
     public function testShowBook(): void
     {
         //given
+        $user = $this->createUser('showBook');
+        $this->httpClient->loginUser($user);
 
         $expectedStatusCode = 200;
         $expectedBook = new Book();
@@ -63,7 +65,8 @@ class BookControllerTest extends WebTestCase
         $expectedBook->setCategory($this->createCategory('show'));
 
         $comment = new Comment();
-        $comment->setAuthor($this->createUser('comment'));
+        $comment->setAuthor($user);
+//        $comment->setAuthor($this->createUser('comment'));
         $comment->setContent('comment');
         $comment->setBook($expectedBook);
 

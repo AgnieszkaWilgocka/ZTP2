@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Book fixtures
+ */
 namespace App\DataFixtures;
 
 //use AbstractBaseFixtures;
@@ -21,7 +23,7 @@ class BookFixtures extends AbstractBaseFixtures implements DependentFixtureInter
 //            return;
 //        }
 
-        $this->createMany(20, 'books', function(int $i) {
+        $this->createMany(20, 'books', function (int $i) {
             $book = new Book();
             $book->setTitle($this->faker->domainName);
             $book->setAuthor($this->faker->firstName);
@@ -46,7 +48,11 @@ class BookFixtures extends AbstractBaseFixtures implements DependentFixtureInter
     }
 
     /**
+     * Function getDependencies
+     *
      * @return string[]
+     *
+     * @psalm-return array{0: CategoryFixtures::class, 1: TagFixtures::class}
      */
     public function getDependencies(): array
     {
@@ -54,5 +60,4 @@ class BookFixtures extends AbstractBaseFixtures implements DependentFixtureInter
 
         return [CategoryFixtures::class, TagFixtures::class];
     }
-
 }

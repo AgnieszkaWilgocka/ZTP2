@@ -1,8 +1,9 @@
 <?php
-
+/**
+ * Category controller
+ */
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Form\Type\categoryType;
 use App\Service\CategoryService;
 use App\Service\CategoryServiceInterface;
@@ -10,11 +11,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
-use App\Repository\CategoryRepository;
 use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -31,6 +30,9 @@ class CategoryController extends AbstractController
      */
     private TranslatorInterface $translator;
 
+    /**
+     * CategoryServiceInterface
+     */
     private CategoryServiceInterface $categoryService;
 
     /**
@@ -38,7 +40,7 @@ class CategoryController extends AbstractController
      *
      * @param TranslatorInterface $translator
      *
-     * @param CategoryService $categoryService
+     * @param CategoryService     $categoryService
      */
     public function __construct(TranslatorInterface $translator, CategoryServiceInterface $categoryService)
     {
@@ -47,6 +49,8 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * Function index
+     *
      * @param Request $request
      *
      * @return Response
@@ -88,14 +92,18 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * Function create category
+     *
      * @param Request $request
+     *
      * @return Response
      *
      * @IsGranted("ROLE_ADMIN")
      */
     #[Route(
         '/create',
-        name: 'category_create', methods: 'GET|POST'
+        name: 'category_create',
+        methods: 'GET|POST'
     )]
     public function create(Request $request): Response
     {
@@ -123,7 +131,9 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * Function edit category
+     *
+     * @param Request  $request
      * @param Category $category
      *
      * @return Response
@@ -132,22 +142,27 @@ class CategoryController extends AbstractController
      */
     #[Route(
         '/{id}/edit',
-        name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+        name: 'category_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT'
+    )]
     public function edit(Request $request, Category $category): Response
     {
         $form = $this->createForm(categoryType::class, $category, ['method' => 'PUT',
-            'action' => $this->generateUrl('category_edit',
-            ['id'=> $category->getId()]),
+            'action' => $this->generateUrl(
+                'category_edit',
+                ['id' => $category->getId()]
+            ),
         ]);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->save($category);
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.updated_succeessfully')
+                $this->translator->trans('message.updated_successfully')
             );
 
             return $this->redirectToRoute('category_index');
@@ -163,22 +178,27 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * Function delete category
+     *
+     * @param Request  $request
      * @param Category $category
      *
      * @return Response
      *
      * @IsGranted("ROLE_ADMIN")
      */
-    #[Route('/{id}/delete',
-    name: 'category_delete',
-    requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[Route(
+        '/{id}/delete',
+        name: 'category_delete',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|DELETE'
+    )]
     public function delete(Request $request, Category $category): Response
     {
-        if(!$this->categoryService->canBeDeleted($category)) {
+        if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',
-                $this->translator->trans('message.category_constains_books')
+                $this->translator->trans('message.category_contains_books')
             );
 
             return $this->redirectToRoute('category_index');
@@ -189,11 +209,11 @@ class CategoryController extends AbstractController
 
         $form = $this->createForm(FormType::class, $category, [
             'method' => 'DELETE',
-            'action' => $this->generateUrl('category_delete', ['id' => $category->getId()])
+            'action' => $this->generateUrl('category_delete', ['id' => $category->getId()]),
         ]);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->delete($category);
 
             $this->addFlash(

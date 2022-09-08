@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-{{ 'create_favourite'|trans }}
+{{ 'title.favourite_create'|trans }}
 {% endblock %}
 
 {% block body %}
-<h1>{{ 'create_favourite'|trans }}</h1>
+<h1>{{ 'title.favourite_create'|trans }}</h1>
     <div class="container">
     <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
@@ -18,11 +18,9 @@
 
     </div>
 
-    <div>
-        <a href="{{ url('category_index') }}">
+        <a class="btn btn-primary"  href="{{ url('category_index') }}" role="button">
             {{ 'action_back_to_list'|trans }}
         </a>
-    </div>
     {{ form_end(form) }}
     </div>
     </div>

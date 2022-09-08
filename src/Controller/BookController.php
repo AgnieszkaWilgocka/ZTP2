@@ -1,20 +1,18 @@
 <?php
 
+/**
+ * Book controller
+ */
 namespace App\Controller;
 
 use App\Entity\Comment;
-use App\Entity\User;
 use App\Form\Type\BookType;
 use App\Form\Type\CommentType;
-use App\Repository\CommentRepository;
-use App\Service\BookService;
 use App\Service\BookServiceInterface;
 use App\Service\CommentService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Book;
-use App\Repository\BookRepository;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,12 +38,13 @@ class BookController extends AbstractController
     private CommentService $commentService;
 
     /**
-     * Constructor.
+     * Constructor
      *
-     * @param TranslatorInterface $translator
+     * @param BookServiceInterface $bookService
+     * @param TranslatorInterface  $translator
+     * @param CommentService       $commentService
      */
-    public function __construct(BookServiceInterface $bookService, TranslatorInterface $translator,
-                                CommentService $commentService)
+    public function __construct(BookServiceInterface $bookService, TranslatorInterface $translator, CommentService $commentService)
     {
         $this->bookService = $bookService;
         $this->translator = $translator;
@@ -53,6 +52,8 @@ class BookController extends AbstractController
     }
 
     /**
+     * Function index
+     *
      * @param Request $request
      *
      * @return Response
@@ -69,9 +70,18 @@ class BookController extends AbstractController
             $filters
         );
 
-        return $this->render('book/index.html.twig', ['pagination'=> $pagination]);
+        return $this->render('book/index.html.twig', ['pagination' => $pagination]);
     }
 
+    /**
+     * Function get filters
+     *
+     * @param Request $request
+     *
+     * @return int[]
+     *
+     * @psalm-return array{tag_id: int}
+     */
     public function getFilters(Request $request): array
     {
         $filters = [];
@@ -81,9 +91,14 @@ class BookController extends AbstractController
     }
 
     /**
-     * @param Book $book
+     * Function show book
+     *
+     * @param Request $request
+     * @param Book    $book
      *
      * @return Response
+     *
+     * @IsGranted("ROLE_ADMIN")
      */
     #[Route(
         '/{id}',
@@ -111,21 +126,24 @@ class BookController extends AbstractController
         return $this->render(
             'book/show.html.twig',
             ['book' => $book,
-                'form' => $form->createView()
+                'form' => $form->createView(),
                 ]
         );
     }
 
     /**
+     * Function create book
+     *
      * @param Request $request
      *
      * @return Response
      *
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
     #[Route(
         '/create',
-        name: 'book_create', methods: 'POST|GET'
+        name: 'book_create',
+        methods: 'POST|GET'
     )]
     public function create(Request $request): Response
     {
@@ -133,9 +151,7 @@ class BookController extends AbstractController
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->bookService->save($book);
 
             $this->addFlash(
@@ -153,8 +169,10 @@ class BookController extends AbstractController
     }
 
     /**
+     * Function edit book
+     *
      * @param Request $request
-     * @param Book $book
+     * @param Book    $book
      *
      * @return Response
      *
@@ -168,16 +186,18 @@ class BookController extends AbstractController
     )]
     public function edit(Request $request, Book $book): Response
     {
-        $form = $this->createForm(BookType::class, $book,
-        [
+        $form = $this->createForm(
+            BookType::class,
+            $book,
+            [
             'method' => 'PUT',
-            'action' => $this->generateUrl('book_edit', ['id' => $book->getId()])
-        ]);
+            'action' => $this->generateUrl('book_edit', ['id' => $book->getId()]),
+            ]
+        );
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->bookService->save($book);
 
             $this->addFlash(
@@ -192,15 +212,16 @@ class BookController extends AbstractController
             'book/edit.html.twig',
             [
                 'form' => $form->createView(),
-                'book' => $book
+                'book' => $book,
             ]
         );
-
     }
 
     /**
+     * Function delete book
+     *
      * @param Request $request
-     * @param Book $book
+     * @param Book    $book
      *
      * @return Response
      *
@@ -209,27 +230,36 @@ class BookController extends AbstractController
     #[Route(
         '/{id}/delete',
         name: 'book_delete',
-        requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|DELETE'
     )]
     public function delete(Request $request, Book $book): Response
     {
-//        if(!$this->bookService->canBeDeleted($book)) {
-//            $this->addFlash(
-//                'warning',
-//                $this->translator->trans('message.book_contains_categories')
-//            );
-//
-//            return $this->redirectToRoute('book_index');
-//        }
+        if ($book->getTags()->count()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.book_contains_tags')
+            );
+
+            return $this->redirectToRoute('book_index');
+        }
+
+        if ($book->getComments()->count()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.book_contains_comments')
+            );
+
+            return $this->redirectToRoute('book_index');
+        }
+
         $form = $this->createForm(FormType::class, $book, [
             'method' => 'DELETE',
-                'action' => $this->generateUrl('book_delete', ['id' => $book->getId()])
-            ]
-        );
+                'action' => $this->generateUrl('book_delete', ['id' => $book->getId()]),
+        ]);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->bookService->delete($book);
 
             $this->addFlash(
@@ -244,7 +274,7 @@ class BookController extends AbstractController
             'book/delete.html.twig',
             [
                 'form' => $form->createView(),
-                'book' => $book
+                'book' => $book,
             ]
         );
     }

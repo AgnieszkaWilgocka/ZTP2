@@ -1,9 +1,12 @@
 <?php
-
+/**
+ * Category fixtures
+ */
 namespace App\DataFixtures;
 
 use App\Entity\Category;
 use DateTimeImmutable;
+
 //use Doctrine\Persistence\ObjectManager;
 //use App\DataFixtures\AbstractBaseFixtures;
 
@@ -17,7 +20,7 @@ class CategoryFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
-        $this->createMany(20, 'categories', function(int $i) {
+        $this->createMany(20, 'categories', function (int $i) {
             $category = new Category();
             $category->setTitle($this->faker->colorName);
             $category->setCreatedAt(

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * User entity
+ */
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -32,6 +34,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     /**
+     * Primary key
+     *
      * @var int|null
      */
     #[ORM\Id]
@@ -39,21 +43,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private ?int $id;
 
+    /**
+     * Email
+     *
+     * @var string|null
+     */
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\Email]
     #[Assert\NotBlank]
     private ?string $email;
 
+    /**
+     * Roles
+     *
+     * @var array
+     */
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
+    /**
+     * Password
+     *
+     * @var string|null
+     */
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
     #[Assert\Type('string')]
     private ?string $password;
 
+    /**
+     * UserData entity
+     *
+     * @var UserData|null
+     */
     #[ORM\OneToOne(targetEntity: UserData::class, cascade: ['persist', 'remove'])]
-    private $userData;
+    private ?UserData $userData;
 
     /**
      * Getter for id
@@ -89,6 +113,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * A visual identifier that represents this user.
      *
      * @see UserInterface
+     *
+     * @return string
      */
     public function getUserIdentifier(): string
     {
@@ -97,6 +123,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     *
+     * @return string
      */
     public function getUsername(): string
     {
@@ -107,6 +135,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Getter for roles
      *
      * @see UserInterface
+     *
+     * @return array|string[]
      */
     public function getRoles(): array
     {
@@ -125,13 +155,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;
-
     }
 
     /**
      * Getter for password
      *
      * @see PasswordAuthenticatedUserInterface
+     *
+     * @return string
      */
     public function getPassword(): string
     {
@@ -150,10 +181,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     *
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
      * @see UserInterface
+     *
+     * @return string|null
      */
     public function getSalt(): ?string
     {

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Tag fixtures
+ */
 namespace App\DataFixtures;
 
 use App\DataFixtures\AbstractBaseFixtures;
@@ -12,6 +14,9 @@ use DateTimeImmutable;
  */
 class TagFixtures extends AbstractBaseFixtures
 {
+    /**
+     * Load Data
+     */
     public function loadData(): void
     {
         $this->createMany(20, 'tags', function ($i) {
@@ -23,6 +28,7 @@ class TagFixtures extends AbstractBaseFixtures
             $tag->setUpdatedAt(
                 DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );
+
             return $tag;
         });
 

@@ -10,7 +10,6 @@
     <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
 {% if category is defined and category|length %}
-{#<table class="table table-striped">#}
     <dl>
         <dt>{{ 'label.title'|trans }}</dt>
         <dd>{{ category.title }}</dd>
@@ -29,31 +28,6 @@
             </a>
         </dd>
     </dl>
-
-{#    <tr>#}
-{#        <th>{{ 'label.id'|trans }}</th>#}
-{#        <th>{{ 'label.createdAt'|trans }}</th>#}
-{#        <th>{{ 'label.updatedAt'|trans }}</th>#}
-{#        <th>{{ 'label.titleAt'|trans }}</th>#}
-{#        <th>{{ 'label.actions'|trans }}</th>#}
-{#    </tr>#}
-
-
-{#    {% for category in categories %}#}
-{#    <tr>#}
-{#        <td>{{ category.id }}</td>#}
-{#        <td>{{ category.createdAt }}</td>#}
-{#        <td>{{ category.updatedAt }}</td>#}
-{#        <td>{{ category.title }}</td>#}
-{#        <td>#}
-{#            <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.view'|trans }}">#}
-{#                {{ 'action.view'|trans }}#}
-{#            </a>#}
-{#        </td>#}
-
-
-
-
 {% else %}
 <p>{{ 'message.empty_list'|trans }}</p>
 {% endif %}

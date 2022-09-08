@@ -1,18 +1,19 @@
 <?php
-
+/**
+ * User controller
+ */
 namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\Type\ChangePasswordType;
-use App\Repository\UserRepository;
 use App\Service\UserServiceInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class UserController
@@ -21,17 +22,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
 
+    /**
+     * Translator
+     *
+     * @var TranslatorInterface
+     */
+    private TranslatorInterface $translator;
+
+
     private UserServiceInterface $userService;
 
     /**
+     * Constructor
+     *
      * @param UserServiceInterface $userService
+     * @param TranslatorInterface  $translator
      */
-    public function __construct(UserServiceInterface $userService)
+    public function __construct(UserServiceInterface $userService, TranslatorInterface $translator)
     {
         $this->userService = $userService;
+        $this->translator = $translator;
     }
 
     /**
+     * Function index
+     *
      * @param Request $request
      *
      * @return Response
@@ -39,7 +54,8 @@ class UserController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      */
     #[Route(
-        name: 'user_index', methods: 'GET'
+        name: 'user_index',
+        methods: 'GET'
     )]
     public function index(Request $request): Response
     {
@@ -51,6 +67,8 @@ class UserController extends AbstractController
     }
 
     /**
+     * Function show user
+     *
      * @param User $user
      *
      * @return Response
@@ -72,8 +90,10 @@ class UserController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param User $user
+     * Function change password
+     *
+     * @param Request                     $request
+     * @param User                        $user
      * @param UserPasswordHasherInterface $passwordHasher
      *
      * @return Response
@@ -89,21 +109,27 @@ class UserController extends AbstractController
     public function changePassword(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(ChangePasswordType::class, $user, ['method' => 'PUT',
-        'action' => $this->generateUrl('change_password',
-            ['id' => $user->getId()]),
+            'action' => $this->generateUrl(
+                'change_password',
+                ['id' => $user->getId()]
+            ),
         ]);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,
                     $form->get('password')->getData()
                 )
             );
-
             $this->userService->save($user);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.created_successfully')
+            );
+
 
             return $this->redirectToRoute('book_index');
         }
@@ -112,7 +138,7 @@ class UserController extends AbstractController
             'user/change_password.html.twig',
             [
                 'form' => $form->createView(),
-                'user' => $user
+                'user' => $user,
             ]
         );
     }

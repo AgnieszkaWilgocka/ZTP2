@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Category service
+ */
 namespace App\Service;
 
 use App\Entity\Category;
@@ -10,6 +12,10 @@ use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
+/**
+ * Class CategoryService
+ *
+ */
 class CategoryService implements CategoryServiceInterface
 {
     private CategoryRepository $categoryRepository;
@@ -18,6 +24,13 @@ class CategoryService implements CategoryServiceInterface
 
     private BookRepository $bookRepository;
 
+    /**
+     * Constructor
+     *
+     * @param CategoryRepository $categoryRepository
+     * @param PaginatorInterface $paginator
+     * @param BookRepository     $bookRepository
+     */
     public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, BookRepository $bookRepository)
     {
         $this->categoryRepository = $categoryRepository;
@@ -25,6 +38,13 @@ class CategoryService implements CategoryServiceInterface
         $this->bookRepository = $bookRepository;
     }
 
+    /**
+     * Paginated list
+     *
+     * @param int $page
+     *
+     * @return PaginationInterface
+     */
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
@@ -34,24 +54,43 @@ class CategoryService implements CategoryServiceInterface
         );
     }
 
+    /**
+     * Action save
+     *
+     * @param Category $category
+     *
+     */
     public function save(Category $category)
     {
         $this->categoryRepository->save($category);
     }
 
+    /**
+     * Action delete
+     *
+     * @param Category $category
+     *
+     */
     public function delete(Category $category)
     {
         $this->categoryRepository->delete($category);
     }
 
+    /**
+     * Action can be deleted
+     *
+     * @param Category $category
+     *
+     * @return bool
+     */
     public function canBeDeleted(Category $category): bool
     {
-       try {
-           $result = $this->bookRepository->countByCategory($category);
+        try {
+            $result = $this->bookRepository->countByCategory($category);
 
-           return !($result > 0);
-       } catch (NoResultException|NonUniqueResultException) {
-           return false;
-       }
+            return !($result > 0);
+        } catch (NoResultException|NonUniqueResultException) {
+            return false;
+        }
     }
 }

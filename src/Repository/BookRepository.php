@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Book repository
+ */
 namespace App\Repository;
 
 use App\Entity\Book;
@@ -26,6 +28,11 @@ class BookRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 4;
 
+    /**
+     * Constructor
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Book::class);
@@ -33,6 +40,8 @@ class BookRepository extends ServiceEntityRepository
 
     /**
      * Query all records
+     *
+     * @param array $filters
      *
      * @return QueryBuilder
      */
@@ -46,11 +55,19 @@ class BookRepository extends ServiceEntityRepository
             )
             ->join('book.category', 'category')
             ->leftJoin('book.tags', 'tags')
-            ->orderBy('book.title', 'DESC');
+            ->orderBy('book.title', 'ASC');
 
         return $this->applyFiltersToList($queryBuilder, $filters);
     }
 
+    /**
+     * Apply filters function
+     *
+     * @param QueryBuilder $queryBuilder
+     * @param array        $filters
+     *
+     * @return QueryBuilder
+     */
     public function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
     {
 
@@ -60,7 +77,6 @@ class BookRepository extends ServiceEntityRepository
         }
 
         return $queryBuilder;
-
     }
 
 
@@ -77,6 +93,8 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
+     * Action save
+     *
      * @param Book $book
      *
      * @return void
@@ -88,6 +106,8 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
+     * Action delete
+     *
      * @param Book $book
      *
      * @return void
@@ -99,7 +119,10 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
+     * Count by category
+     *
      * @param Category $category
+     *
      * @return int
      *
      * @throws \Doctrine\ORM\NoResultException
@@ -114,9 +137,7 @@ class BookRepository extends ServiceEntityRepository
             ->setParameter(':category', $category)
             ->getQuery()
             ->getSingleScalarResult();
-        }
-
-//        public function qu
+    }
 }
 //    /**
 //     * @return Book[] Returns an array of Book objects
@@ -142,4 +163,3 @@ class BookRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-

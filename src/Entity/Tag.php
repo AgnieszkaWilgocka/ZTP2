@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Tag entity
+ */
 namespace App\Entity;
 
 use App\Repository\TagRepository;
@@ -17,6 +19,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Tag
 {
     /**
+     * Primary key
+     *
      * @var int|null
      */
     #[ORM\Id]
@@ -25,6 +29,8 @@ class Tag
     private ?int $id;
 
     /**
+     * Title
+     *
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
@@ -34,6 +40,8 @@ class Tag
     private ?string $title;
 
     /**
+     * Created At
+     *
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
@@ -41,21 +49,27 @@ class Tag
     private ?DateTimeImmutable $createdAt;
 
     /**
+     * Updated At
+     *
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
     private ?DateTimeImmutable $updatedAt;
 
+    /**
+     * @var ArrayCollection
+     */
     #[ORM\ManyToMany(targetEntity: Book::class, mappedBy: 'tags')]
     private $books;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->books = new ArrayCollection();
     }
-
-
 
     /**
      * Getter for id
@@ -86,7 +100,6 @@ class Tag
     public function setTitle(string $title): void
     {
         $this->title = $title;
-
     }
 
     /**
@@ -108,7 +121,6 @@ class Tag
     public function setCreatedAt(DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
-
     }
 
     /**
@@ -130,15 +142,6 @@ class Tag
     public function setUpdatedAt(DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
-
-    }
-
-    /**
-     * @return Collection<int, Book>
-     */
-    public function getBooks(): Collection
-    {
-        return $this->books;
     }
 
     /**

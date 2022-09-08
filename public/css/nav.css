@@ -3,14 +3,26 @@ h1 {
     font-family: 'Roboto Condensed', sans-serif;
     padding-top: 20px;
     padding-bottom: 10px;
-
 }
+
 .mine-flex {
     display: flex;
     align-items: center;
     justify-content: space-around;
     /*flex-shrink: 0;*/
 }
+
+/*.mine-flex2 {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-around;*/
+/*    !*flex-shrink: 0;*!*/
+/*}*/
+
+/*.flex-column {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
 
 .card {
     /*width: 50%;*/
@@ -63,10 +75,33 @@ ul.justify-content-end li a {
 .btn-primary {
     margin-top: 10px;
 }
+/*wjezdzajacy komentarz*/
+.my-hidden {
+    position: relative;
+    height: 158px;
+    overflow: hidden;
+    /*display: none;*/
+}
 
-/*.mine-hidden {*/
-/*    display: none;*/
-/*}*/
+.my-appear {
+    position: absolute;
+    /*display: none;*/
+    top: -158px;
+    left:0;
+    width: 25rem;
+    transition: .5s linear;
+    /*background-color:blue;*/
+    /*height: 300px;*/
+}
+
+.float-sm_right {
+    width: 25rem;
+}
+
+.my-appear.my-active {
+    top:0;
+    /*display: block;*/
+}
 
  /**!*/
 /*.bg-light {*/
