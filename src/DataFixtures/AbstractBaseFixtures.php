@@ -31,21 +31,21 @@ abstract class AbstractBaseFixtures extends Fixture
     /**
      * Load
      *
-     * @param ObjectManager $manager
+     * @param ObjectManager $manager Persistence object manager
      *
      */
 
     /**
      * Object reference index.
      *
-     * @var array
+     * @var array<string, array<int, array-key>>
      */
     private array $referencesIndex = [];
 
     /**
      * Load
      *
-     * @param ObjectManager $manager
+     * @param ObjectManager $manager Object manager
      *
      */
     public function load(ObjectManager $manager): void
@@ -63,9 +63,11 @@ abstract class AbstractBaseFixtures extends Fixture
     /**
      * Create many objects at once
      *
-     * @param int      $count
-     * @param string   $groupName
-     * @param callable $factory
+     * @param int      $count     Number of object to create
+     * @param string   $groupName Tag these created objects with this group name,
+     *                            and use this later with getRandomReference(s)
+     *                            to fetch only from this specific group
+     * @param callable $factory   Defines method of creating objects
      *
      */
     protected function createMany(int $count, string $groupName, callable $factory): void
@@ -86,9 +88,9 @@ abstract class AbstractBaseFixtures extends Fixture
     /**
      * Set random reference to the object
      *
-     * @param string $groupName
+     * @param string $groupName Objects group name
      *
-     * @return object
+     * @return object object Random object reference
      */
     protected function getRandomReference(string $groupName): object
     {
@@ -114,8 +116,8 @@ abstract class AbstractBaseFixtures extends Fixture
     /**
      * Get array of objects references based on count
      *
-     * @param string $groupName
-     * @param int    $count
+     * @param string $groupName Object group name
+     * @param int    $count     Number of references
      *
      * @return object[]
      *

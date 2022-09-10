@@ -1,7 +1,8 @@
 <?php
 /**
- * Favourite type
+ * Favourite type.
  */
+
 namespace App\Form\Type;
 
 use App\Entity\Book;
@@ -12,15 +13,15 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class FavouriteType
+ * Class FavouriteType.
  */
 class FavouriteType extends AbstractType
 {
     /**
      * Builds the form
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder builder Builder
+     * @param array                $options options Options
      *
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -43,8 +44,7 @@ class FavouriteType extends AbstractType
     /**
      * Configures the options for this type.
      *
-     * @param OptionsResolver $resolver
-     *
+     * @param OptionsResolver $resolver The resolver for the options
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

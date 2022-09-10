@@ -1,32 +1,33 @@
 <?php
 /**
- * UserService interface
+ * UserService interface.
  */
+
 namespace App\Service;
 
 use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
- * Class UserServiceInterface
+ * Class UserServiceInterface.
  */
 interface UserServiceInterface
 {
     /**
-     * Paginated list
+     * Paginated list.
      *
-     * @param int $page
+     * @param int $page Page
      *
-     * @return PaginationInterface
+     * @return PaginationInterface Pagination interface
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
     /**
-     * Action save
+     * Action save.
      *
-     * @param User $user
+     * @param User $user User
      *
-     * @return mixed
+     * @return mixed Mixed
      */
     public function save(User $user);
 }

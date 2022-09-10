@@ -1,7 +1,8 @@
 <?php
 /**
- * Category type
+ * Category type.
  */
+
 namespace App\Form\Type;
 
 use App\Entity\Category;
@@ -11,18 +12,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class categoryType
- *
+ * Class categoryType.
  */
 class CategoryType extends AbstractType
 {
     /**
      * Builds the form
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Builder
+     * @param array                $options Options
      *
-     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -40,7 +39,7 @@ class CategoryType extends AbstractType
     /**
      * Configures the options for this type.
      *
-     * @param OptionsResolver $resolver
+     * @param OptionsResolver $resolver The resolver for the options
      *
      */
     public function configureOptions(OptionsResolver $resolver): void
@@ -56,8 +55,6 @@ class CategoryType extends AbstractType
      * the "Type" suffix removed (e.g. "UserProfileType" => "user_profile").
      *
      * @return string The prefix of the template block name
-     *
-     * @psalm-return 'category'
      */
     public function getBlockPrefix(): string
     {

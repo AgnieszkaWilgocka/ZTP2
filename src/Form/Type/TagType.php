@@ -1,26 +1,27 @@
 <?php
 /**
- * Tag type
+ * Tag type.
  */
+
 namespace App\Form\Type;
 
 use App\Entity\Tag;
-//use Doctrine\DBAL\Types\TextType;
+// use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class TagType
+ * Class TagType.
  */
 class TagType extends AbstractType
 {
     /**
-     * Builds the form
+     * Builds the form.
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Builder
+     * @param array                $options Options
      *
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -39,7 +40,8 @@ class TagType extends AbstractType
     /**
      * Configures the options for this type.
      *
-     * @param OptionsResolver $resolver
+     * @param OptionsResolver $resolver The resolver for the options
+     *
      */
     public function configureOptions(OptionsResolver $resolver)
     {

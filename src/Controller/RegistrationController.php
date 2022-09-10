@@ -1,7 +1,8 @@
 <?php
 /**
- * Registration controller
+ * Registration controller.
  */
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -18,26 +19,26 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 /**
- * Class RegistrationController
+ * Class RegistrationController.
  */
 class RegistrationController extends AbstractController
 {
     /**
      * Function register
      *
-     * @param Request                     $request
-     * @param UserRepository              $userRepository
-     * @param UserrDataRepository         $userDataRepository
-     * @param UserPasswordHasherInterface $passwordHasher
-     * @param UserAuthenticatorInterface  $userAuthenticator
-     * @param LoginFormAuthenticator      $formAuthenticator
+     * @param Request                     $request            HTTP Request
+     * @param UserRepository              $userRepository     User repository
+     * @param UserrDataRepository         $userDataRepository UserData repository
+     * @param UserPasswordHasherInterface $passwordHasher     Password hasher
+     * @param UserAuthenticatorInterface  $userAuthenticator  User authenticator
+     * @param LoginFormAuthenticator      $formAuthenticator  Form authenticator
      *
      * @return Response|null
      */
     #[Route(
         '/registration',
-        name: "app_register",
-        methods: "GET|POST"
+        name: 'app_register',
+        methods: 'GET|POST'
     )]
     public function register(Request $request, UserRepository $userRepository, UserrDataRepository $userDataRepository, UserPasswordHasherInterface $passwordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $formAuthenticator): ?Response
     {

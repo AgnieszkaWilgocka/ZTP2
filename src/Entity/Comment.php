@@ -1,7 +1,8 @@
 <?php
 /**
- * Comment entity
+ * Comment entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
@@ -9,15 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Comment
- *
+ * Class Comment.
  */
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 #[ORM\Table(name: 'ztp_comments')]
 class Comment
 {
     /**
-     * Primary key
+     * Primary key.
      *
      * @var int|null
      */
@@ -27,7 +27,7 @@ class Comment
     private ?int $id;
 
     /**
-     * Content
+     * Content.
      *
      * @var string|null
      */
@@ -38,7 +38,7 @@ class Comment
     private ?string $content;
 
     /**
-     * Book entity
+     * Book.
      *
      * @var Book|null
      */
@@ -46,17 +46,15 @@ class Comment
     private ?Book $book;
 
     /**
-     * User entity
-     *
-     * @var User|null
+     * User entity.
      */
     #[ORM\ManyToOne(targetEntity: User::class)]
     private ?User $author;
 
     /**
-     * Getter for id
+     * Getter for id.
      *
-     * @return int|null
+     * @return int|null Id
      */
     public function getId(): ?int
     {
@@ -64,9 +62,9 @@ class Comment
     }
 
     /**
-     * Getter for content
+     * Getter for content.
      *
-     * @return string|null
+     * @return string|null Content
      */
     public function getContent(): ?string
     {
@@ -76,9 +74,7 @@ class Comment
     /**
      * Setter for content
      *
-     * @param string $content
-     *
-     * @return void
+     * @param string $content Content
      */
     public function setContent(string $content): void
     {
@@ -86,9 +82,9 @@ class Comment
     }
 
     /**
-     * Getter for book
+     * Getter for book.
      *
-     * @return Book|null
+     * @return Book|null Book
      */
     public function getBook(): ?Book
     {
@@ -96,9 +92,9 @@ class Comment
     }
 
     /**
-     * Setter for book
+     * Setter for book.
      *
-     * @param Book|null $book
+     * @param Book|null $book Book
      *
      * @return $this
      */
@@ -110,9 +106,9 @@ class Comment
     }
 
     /**
-     * Getter for author
+     * Getter for author.
      *
-     * @return User|null
+     * @return User|null Author
      */
     public function getAuthor(): ?User
     {
@@ -120,11 +116,9 @@ class Comment
     }
 
     /**
-     * Setter for author
+     * Setter for author.
      *
-     * @param User|null $author
-     *
-     * @return void
+     * @param User|null $author Author
      */
     public function setAuthor(?User $author): void
     {

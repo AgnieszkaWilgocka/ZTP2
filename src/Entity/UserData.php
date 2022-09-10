@@ -1,7 +1,8 @@
 <?php
 /**
- * UserData entity
+ * UserData entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\UserrDataRepository;
@@ -9,16 +10,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class UserData
+ * Class UserData.
  */
 #[ORM\Entity(repositoryClass: UserrDataRepository::class)]
 #[ORM\Table(name: 'ztp_users_data')]
 class UserData
 {
     /**
-     * Primary key
+     * Primary key.
      *
-     * @var int|null
+     * @var int|null Id
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -26,9 +27,9 @@ class UserData
     private ?int $id;
 
     /**
-     * Nick
+     * Nick.
      *
-     * @var string|null
+     * @var string|null Nick
      */
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Assert\Type('string')]
@@ -36,9 +37,9 @@ class UserData
     private ?string $nick;
 
     /**
-     * Getter for id
+     * Getter for id.
      *
-     * @return int|null
+     * @return int|null Id
      */
     public function getId(): ?int
     {
@@ -46,9 +47,9 @@ class UserData
     }
 
     /**
-     * Getter for nick
+     * Getter for nick.
      *
-     * @return string|null
+     * @return string|null Nick
      */
     public function getNick(): ?string
     {
@@ -56,9 +57,10 @@ class UserData
     }
 
     /**
-     * Setter for nick
+     * Setter for nick.
      *
-     * @param string|null $nick
+     * @param string|null $nick Nick
+     *
      */
     public function setNick(?string $nick): void
     {

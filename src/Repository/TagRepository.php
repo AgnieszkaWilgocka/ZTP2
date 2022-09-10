@@ -1,7 +1,8 @@
 <?php
 /**
- * Tag repository
+ * Tag repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Book;
@@ -11,7 +12,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class TagRepository
+ * Class TagRepository.
  *
  * @extends ServiceEntityRepository<Tag>
  *
@@ -23,17 +24,16 @@ use Doctrine\Persistence\ManagerRegistry;
 class TagRepository extends ServiceEntityRepository
 {
     /**
-     * Items per page
+     * Items per page.
      *
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 3;
 
-
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry $registry Manager registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -41,9 +41,9 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query all records
+     * Query all records.
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
@@ -55,11 +55,11 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder
+     * Get or create new query builder.
      *
-     * @param QueryBuilder|null $queryBuilder
+     * @param QueryBuilder|null $queryBuilder Query builder
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
@@ -67,9 +67,10 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
-     * Action save
+     * Action save.
      *
-     * @param Tag $tag
+     * @param Tag $tag Tag
+     *
      */
     public function save(Tag $tag): void
     {
@@ -78,9 +79,10 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
-     * Action delete
+     * Action delete.
      *
-     * @param Tag $tag
+     * @param Tag $tag Tag
+     *
      */
     public function delete(Tag $tag): void
     {

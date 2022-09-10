@@ -32,8 +32,8 @@ class CommentService implements CommentServiceInterface
     /**
      * Constructor
      *
-     * @param CommentRepository  $commentRepository
-     * @param PaginatorInterface $paginator
+     * @param CommentRepository  $commentRepository Comment repository
+     * @param PaginatorInterface $paginator         Paginator
      */
     public function __construct(CommentRepository $commentRepository, PaginatorInterface $paginator)
     {
@@ -44,7 +44,7 @@ class CommentService implements CommentServiceInterface
     /**
      * Action save
      *
-     * @param Comment $comment
+     * @param Comment $comment Comment
      *
      */
     public function save(Comment $comment): void
@@ -55,7 +55,7 @@ class CommentService implements CommentServiceInterface
     /**
      * Action delete
      *
-     * @param Comment $comment
+     * @param Comment $comment Comment
      *
      */
     public function delete(Comment $comment): void

@@ -45,9 +45,9 @@ class BookController extends AbstractController
     /**
      * Constructor
      *
-     * @param BookServiceInterface $bookService
-     * @param TranslatorInterface  $translator
-     * @param CommentService       $commentService
+     * @param BookServiceInterface $bookService    Book Service
+     * @param TranslatorInterface  $translator     Translator
+     * @param CommentService       $commentService Comment Service
      */
     public function __construct(BookServiceInterface $bookService, TranslatorInterface $translator, CommentService $commentService)
     {
@@ -59,9 +59,9 @@ class BookController extends AbstractController
     /**
      * Function index
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return Response
+     * @return Response HTTP Response
      */
     #[Route(
         name: 'book_index',
@@ -81,7 +81,7 @@ class BookController extends AbstractController
     /**
      * Function get filters
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
      * @return int[]
      *
@@ -99,8 +99,8 @@ class BookController extends AbstractController
     /**
      * Function show book
      *
-     * @param Request $request
-     * @param Book    $book
+     * @param Request $request HTTP Request
+     * @param Book    $book    Book entity
      *
      * @return Response
      *
@@ -140,9 +140,9 @@ class BookController extends AbstractController
     /**
      * Function create book
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */
@@ -177,8 +177,8 @@ class BookController extends AbstractController
     /**
      * Function edit book
      *
-     * @param Request $request
-     * @param Book    $book
+     * @param Request $request HTTP Request
+     * @param Book    $book    Book entity
      *
      * @return Response
      *
@@ -226,8 +226,8 @@ class BookController extends AbstractController
     /**
      * Function delete book
      *
-     * @param Request $request
-     * @param Book    $book
+     * @param Request $request HTTP Request
+     * @param Book    $book    Book entity
      *
      * @return Response
      *

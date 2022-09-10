@@ -19,9 +19,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Tag
 {
     /**
-     * Primary key
+     * Primary key.
      *
-     * @var int|null
+     * @var int|null Id
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,9 +29,9 @@ class Tag
     private ?int $id;
 
     /**
-     * Title
+     * Title.
      *
-     * @var string|null
+     * @var string|null Title
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -42,16 +42,16 @@ class Tag
     /**
      * Created At
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable|null Created at
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
     private ?DateTimeImmutable $createdAt;
 
     /**
-     * Updated At
+     * Updated At.
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable|null Updated at
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
@@ -74,7 +74,7 @@ class Tag
     /**
      * Getter for id
      *
-     * @return int|null
+     * @return int|null Id
      */
     public function getId(): ?int
     {
@@ -84,7 +84,7 @@ class Tag
     /**
      * Getter for title
      *
-     * @return string|null
+     * @return string|null Title
      */
     public function getTitle(): ?string
     {
@@ -94,7 +94,7 @@ class Tag
     /**
      * Setter for title
      *
-     * @param string $title
+     * @param string $title Title
      *
      */
     public function setTitle(string $title): void
@@ -105,7 +105,7 @@ class Tag
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null
+     * @return DateTimeImmutable|null Created at
      */
     public function getCreatedAt(): ?DateTimeImmutable
     {
@@ -115,7 +115,7 @@ class Tag
     /**
      * Setter for created at
      *
-     * @param DateTimeImmutable $createdAt
+     * @param DateTimeImmutable $createdAt Created at
      *
      */
     public function setCreatedAt(DateTimeImmutable $createdAt): void
@@ -126,7 +126,7 @@ class Tag
     /**
      * Getter for updated at
      *
-     * @return DateTimeImmutable|null
+     * @return DateTimeImmutable|null Updated at
      */
     public function getUpdatedAt(): ?DateTimeImmutable
     {
@@ -136,7 +136,7 @@ class Tag
     /**
      * Setter for updated at
      *
-     * @param DateTimeImmutable $updatedAt
+     * @param DateTimeImmutable $updatedAt Updated at
      *
      */
     public function setUpdatedAt(DateTimeImmutable $updatedAt): void
@@ -147,7 +147,7 @@ class Tag
     /**
      * Add book
      *
-     * @param Book $book
+     * @param Book $book Book
      *
      * @return $this
      */
@@ -164,7 +164,7 @@ class Tag
     /**
      * Remove book
      *
-     * @param Book $book
+     * @param Book $book Book
      *
      * @return $this
      */

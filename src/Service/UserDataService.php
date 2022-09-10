@@ -1,24 +1,24 @@
 <?php
 /**
- * UserData service
+ * UserData service.
  */
+
 namespace App\Service;
 
 use App\Entity\UserData;
 use App\Repository\UserrDataRepository;
 
 /**
- * Class UserDataService
- *
+ * Class UserDataService.
  */
 class UserDataService implements UserDataServiceInterface
 {
     private UserrDataRepository $userDataRepository;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param UserrDataRepository $userDataRepository
+     * @param UserrDataRepository $userDataRepository UserData repository
      */
     public function __construct(UserrDataRepository $userDataRepository)
     {
@@ -26,11 +26,11 @@ class UserDataService implements UserDataServiceInterface
     }
 
     /**
-     * Action save
+     * Action save.
      *
-     * @param UserData $userData
+     * @param UserData $userData Userdata
      *
-     * @return void
+     * @return mixed|void Mixed
      */
     public function save(UserData $userData)
     {

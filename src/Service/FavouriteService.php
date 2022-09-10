@@ -33,8 +33,8 @@ class FavouriteService implements FavouriteServiceInterface
     /**
      * Constructor
      *
-     * @param FavouriteRepository $favouriteRepository
-     * @param PaginatorInterface  $paginator
+     * @param FavouriteRepository $favouriteRepository Favourite repository
+     * @param PaginatorInterface  $paginator           Paginator
      */
     public function __construct(FavouriteRepository $favouriteRepository, PaginatorInterface $paginator)
     {
@@ -45,7 +45,7 @@ class FavouriteService implements FavouriteServiceInterface
     /**
      * Action save
      *
-     * @param Favourite $favourite
+     * @param Favourite $favourite Favourite
      */
     public function save(Favourite $favourite)
     {
@@ -55,7 +55,7 @@ class FavouriteService implements FavouriteServiceInterface
     /**
      * Action delete
      *
-     * @param Favourite $favourite
+     * @param Favourite $favourite Favourite
      *
      */
     public function delete(Favourite $favourite)
@@ -66,8 +66,8 @@ class FavouriteService implements FavouriteServiceInterface
     /**
      * Paginated list
      *
-     * @param int  $page
-     * @param User $author
+     * @param int  $page   Page
+     * @param User $author Author
      *
      * @return PaginationInterface
      */

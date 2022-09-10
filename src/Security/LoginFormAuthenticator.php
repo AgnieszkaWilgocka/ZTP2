@@ -38,12 +38,17 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
      */
     public const DEFAULT_ROUTE = 'category_index';
 
+    /**
+     * URL Generator
+     *
+     * @var UrlGeneratorInterface
+     */
     private UrlGeneratorInterface $urlGenerator;
 
     /**
      * Constructor
      *
-     * @param UrlGeneratorInterface $urlGenerator
+     * @param UrlGeneratorInterface $urlGenerator Url Generator
      */
     public function __construct(UrlGeneratorInterface $urlGenerator)
     {
@@ -53,9 +58,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Supports function
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return bool
+     * @return bool Bool
      */
     public function supports(Request $request): bool
     {
@@ -66,9 +71,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Authenticate function
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return Passport
+     * @return Passport Passport
      */
     public function authenticate(Request $request): Passport
     {
@@ -88,11 +93,11 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * AuthenticationSuccess function
      *
-     * @param Request        $request
-     * @param TokenInterface $token
-     * @param string         $firewallName
+     * @param Request        $request      HTTP Request
+     * @param TokenInterface $token        Token
+     * @param string         $firewallName Firewall name
      *
-     * @return Response|null
+     * @return Response|null HTTP Response
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
@@ -109,9 +114,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Getting login url
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return string
+     * @return string Login route
      */
     protected function getLoginUrl(Request $request): string
     {

@@ -23,7 +23,7 @@ class Category
     /**
      * Primary key.
      *
-     * @var int|null
+     * @var int|null Id
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -33,7 +33,7 @@ class Category
     /**
      * Created at
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable|null Created at
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
@@ -42,7 +42,7 @@ class Category
     /**
      * Updated at
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable|null Updated at
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
@@ -51,7 +51,7 @@ class Category
     /**
      * Title
      *
-     * @var string|null
+     * @var string|null Title
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type('string')]
@@ -94,7 +94,7 @@ class Category
     /**
      * Setter for created at
      *
-     * @param DateTimeImmutable|null $createdAt
+     * @param DateTimeImmutable|null $createdAt Created at
      *
      */
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
@@ -105,7 +105,7 @@ class Category
     /**
      * Getter for updated at
      *
-     * @return DateTimeImmutable|null
+     * @return DateTimeImmutable|null Updated at
      */
     public function getUpdatedAt(): ?DateTimeImmutable
     {
@@ -115,7 +115,7 @@ class Category
     /**
      * Setter for updated at
      *
-     * @param DateTimeImmutable|null $updatedAt
+     * @param DateTimeImmutable|null $updatedAt Updated at
      *
      */
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
@@ -126,7 +126,7 @@ class Category
     /**
      * Getter for title
      *
-     * @return string|null
+     * @return string|null Title
      */
     public function getTitle(): ?string
     {
@@ -136,7 +136,7 @@ class Category
     /**
      * Setter for title
      *
-     * @param string $title
+     * @param string $title Title
      *
      */
     public function setTitle(string $title): void

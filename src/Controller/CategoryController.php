@@ -38,9 +38,8 @@ class CategoryController extends AbstractController
     /**
      * Constructor
      *
-     * @param TranslatorInterface $translator
-     *
-     * @param CategoryService     $categoryService
+     * @param TranslatorInterface $translator      Translator
+     * @param CategoryService     $categoryService Category Service
      */
     public function __construct(TranslatorInterface $translator, CategoryServiceInterface $categoryService)
     {
@@ -51,9 +50,9 @@ class CategoryController extends AbstractController
     /**
      * Function index
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return Response
+     * @return Response HTTP Response
      */
     #[Route(
         name: 'category_index',
@@ -73,9 +72,9 @@ class CategoryController extends AbstractController
     /**
      * Show action
      *
-     * @param Category $category
+     * @param Category $category Category entity
      *
-     * @return Response
+     * @return Response HTTP Response
      */
     #[Route(
         '/{id}',
@@ -94,9 +93,9 @@ class CategoryController extends AbstractController
     /**
      * Function create category
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */
@@ -133,8 +132,8 @@ class CategoryController extends AbstractController
     /**
      * Function edit category
      *
-     * @param Request  $request
-     * @param Category $category
+     * @param Request  $request  HTTP Request
+     * @param Category $category Category entity
      *
      * @return Response
      *
@@ -180,8 +179,8 @@ class CategoryController extends AbstractController
     /**
      * Function delete category
      *
-     * @param Request  $request
-     * @param Category $category
+     * @param Request  $request  HTTP Request
+     * @param Category $category Category entity
      *
      * @return Response
      *

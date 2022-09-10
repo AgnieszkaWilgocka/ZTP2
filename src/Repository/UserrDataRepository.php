@@ -1,7 +1,8 @@
 <?php
 /**
- * UserData repository
+ * UserData repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\UserData;
@@ -9,7 +10,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class UserrDataRepository
+ * Class UserrDataRepository.
  *
  * @extends ServiceEntityRepository<UserData>
  *
@@ -20,11 +21,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class UserrDataRepository extends ServiceEntityRepository
 {
-
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry $registry Manager registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -32,9 +32,9 @@ class UserrDataRepository extends ServiceEntityRepository
     }
 
     /**
-     * Action save
+     * Action save.
      *
-     * @param UserData $userData
+     * @param UserData $userData UserData
      */
     public function save(UserData $userData): void
     {

@@ -1,7 +1,8 @@
 <?php
 /**
- * UserData type
+ * UserData type.
  */
+
 namespace App\Form\Type;
 
 use App\Entity\UserData;
@@ -11,15 +12,15 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class UserDataType
+ * Class UserDataType.
  */
 class UserDataType extends AbstractType
 {
     /**
-     * Builds the form
+     * Builds the form.
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Builder
+     * @param array                $options Options
      *
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -36,9 +37,10 @@ class UserDataType extends AbstractType
     }
 
     /**
-     * Configure the options for this type
+     * Configure the options for this type.
      *
-     * @param OptionsResolver $resolver
+     * @param OptionsResolver $resolver The resolver for the options
+     *
      */
     public function configureOptions(OptionsResolver $resolver)
     {

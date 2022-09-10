@@ -32,8 +32,8 @@ class TagService implements TagServiceInterface
     /**
      * Constructor
      *
-     * @param TagRepository      $tagRepository
-     * @param PaginatorInterface $paginator
+     * @param TagRepository      $tagRepository Tag repository
+     * @param PaginatorInterface $paginator     Paginator
      */
     public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator)
     {
@@ -44,9 +44,9 @@ class TagService implements TagServiceInterface
     /**
      * Paginated list
      *
-     * @param int $page
+     * @param int $page Page
      *
-     * @return PaginationInterface
+     * @return PaginationInterface Pagination interface
      */
     public function getPaginatedList(int $page): PaginationInterface
     {
@@ -60,9 +60,8 @@ class TagService implements TagServiceInterface
     /**
      * Save
      *
-     * @param Tag $tag
+     * @param Tag $tag Tag
      *
-     * @return void
      */
     public function save(Tag $tag)
     {
@@ -72,9 +71,8 @@ class TagService implements TagServiceInterface
     /**
      * Delete
      *
-     * @param Tag $tag
+     * @param Tag $tag Tag entity
      *
-     * @return void
      */
     public function delete(Tag $tag)
     {
@@ -84,9 +82,9 @@ class TagService implements TagServiceInterface
     /**
      * Find One By Title
      *
-     * @param string $title
+     * @param string $title Title
      *
-     * @return Tag|null
+     * @return Tag|null Tag
      */
     public function findOneByTitle(string $title): ?Tag
     {
@@ -96,9 +94,9 @@ class TagService implements TagServiceInterface
     /**
      * Find One By Id
      *
-     * @param int $id
+     * @param int $id Id
      *
-     * @return Tag|null
+     * @return Tag|null Tag
      */
     public function findOneById(int $id): ?Tag
     {

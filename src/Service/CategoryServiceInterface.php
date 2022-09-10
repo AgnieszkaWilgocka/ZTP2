@@ -15,45 +15,45 @@ interface CategoryServiceInterface
     /**
      * Paginated list
      *
-     * @param int $page
+     * @param int $page Page
      *
-     * @return PaginationInterface
+     * @return PaginationInterface Pagination Interface
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
     /**
      * Action save
      *
-     * @param Category $category
+     * @param Category $category Category
      *
-     * @return mixed
+     * @return mixed Mixed
      */
     public function save(Category $category);
 
     /**
      * Action delete
      *
-     * @param Category $category
+     * @param Category $category Category
      *
-     * @return mixed
+     * @return mixed Mixed
      */
     public function delete(Category $category);
 
     /**
      * Can be deleted
      *
-     * @param Category $category
+     * @param Category $category Category
      *
-     * @return bool
+     * @return bool Bool
      */
     public function canBeDeleted(Category $category): bool;
 
     /**
      * Find One By Id
      *
-     * @param int $id
+     * @param int $id Id
      *
-     * @return Category|null
+     * @return Category|null Category
      */
     public function findOneById(int $id): ?Category;
 }

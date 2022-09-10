@@ -15,25 +15,25 @@ interface BookServiceInterface
     /**
      * Paginated list
      *
-     * @param int $page
+     * @param int $page Page
      *
-     * @return PaginationInterface
+     * @return PaginationInterface Pagination interface
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
     /**
      * Action save
      *
-     * @param Book $book
+     * @param Book $book Book
      *
-     * @return mixed
+     * @return mixed mixed
      */
     public function save(Book $book);
 
     /**
      * Action delete
      *
-     * @param Book $book
+     * @param Book $book Book
      *
      */
     public function delete(Book $book);
@@ -41,9 +41,9 @@ interface BookServiceInterface
     /**
      * Prepare filters
      *
-     * @param array $filters
+     * @param array $filters Filters
      *
-     * @return array
+     * @return array Filters
      */
     public function prepareFilters(array $filters): array;
 

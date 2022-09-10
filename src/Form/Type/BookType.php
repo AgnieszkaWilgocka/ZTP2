@@ -26,9 +26,9 @@ class BookType extends AbstractType
     private TagsDataTransformer $tagsDataTransformer;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param TagsDataTransformer $tagsDataTransformer
+     * @param TagsDataTransformer $tagsDataTransformer Tags data transformer
      */
     public function __construct(TagsDataTransformer $tagsDataTransformer)
     {
@@ -38,8 +38,8 @@ class BookType extends AbstractType
     /**
      * Builds the form
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Builder
+     * @param array                $options Options
      *
      * @return void
      */
@@ -97,9 +97,7 @@ class BookType extends AbstractType
     /**
      * Configures the options for this type.
      *
-     * @param OptionsResolver $resolver
-     *
-     * @return void
+     * @param OptionsResolver $resolver The resolver for the options
      */
     public function configureOptions(OptionsResolver $resolver)
     {

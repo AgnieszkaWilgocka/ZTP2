@@ -1,20 +1,20 @@
 <?php
 /**
- * Comment fixtures
+ * Comment fixtures.
  */
+
 namespace App\DataFixtures;
 
-use App\DataFixtures\AbstractBaseFixtures;
 use App\Entity\Comment;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
- * Class CommentFixtures
+ * Class CommentFixtures.
  */
 class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
-     * Load Data
+     * Load Data.
      */
     public function loadData(): void
     {
@@ -31,13 +31,12 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
     }
 
     /**
-     * Function getDependencies
+     * Function getDependencies.
      *
-     * @return string[]
+     * @return string[] of dependencies
      *
-     * @psalm-return array{0: BookFixtures::class, 1: UserFixtures::class}
      */
-    public function getDependencies():array
+    public function getDependencies(): array
     {
         return [BookFixtures::class, UserFixtures::class];
     }

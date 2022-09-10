@@ -1,7 +1,8 @@
 <?php
 /**
- * Registration type
+ * Registration type.
  */
+
 namespace App\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -9,18 +10,16 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class RegistrationType
+ * Class RegistrationType.
  */
 class RegistrationType extends AbstractType
 {
     /**
-     * Builds the form
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * Builds the form.
+     * @param FormBuilderInterface $builder Builder
+     * @param array                $options Options
      *
      */
     public function buildForm(FormBuilderInterface $builder, array $options)

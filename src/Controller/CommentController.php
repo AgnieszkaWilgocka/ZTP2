@@ -31,7 +31,7 @@ class CommentController extends AbstractController
     /**
      * Constructor
      *
-     * @param CommentServiceInterface $commentService
+     * @param CommentServiceInterface $commentService Comment service
      */
     public function __construct(CommentServiceInterface $commentService)
     {
@@ -41,8 +41,8 @@ class CommentController extends AbstractController
     /**
      * Function delete comment
      *
-     * @param Request $request
-     * @param Comment $comment
+     * @param Request $request HTTP Request
+     * @param Comment $comment Comment entity
      *
      * @return Response
      *

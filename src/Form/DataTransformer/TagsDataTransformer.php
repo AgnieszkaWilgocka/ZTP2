@@ -20,7 +20,7 @@ class TagsDataTransformer implements DataTransformerInterface
     /**
      * Constructor
      *
-     * @param TagService $tagService
+     * @param TagService $tagService Tag service
      */
     public function __construct(TagService $tagService)
     {
@@ -30,9 +30,9 @@ class TagsDataTransformer implements DataTransformerInterface
     /**
      * Transform
      *
-     * @param $value
+     * @param $value $value Tags entity collection
      *
-     * @return string
+     * @return string Result
      */
     public function transform($value): string
     {
@@ -52,11 +52,9 @@ class TagsDataTransformer implements DataTransformerInterface
     /**
      * ReverseTransform
      *
-     * @param $value
+     * @param string $value String of tag names
      *
-     * @return Tag[]
-     *
-     * @psalm-return list<Tag>
+     * @return Tag[] Result
      */
     public function reverseTransform($value): array
     {

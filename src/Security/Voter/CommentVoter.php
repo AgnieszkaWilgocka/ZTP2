@@ -34,7 +34,7 @@ class CommentVoter extends Voter
     /**
      * Constructor
      *
-     * @param Security $security
+     * @param Security $security Security
      */
     public function __construct(Security $security)
     {
@@ -46,8 +46,8 @@ class CommentVoter extends Voter
     /**
      * Determines if the attribute and subject are supported by this voter
      *
-     * @param string $attribute
-     * @param $subject
+     * @param string $attribute Attribute
+     * @param        $subject
      *
      * @return bool
      */
@@ -63,9 +63,9 @@ class CommentVoter extends Voter
      * Perform a single access check operation on a given attribute, subject and token.
      * It is safe to assume that $attribute and $subject already passed the "supports()" method check
      *
-     * @param string         $attribute
-     * @param $subject
-     * @param TokenInterface $token
+     * @param string         $attribute Attribute
+     * @param                $subject
+     * @param TokenInterface $token     Token
      *
      * @return bool
      */
@@ -90,10 +90,10 @@ class CommentVoter extends Voter
     }
 
     /**
-     * @param Comment $comment
-     * @param User    $user
+     * @param Comment $comment Comment
+     * @param User    $user    User
      *
-     * @return bool
+     * @return bool Bool
      */
     private function canDelete(Comment $comment, User $user):bool
     {

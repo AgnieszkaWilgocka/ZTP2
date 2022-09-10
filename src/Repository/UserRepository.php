@@ -1,7 +1,8 @@
 <?php
 /**
- * User repository
+ * User repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\User;
@@ -13,7 +14,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * Class UserRepository
+ * Class UserRepository.
  *
  * @extends ServiceEntityRepository<User>
  *
@@ -25,16 +26,16 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     /**
-     * Items per page
+     * Items per page.
      *
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 3;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry $registry Manager registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -42,9 +43,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Query all records
+     * Query all records.
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
@@ -57,11 +58,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Get or create new query builder
+     * Get or create new query builder.
      *
-     * @param QueryBuilder|null $queryBuilder
+     * @param QueryBuilder|null $queryBuilder Query builder
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
@@ -69,10 +70,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Action add
+     * Action add.
      *
-     * @param User $entity
-     * @param bool $flush
+     * @param User $entity Entity
+     * @param bool $flush  Flush
+     *
      */
     public function add(User $entity, bool $flush = false): void
     {
@@ -84,10 +86,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Action remove
+     * Action remove.
      *
-     * @param User $entity
-     * @param bool $flush
+     * @param User $entity Entity
+     * @param bool $flush  Flush
      */
     public function remove(User $entity, bool $flush = false): void
     {
@@ -101,10 +103,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      *
-     * @param PasswordAuthenticatedUserInterface $user
-     * @param string                             $newHashedPassword
+     * @param PasswordAuthenticatedUserInterface $user              Password authenticated user interface
+     * @param string                             $newHashedPassword Password hasher
      *
-     * @return void
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
@@ -118,11 +119,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Action save
+     * Action save.
      *
-     * @param User $user
+     * @param User $user User
      *
-     * @return void
      */
     public function save(User $user): void
     {
@@ -131,9 +131,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Action delete
+     * Action delete.
      *
-     * @param User $user
+     * @param User $user User
+     *
      */
     public function delete(User $user)
     {

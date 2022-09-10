@@ -33,8 +33,6 @@ class UserFixtures extends AbstractBaseFixtures implements DependentFixtureInter
 
     /**
      * Load Data
-     *
-     * @return void
      */
     public function loadData(): void
     {
@@ -74,9 +72,8 @@ class UserFixtures extends AbstractBaseFixtures implements DependentFixtureInter
     /**
      * Function getDependencies
      *
-     * @return string[]
+     * @return string[] of dependencies
      *
-     * @psalm-return array{0: UserDataFixtures::class}
      */
     public function getDependencies(): array
     {

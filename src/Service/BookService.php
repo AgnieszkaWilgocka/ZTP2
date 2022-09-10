@@ -58,11 +58,11 @@ class BookService implements BookServiceInterface
     /**
      * Constructor
      *
-     * @param BookRepository     $bookRepository
-     * @param PaginatorInterface $paginator
-     * @param CategoryRepository $categoryRepository
-     * @param TagService         $tagService
-     * @param CategoryService    $categoryService
+     * @param BookRepository     $bookRepository     Book repository
+     * @param PaginatorInterface $paginator          Paginator
+     * @param CategoryRepository $categoryRepository Category repository
+     * @param TagService         $tagService         Tag service
+     * @param CategoryService    $categoryService    Category service
      */
     public function __construct(BookRepository $bookRepository, PaginatorInterface $paginator, CategoryRepository $categoryRepository, TagService $tagService, CategoryService $categoryService)
     {
@@ -76,8 +76,8 @@ class BookService implements BookServiceInterface
     /**
      * Paginated list
      *
-     * @param int   $page
-     * @param array $filters
+     * @param int   $page    Page
+     * @param array $filters Filters
      *
      * @return PaginationInterface
      */
@@ -95,9 +95,8 @@ class BookService implements BookServiceInterface
     /**
      * Action save
      *
-     * @param Book $book
+     * @param Book $book Book
      *
-     * @return void
      */
     public function save(Book $book)
     {
@@ -107,9 +106,8 @@ class BookService implements BookServiceInterface
     /**
      * Action delete
      *
-     * @param Book $book
+     * @param Book $book Book
      *
-     * @return void
      */
     public function delete(Book $book)
     {
@@ -119,11 +117,10 @@ class BookService implements BookServiceInterface
     /**
      * Prepare filters function
      *
-     * @param array $filters
+     * @param array $filters Filters
      *
-     * @return \App\Entity\Tag[]
+     * @return \App\Entity\Tag[] Tag
      *
-     * @psalm-return array{tag?: \App\Entity\Tag}
      */
     public function prepareFilters(array $filters): array
     {

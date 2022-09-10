@@ -1,22 +1,19 @@
 <?php
 /**
- * UserData fixtures
+ * UserData fixtures.
  */
+
 namespace App\DataFixtures;
 
-use App\DataFixtures\AbstractBaseFixtures;
-use Doctrine\Persistence\ObjectManager;
 use App\Entity\UserData;
 
 /**
- * Class UserDataFixtures
+ * Class UserDataFixtures.
  */
 class UserDataFixtures extends AbstractBaseFixtures
 {
     /**
-     * Load data
-     *
-     * @return void
+     * Load data.
      */
     public function loadData(): void
     {

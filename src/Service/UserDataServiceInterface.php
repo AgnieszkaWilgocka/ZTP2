@@ -1,22 +1,23 @@
 <?php
 /**
- * UserDataService interface
+ * UserDataService interface.
  */
+
 namespace App\Service;
 
 use App\Entity\UserData;
 
 /**
- * Class UserDataServiceInterface
+ * Class UserDataServiceInterface.
  */
 interface UserDataServiceInterface
 {
     /**
-     * Action save
+     * Action save.
      *
-     * @param UserData $userData
+     * @param UserData $userData UserData
      *
-     * @return mixed
+     * @return mixed Mixed
      */
     public function save(UserData $userData);
 }

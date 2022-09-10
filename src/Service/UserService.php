@@ -32,8 +32,8 @@ class UserService implements UserServiceInterface
     /**
      * Constructor
      *
-     * @param UserRepository     $userRepository
-     * @param PaginatorInterface $paginator
+     * @param UserRepository     $userRepository User repository
+     * @param PaginatorInterface $paginator      Paginator
      */
     public function __construct(UserRepository $userRepository, PaginatorInterface $paginator)
     {
@@ -44,9 +44,9 @@ class UserService implements UserServiceInterface
     /**
      * Paginated list
      *
-     * @param int $page
+     * @param int $page Page
      *
-     * @return PaginationInterface
+     * @return PaginationInterface Pagination interface
      */
     public function getPaginatedList(int $page): PaginationInterface
     {
@@ -60,9 +60,8 @@ class UserService implements UserServiceInterface
     /**
      * Action save
      *
-     * @param User $user
+     * @param User $user User
      *
-     * @return void
      */
     public function save(User $user)
     {
@@ -72,9 +71,8 @@ class UserService implements UserServiceInterface
     /**
      * Action delete
      *
-     * @param User $user
+     * @param User $user User
      *
-     * @return void
      */
     public function delete(User $user)
     {

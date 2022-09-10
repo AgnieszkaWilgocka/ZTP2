@@ -1,25 +1,24 @@
 <?php
 /**
- * Comment type
+ * Comment type.
  */
+
 namespace App\Form\Type;
 
-use App\Entity\Book;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Class CommentType
+ * Class CommentType.
  */
 class CommentType extends AbstractType
 {
     /**
      * Builds the form
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Builder
+     * @param array                $options Options
      *
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void

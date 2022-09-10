@@ -1,28 +1,30 @@
 <?php
 /**
- * CommentService interface
+ * CommentService interface.
  */
+
 namespace App\Service;
 
 use App\Entity\Comment;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
- * Class CommentServiceInterface
+ * Class CommentServiceInterface.
  */
 interface CommentServiceInterface
 {
     /**
-     * Action save
+     * Action save.
      *
-     * @param Comment $comment
+     * @param Comment $comment Comment
+     *
      */
     public function save(Comment $comment): void;
 
     /**
-     * Action delete
+     * Action delete.
      *
-     * @param Comment $comment
+     * @param Comment $comment Comment
+     *
      */
     public function delete(Comment $comment): void;
 }

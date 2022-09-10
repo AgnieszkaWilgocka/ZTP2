@@ -40,8 +40,8 @@ class FavouriteController extends AbstractController
     /**
      * Constructor
      *
-     * @param FavouriteService    $favouriteService
-     * @param TranslatorInterface $translator
+     * @param FavouriteService    $favouriteService Favourite service
+     * @param TranslatorInterface $translator       Translator
      */
     public function __construct(FavouriteService $favouriteService, TranslatorInterface $translator)
     {
@@ -52,9 +52,9 @@ class FavouriteController extends AbstractController
     /**
      * Function index
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return Response
+     * @return Response HTTP Response
      */
     #[Route(
         name: 'favourite_index',
@@ -74,9 +74,9 @@ class FavouriteController extends AbstractController
     /**
      * Function create favourite
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_USER")
      */
@@ -113,8 +113,8 @@ class FavouriteController extends AbstractController
     /**
      * Function delete favourite
      *
-     * @param Request   $request
-     * @param Favourite $favourite
+     * @param Request   $request   HTTP Request
+     * @param Favourite $favourite Favourite entity
      *
      * @return Response
      */

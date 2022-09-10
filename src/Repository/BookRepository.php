@@ -33,7 +33,7 @@ class BookRepository extends ServiceEntityRepository
     /**
      * Constructor
      *
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry $registry Manager registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -43,9 +43,9 @@ class BookRepository extends ServiceEntityRepository
     /**
      * Query all records
      *
-     * @param array $filters
+     * @param array $filters Filters array
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(array $filters = []): QueryBuilder
     {
@@ -65,8 +65,8 @@ class BookRepository extends ServiceEntityRepository
     /**
      * Apply filters function
      *
-     * @param QueryBuilder $queryBuilder
-     * @param array        $filters
+     * @param QueryBuilder $queryBuilder Query builder
+     * @param array        $filters      Filters array
      *
      * @return QueryBuilder
      */
@@ -90,9 +90,9 @@ class BookRepository extends ServiceEntityRepository
     /**
      * Get or create a new query builder
      *
-     * @param QueryBuilder|null $queryBuilder
+     * @param QueryBuilder|null $queryBuilder Query builder
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
@@ -102,9 +102,8 @@ class BookRepository extends ServiceEntityRepository
     /**
      * Action save
      *
-     * @param Book $book
+     * @param Book $book Book
      *
-     * @return void
      */
     public function save(Book $book): void
     {
@@ -115,9 +114,7 @@ class BookRepository extends ServiceEntityRepository
     /**
      * Action delete
      *
-     * @param Book $book
-     *
-     * @return void
+     * @param Book $book Book
      */
     public function delete(Book $book): void
     {
@@ -128,9 +125,9 @@ class BookRepository extends ServiceEntityRepository
     /**
      * Count by category
      *
-     * @param Category $category
+     * @param Category $category Category
      *
-     * @return int
+     * @return int Int
      *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException

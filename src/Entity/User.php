@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Primary key
      *
-     * @var int|null
+     * @var int|null Id
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -46,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Email
      *
-     * @var string|null
+     * @var string|null Email
      */
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\Email]
@@ -56,7 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Roles
      *
-     * @var array
+     * @var array Roles
      */
     #[ORM\Column(type: 'json')]
     private array $roles = [];
@@ -64,7 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Password
      *
-     * @var string|null
+     * @var string|null Password
      */
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
@@ -74,7 +74,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * UserData entity
      *
-     * @var UserData|null
+     * @var UserData|null UserData
      */
     #[ORM\OneToOne(targetEntity: UserData::class, cascade: ['persist', 'remove'])]
     private ?UserData $userData;
@@ -82,7 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for id
      *
-     * @return int|null
+     * @return int|null Id
      */
     public function getId(): ?int
     {
@@ -92,7 +92,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for email
      *
-     * @return string|null
+     * @return string|null Email
      */
     public function getEmail(): ?string
     {
@@ -102,7 +102,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for email
      *
-     * @param string $email
+     * @param string $email Email
      */
     public function setEmail(string $email): void
     {
@@ -114,7 +114,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      *
-     * @return string
+     * @return string User identifier
      */
     public function getUserIdentifier(): string
     {
@@ -126,7 +126,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      *
-     * @return string
+     * @return string Username
      */
     public function getUsername(): string
     {
@@ -138,7 +138,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      *
-     * @return array|string[]
+     * @return array|string[] Roles
      */
     public function getRoles(): array
     {
@@ -152,7 +152,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for roles
      *
-     * @param array $roles
+     * @param array $roles Roles
      */
     public function setRoles(array $roles): void
     {
@@ -164,7 +164,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see PasswordAuthenticatedUserInterface
      *
-     * @return string
+     * @return string Password
      */
     public function getPassword(): string
     {
@@ -174,7 +174,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for password
      *
-     * @param string $password
+     * @param string $password Password
      *
      */
     public function setPassword(string $password): void
@@ -189,7 +189,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      *
-     * @return string|null
+     * @return string|null Salt
      */
     public function getSalt(): ?string
     {
@@ -210,7 +210,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for User Data
      *
-     * @return UserData|null
+     * @return UserData|null UserData
      */
     public function getUserData(): ?UserData
     {
@@ -220,7 +220,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for User Data
      *
-     * @param UserData|null $userData
+     * @param UserData|null $userData UserData
      */
     public function setUserData(?UserData $userData): void
     {

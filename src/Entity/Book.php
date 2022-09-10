@@ -80,7 +80,7 @@ class Book
     /**
      * Getter for id
      *
-     * @return int|null
+     * @return int|null Id
      */
     public function getId(): ?int
     {
@@ -90,7 +90,7 @@ class Book
     /**
      * Getter for title
      *
-     * @return string|null
+     * @return string|null String
      */
     public function getTitle(): ?string
     {
@@ -100,7 +100,7 @@ class Book
     /**
      * Setter for title
      *
-     * @param string $title
+     * @param string $title Title
      *
      */
     public function setTitle(string $title): void
@@ -111,7 +111,7 @@ class Book
     /**
      * Getter for author
      *
-     * @return string|null
+     * @return string|null Sting
      */
     public function getAuthor(): ?string
     {
@@ -121,7 +121,7 @@ class Book
     /**
      * Setter for author
      *
-     * @param string $author
+     * @param string $author Author
      *
      */
     public function setAuthor(string $author): void
@@ -132,7 +132,7 @@ class Book
     /**
      * Getter for category
      *
-     * @return Category|null
+     * @return Category|null Category
      */
     public function getCategory(): ?Category
     {
@@ -142,7 +142,7 @@ class Book
     /**
      * Setter for category
      *
-     * @param Category|null $category
+     * @param Category|null $category Category
      *
      */
     public function setCategory(?Category $category): void
@@ -153,7 +153,7 @@ class Book
     /**
      * Getter for tags
      *
-     * @return Collection<int, Tag>
+     * @return Collection<int, Tag> Collection
      */
     public function getTags(): Collection
     {
@@ -163,7 +163,7 @@ class Book
     /**
      * Add tag
      *
-     * @param Tag $tag
+     * @param Tag $tag Tag
      *
      * @return $this
      */
@@ -179,7 +179,7 @@ class Book
     /**
      * Remove tag
      *
-     * @param Tag $tag
+     * @param Tag $tag Tag
      *
      * @return $this
      */
@@ -203,7 +203,7 @@ class Book
     /**
      * Add comment
      *
-     * @param Comment $comment
+     * @param Comment $comment Comment
      *
      * @return $this
      */
@@ -220,7 +220,7 @@ class Book
     /**
      * Remove comment
      *
-     * @param Comment $comment
+     * @param Comment $comment Comment
      *
      * @return $this
      */

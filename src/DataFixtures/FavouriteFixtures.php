@@ -1,23 +1,20 @@
 <?php
 /**
- * Favourite fixtures
+ * Favourite fixtures.
  */
+
 namespace App\DataFixtures;
 
-use App\DataFixtures\AbstractBaseFixtures;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Favourite;
-use App\Entity\User;
-use App\DataFixtures\UserFixtures;
-use App\DataFixtures\BookFixtures;
 
 /**
- * Class Favourite fixtures
+ * Class Favourite fixtures.
  */
 class FavouriteFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
-     * Load Data
+     * Load Data.
      */
     public function loadData(): void
     {
@@ -28,7 +25,6 @@ class FavouriteFixtures extends AbstractBaseFixtures implements DependentFixture
             $book = $this->getRandomReference('books');
             $favourite->setBook($book);
 
-
             return $favourite;
         });
 
@@ -36,11 +32,10 @@ class FavouriteFixtures extends AbstractBaseFixtures implements DependentFixture
     }
 
     /**
-     * Function getDependencies
+     * Function getDependencies.
      *
-     * @return string[]
+     * @return string[] of dependencies
      *
-     * @psalm-return array{0: UserFixtures::class, 1: BookFixtures::class}
      */
     public function getDependencies(): array
     {

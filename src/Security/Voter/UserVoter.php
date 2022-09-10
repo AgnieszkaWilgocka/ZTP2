@@ -1,7 +1,8 @@
 <?php
 /**
- * User voter
+ * User voter.
  */
+
 namespace App\Security\Voter;
 
 use App\Entity\User;
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class UserVoter
+ * Class UserVoter.
  */
 class UserVoter extends Voter
 {
@@ -37,16 +38,14 @@ class UserVoter extends Voter
 //    public const DELETE = 'POST_DELETE';
 
     /**
-     * Security helper
-     *
-     * @var Security
+     * Security helper.
      */
     private Security $security;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param Security $security
+     * @param Security $security Security
      */
     public function __construct(Security $security)
     {
@@ -54,12 +53,12 @@ class UserVoter extends Voter
     }
 
     /**
-     * Determines if the attribute and subject are supported by this voter
+     * Determines if the attribute and subject are supported by this voter.
      *
-     * @param string $attribute
+     * @param string $attribute Attribute
      * @param        $subject
      *
-     * @return bool
+     * @return bool Bool
      */
     protected function supports(string $attribute, $subject): bool
     {
@@ -73,13 +72,13 @@ class UserVoter extends Voter
 
     /**
      * Perform a single access check operation on a given attribute, subject and token.
-     * It is safe to assume that $attribute and $subject already passed the "supports()" method check
+     * It is safe to assume that $attribute and $subject already passed the "supports()" method check.
      *
-     * @param string         $attribute
+     * @param string         $attribute Attribute
      * @param                $subject
-     * @param TokenInterface $token
+     * @param TokenInterface $token     Token
      *
-     * @return bool
+     * @return bool Bool
      */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {

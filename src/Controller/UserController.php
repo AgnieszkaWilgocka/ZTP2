@@ -40,8 +40,8 @@ class UserController extends AbstractController
     /**
      * Constructor
      *
-     * @param UserServiceInterface $userService
-     * @param TranslatorInterface  $translator
+     * @param UserServiceInterface $userService User service
+     * @param TranslatorInterface  $translator  Translator
      */
     public function __construct(UserServiceInterface $userService, TranslatorInterface $translator)
     {
@@ -52,9 +52,9 @@ class UserController extends AbstractController
     /**
      * Function index
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return Response
+     * @return Response HTTP Request
      *
      * @IsGranted("ROLE_ADMIN")
      */
@@ -74,9 +74,9 @@ class UserController extends AbstractController
     /**
      * Function show user
      *
-     * @param User $user
+     * @param User $user User entity
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted(
      *     "USER_VIEW",
@@ -97,11 +97,11 @@ class UserController extends AbstractController
     /**
      * Function change password
      *
-     * @param Request                     $request
-     * @param User                        $user
-     * @param UserPasswordHasherInterface $passwordHasher
+     * @param Request                     $request        HTTP Request
+     * @param User                        $user           User entity
+     * @param UserPasswordHasherInterface $passwordHasher Password hasher
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("USER_EDIT", subject="user")
      */

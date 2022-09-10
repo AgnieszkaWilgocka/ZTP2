@@ -1,21 +1,22 @@
 <?php
 /**
- * Book fixtures
+ * Book fixtures.
  */
+
 namespace App\DataFixtures;
 
-//use AbstractBaseFixtures;
+// use AbstractBaseFixtures;
 use App\Entity\Book;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Category;
 
 /**
- * Class BookFixtures
+ * Class BookFixtures.
  */
 class BookFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
-     * Load data
+     * Load data.
      */
     public function loadData(): void
     {
@@ -43,16 +44,14 @@ class BookFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             return $book;
         });
 
-
         $this->manager->flush();
     }
 
     /**
-     * Function getDependencies
+     * Function getDependencies.
      *
-     * @return string[]
+     * @return string[] of dependencies
      *
-     * @psalm-return array{0: CategoryFixtures::class, 1: TagFixtures::class}
      */
     public function getDependencies(): array
     {

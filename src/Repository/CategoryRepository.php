@@ -1,19 +1,17 @@
 <?php
 /**
- * Category repository
+ * Category repository.
  */
+
 namespace App\Repository;
 
-use App\Entity\Book;
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class CategoryRepository
+ * Class CategoryRepository.
  *
  * @extends ServiceEntityRepository<Category>
  *
@@ -25,17 +23,17 @@ use Doctrine\Persistence\ManagerRegistry;
 class CategoryRepository extends ServiceEntityRepository
 {
     /**
-     * Items per page
+     * Items per page.
      *
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 3;
 
-
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry $registry Manager registry
+     *
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -43,9 +41,9 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query all records
+     * Query all records.
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
@@ -59,11 +57,11 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder
+     * Get or create new query builder.
      *
-     * @param QueryBuilder|null $queryBuilder
+     * @param QueryBuilder|null $queryBuilder Query builder
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
@@ -71,9 +69,9 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Action save
+     * Action save.
      *
-     * @param Category $category
+     * @param Category $category Category
      *
      */
     public function save(Category $category): void
@@ -83,9 +81,9 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Action delete
+     * Action delete.
      *
-     * @param Category $category
+     * @param Category $category Category
      *
      */
     public function delete(Category $category): void

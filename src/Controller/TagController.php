@@ -38,8 +38,8 @@ class TagController extends AbstractController
     /**
      * Constructor
      *
-     * @param TagServiceInterface $tagService
-     * @param TranslatorInterface $translator
+     * @param TagServiceInterface $tagService Tag Service
+     * @param TranslatorInterface $translator Translator
      */
     public function __construct(TagServiceInterface $tagService, TranslatorInterface $translator)
     {
@@ -50,9 +50,9 @@ class TagController extends AbstractController
     /**
      * Function index
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */
@@ -72,9 +72,9 @@ class TagController extends AbstractController
     /**
      * Function show tag
      *
-     * @param Tag $tag
+     * @param Tag $tag Tag entity
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */
@@ -95,9 +95,9 @@ class TagController extends AbstractController
     /**
      * Function create tag
      *
-     * @param Request $request
+     * @param Request $request HTTP Request
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */
@@ -137,8 +137,8 @@ class TagController extends AbstractController
     /**
      * Function edit tag
      *
-     * @param Request $request
-     * @param Tag     $tag
+     * @param Request $request HTTP Request
+     * @param Tag     $tag     Tag entity
      *
      * @return Response
      *
@@ -184,8 +184,8 @@ class TagController extends AbstractController
     /**
      * Function delete tag
      *
-     * @param Request $request
-     * @param Tag     $tag
+     * @param Request $request HTTP Request
+     * @param Tag     $tag     Tag entity
      *
      * @return Response
      *

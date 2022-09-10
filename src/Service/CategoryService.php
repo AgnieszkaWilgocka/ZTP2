@@ -42,9 +42,9 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Constructor
      *
-     * @param CategoryRepository $categoryRepository
-     * @param PaginatorInterface $paginator
-     * @param BookRepository     $bookRepository
+     * @param CategoryRepository $categoryRepository Category repository
+     * @param PaginatorInterface $paginator          Paginator
+     * @param BookRepository     $bookRepository     Book repository
      */
     public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, BookRepository $bookRepository)
     {
@@ -56,9 +56,9 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Paginated list
      *
-     * @param int $page
+     * @param int $page Page
      *
-     * @return PaginationInterface
+     * @return PaginationInterface Pagination interface
      */
     public function getPaginatedList(int $page): PaginationInterface
     {
@@ -72,7 +72,7 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Action save
      *
-     * @param Category $category
+     * @param Category $category Category
      *
      */
     public function save(Category $category)
@@ -83,7 +83,7 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Action delete
      *
-     * @param Category $category
+     * @param Category $category Category
      *
      */
     public function delete(Category $category)
@@ -94,9 +94,9 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Action can be deleted
      *
-     * @param Category $category
+     * @param Category $category Category
      *
-     * @return bool
+     * @return bool Bool
      */
     public function canBeDeleted(Category $category): bool
     {
@@ -112,9 +112,9 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Find one by id
      *
-     * @param int $id
+     * @param int $id Id
      *
-     * @return Category|null
+     * @return Category|null Category
      */
     public function findOneById(int $id): ?Category
     {

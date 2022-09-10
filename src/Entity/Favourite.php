@@ -1,23 +1,24 @@
 <?php
 /**
- * Favourite entity
+ * Favourite entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\FavouriteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Favourite
+ * Class Favourite.
  */
 #[ORM\Entity(repositoryClass: FavouriteRepository::class)]
 #[ORM\Table(name: 'favourites')]
 class Favourite
 {
     /**
-     * Primary key
+     * Primary key.
      *
-     * @var int|null
+     * @var int|null Id
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -25,25 +26,25 @@ class Favourite
     private ?int $id;
 
     /**
-     * User entity
+     * User
      *
-     * @var User|null
+     * @var User|null Author
      */
     #[ORM\ManyToOne(targetEntity: User::class)]
     private ?User $author;
 
     /**
-     * Book entity
+     * Book.
      *
-     * @var Book|null
+     * @var Book|null Book
      */
     #[ORM\ManyToOne(targetEntity: Book::class)]
     private ?Book $book;
 
     /**
-     * Getter for id
+     * Getter for Id.
      *
-     * @return int|null
+     * @return int|null Id
      */
     public function getId(): ?int
     {
@@ -51,9 +52,9 @@ class Favourite
     }
 
     /**
-     * Getter for author
+     * Getter for author.
      *
-     * @return User|null
+     * @return User|null Author
      */
     public function getAuthor(): ?User
     {
@@ -61,11 +62,10 @@ class Favourite
     }
 
     /**
-     * Setter for author
+     * Setter for author.
      *
-     * @param User|null $author
+     * @param User|null $author Author
      *
-     * @return void
      */
     public function setAuthor(?User $author): void
     {
@@ -73,9 +73,9 @@ class Favourite
     }
 
     /**
-     * Getter for book
+     * Getter for book.
      *
-     * @return Book|null
+     * @return Book|null Book
      */
     public function getBook(): ?Book
     {
@@ -83,11 +83,10 @@ class Favourite
     }
 
     /**
-     * Setter for book
+     * Setter for book.
      *
-     * @param Book|null $book
+     * @param Book|null $book Book
      *
-     * @return void
      */
     public function setBook(?Book $book): void
     {

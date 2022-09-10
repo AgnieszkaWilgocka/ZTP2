@@ -1,45 +1,46 @@
 <?php
 /**
- * FavouriteService interface
+ * FavouriteService interface.
  */
+
 namespace App\Service;
 
 use App\Entity\Favourite;
 use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
-//use Knp\Component\Pager\PaginatorInterface;
+// use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * Class FavouriteServiceInterface
+ * Class FavouriteServiceInterface.
  */
 interface FavouriteServiceInterface
 {
     /**
-     * Paginated list
+     * Paginated list.
      *
-     * @param int  $page
-     * @param User $user
+     * @param int  $page Page
+     * @param User $user User
      *
-     * @return PaginationInterface
+     * @return PaginationInterface Pagination interface
      */
     public function getPaginatedList(int $page, User $user): PaginationInterface;
 
     /**
-     * Action save
+     * Action save.
      *
-     * @param Favourite $favourite
+     * @param Favourite $favourite Favourite
      *
-     * @return mixed
+     * @return mixed Mixed
      */
     public function save(Favourite $favourite);
 
     /**
-     * Action delete
+     * Action delete.
      *
-     * @param Favourite $favourite
+     * @param Favourite $favourite Favourite
      *
-     * @return mixed
+     * @return mixed mixed
      */
     public function delete(Favourite $favourite);
 }

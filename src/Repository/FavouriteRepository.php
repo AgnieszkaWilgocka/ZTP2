@@ -1,7 +1,8 @@
 <?php
 /**
- * Favourite repository
+ * Favourite repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Favourite;
@@ -11,7 +12,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class FavouriteRepository
+ * Class FavouriteRepository.
  *
  * @extends ServiceEntityRepository<Favourite>
  *
@@ -23,17 +24,16 @@ use Doctrine\Persistence\ManagerRegistry;
 class FavouriteRepository extends ServiceEntityRepository
 {
     /**
-     * Items per page
+     * Items per page.
      *
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 3;
 
-
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry $registry Manager registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -41,9 +41,9 @@ class FavouriteRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query all records
+     * Query all records.
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
@@ -52,11 +52,11 @@ class FavouriteRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder
+     * Get or create new query builder.
      *
-     * @param QueryBuilder|null $queryBuilder
+     * @param QueryBuilder|null $queryBuilder Query builder
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
@@ -64,11 +64,11 @@ class FavouriteRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query by author
+     * Query by author.
      *
-     * @param User $user
+     * @param User $user User
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function queryByAuthor(User $user): QueryBuilder
     {
@@ -81,9 +81,9 @@ class FavouriteRepository extends ServiceEntityRepository
     }
 
     /**
-     * Action save
+     * Action save.
      *
-     * @param Favourite $favourite
+     * @param Favourite $favourite Favourite
      */
     public function save(Favourite $favourite): void
     {
@@ -92,9 +92,10 @@ class FavouriteRepository extends ServiceEntityRepository
     }
 
     /**
-     * Action delete
+     * Action delete.
      *
-     * @param Favourite $favourite
+     * @param Favourite $favourite Favourite
+     *
      */
     public function delete(Favourite $favourite): void
     {

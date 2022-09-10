@@ -39,8 +39,8 @@ class UserDataController extends AbstractController
     /**
      * Constructor
      *
-     * @param UserDataServiceInterface $userDataService
-     * @param TranslatorInterface      $translator
+     * @param UserDataServiceInterface $userDataService UserData service
+     * @param TranslatorInterface      $translator      Translator
      */
     public function __construct(UserDataServiceInterface $userDataService, TranslatorInterface $translator)
     {
@@ -51,8 +51,8 @@ class UserDataController extends AbstractController
     /**
      * Function edit user data
      *
-     * @param Request  $request
-     * @param UserData $userData
+     * @param Request  $request  HTTP Request
+     * @param UserData $userData UserData entity
      *
      * @return Response
      */
