@@ -1,21 +1,20 @@
 <?php
 /**
- * Tag fixtures
+ * Tag fixtures.
  */
+
 namespace App\DataFixtures;
 
-use App\DataFixtures\AbstractBaseFixtures;
 use App\Entity\Tag;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use DateTimeImmutable;
 
 /**
- * Class TagFixtures
+ * Class TagFixtures.
  */
 class TagFixtures extends AbstractBaseFixtures
 {
     /**
-     * Load Data
+     * Load Data.
      */
     public function loadData(): void
     {

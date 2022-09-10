@@ -1,7 +1,8 @@
 <?php
 /**
- * Category service
+ * Category service.
  */
+
 namespace App\Service;
 
 use App\Entity\Category;
@@ -13,34 +14,27 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * Class CategoryService
- *
+ * Class CategoryService.
  */
 class CategoryService implements CategoryServiceInterface
 {
     /**
-     * Category repository
-     *
-     * @var CategoryRepository
+     * Category repository.
      */
     private CategoryRepository $categoryRepository;
 
     /**
-     * Paginator
-     *
-     * @var PaginatorInterface
+     * Paginator.
      */
     private PaginatorInterface $paginator;
 
     /**
-     * Book repository
-     *
-     * @var BookRepository
+     * Book repository.
      */
     private BookRepository $bookRepository;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param CategoryRepository $categoryRepository Category repository
      * @param PaginatorInterface $paginator          Paginator
@@ -54,7 +48,7 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
-     * Paginated list
+     * Paginated list.
      *
      * @param int $page Page
      *
@@ -70,10 +64,9 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
-     * Action save
+     * Action save.
      *
      * @param Category $category Category
-     *
      */
     public function save(Category $category)
     {
@@ -81,10 +74,9 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
-     * Action delete
+     * Action delete.
      *
      * @param Category $category Category
-     *
      */
     public function delete(Category $category)
     {
@@ -92,7 +84,7 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
-     * Action can be deleted
+     * Action can be deleted.
      *
      * @param Category $category Category
      *
@@ -110,7 +102,7 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
-     * Find one by id
+     * Find one by id.
      *
      * @param int $id Id
      *

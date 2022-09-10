@@ -95,7 +95,6 @@ class FavouriteRepository extends ServiceEntityRepository
      * Action delete.
      *
      * @param Favourite $favourite Favourite
-     *
      */
     public function delete(Favourite $favourite): void
     {

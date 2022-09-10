@@ -1,7 +1,8 @@
 <?php
 /**
- * Book repository
+ * Book repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Book;
@@ -12,7 +13,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class BookRepository
+ * Class BookRepository.
  *
  * @extends ServiceEntityRepository<Book>
  *
@@ -24,14 +25,14 @@ use Doctrine\Persistence\ManagerRegistry;
 class BookRepository extends ServiceEntityRepository
 {
     /**
-     * Items per page
+     * Items per page.
      *
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 4;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param ManagerRegistry $registry Manager registry
      */
@@ -41,7 +42,7 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query all records
+     * Query all records.
      *
      * @param array $filters Filters array
      *
@@ -49,7 +50,7 @@ class BookRepository extends ServiceEntityRepository
      */
     public function queryAll(array $filters = []): QueryBuilder
     {
-        $queryBuilder =  $this->getOrCreateQueryBuilder()
+        $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
                 'partial book.{id, author, title}',
                 'partial category.{id, title}',
@@ -63,16 +64,15 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Apply filters function
+     * Apply filters function.
      *
      * @param QueryBuilder $queryBuilder Query builder
      * @param array        $filters      Filters array
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
     {
-
         if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
             $queryBuilder->andWhere('tags IN (:tag)')
                 ->setParameter('tag', $filters['tag']);
@@ -86,9 +86,8 @@ class BookRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
-
     /**
-     * Get or create a new query builder
+     * Get or create a new query builder.
      *
      * @param QueryBuilder|null $queryBuilder Query builder
      *
@@ -100,10 +99,9 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Action save
+     * Action save.
      *
      * @param Book $book Book
-     *
      */
     public function save(Book $book): void
     {
@@ -112,7 +110,7 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Action delete
+     * Action delete.
      *
      * @param Book $book Book
      */
@@ -123,7 +121,7 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Count by category
+     * Count by category.
      *
      * @param Category $category Category
      *

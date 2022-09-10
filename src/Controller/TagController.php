@@ -1,7 +1,8 @@
 <?php
 /**
- * Tag controller
+ * Tag controller.
  */
+
 namespace App\Controller;
 
 use App\Entity\Tag;
@@ -16,27 +17,23 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Class TagController
+ * Class TagController.
  */
 #[Route('/tag')]
 class TagController extends AbstractController
 {
     /**
-     * Tag Service Interface
-     *
-     * @var TagServiceInterface
+     * Tag Service Interface.
      */
     private TagServiceInterface $tagService;
 
     /**
-     * Translator
-     *
-     * @var TranslatorInterface
+     * Translator.
      */
     private TranslatorInterface $translator;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param TagServiceInterface $tagService Tag Service
      * @param TranslatorInterface $translator Translator
@@ -48,7 +45,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * Function index
+     * Function index.
      *
      * @param Request $request HTTP Request
      *
@@ -70,7 +67,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * Function show tag
+     * Function show tag.
      *
      * @param Tag $tag Tag entity
      *
@@ -93,7 +90,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * Function create tag
+     * Function create tag.
      *
      * @param Request $request HTTP Request
      *
@@ -135,12 +132,12 @@ class TagController extends AbstractController
     }
 
     /**
-     * Function edit tag
+     * Function edit tag.
      *
      * @param Request $request HTTP Request
      * @param Tag     $tag     Tag entity
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */
@@ -182,12 +179,12 @@ class TagController extends AbstractController
     }
 
     /**
-     * Function delete tag
+     * Function delete tag.
      *
      * @param Request $request HTTP Request
      * @param Tag     $tag     Tag entity
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */

@@ -1,7 +1,8 @@
 <?php
 /**
- * Favourite service
+ * Favourite service.
  */
+
 namespace App\Service;
 
 use App\Entity\Favourite;
@@ -11,27 +12,22 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * Class FavouriteService
- *
+ * Class FavouriteService.
  */
 class FavouriteService implements FavouriteServiceInterface
 {
     /**
-     * Favourite repository
-     *
-     * @var FavouriteRepository
+     * Favourite repository.
      */
     private FavouriteRepository $favouriteRepository;
 
     /**
-     * Paginator
-     *
-     * @var PaginatorInterface
+     * Paginator.
      */
     private PaginatorInterface $paginator;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param FavouriteRepository $favouriteRepository Favourite repository
      * @param PaginatorInterface  $paginator           Paginator
@@ -43,7 +39,7 @@ class FavouriteService implements FavouriteServiceInterface
     }
 
     /**
-     * Action save
+     * Action save.
      *
      * @param Favourite $favourite Favourite
      */
@@ -53,10 +49,9 @@ class FavouriteService implements FavouriteServiceInterface
     }
 
     /**
-     * Action delete
+     * Action delete.
      *
      * @param Favourite $favourite Favourite
-     *
      */
     public function delete(Favourite $favourite)
     {
@@ -64,12 +59,12 @@ class FavouriteService implements FavouriteServiceInterface
     }
 
     /**
-     * Paginated list
+     * Paginated list.
      *
      * @param int  $page   Page
      * @param User $author Author
      *
-     * @return PaginationInterface
+     * @return PaginationInterface Pagination Interface
      */
     public function getPaginatedList(int $page, User $author): PaginationInterface
     {

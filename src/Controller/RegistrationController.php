@@ -24,7 +24,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class RegistrationController extends AbstractController
 {
     /**
-     * Function register
+     * Function register.
      *
      * @param Request                     $request            HTTP Request
      * @param UserRepository              $userRepository     User repository
@@ -33,7 +33,7 @@ class RegistrationController extends AbstractController
      * @param UserAuthenticatorInterface  $userAuthenticator  User authenticator
      * @param LoginFormAuthenticator      $formAuthenticator  Form authenticator
      *
-     * @return Response|null
+     * @return Response|null HTTP Response
      */
     #[Route(
         '/registration',

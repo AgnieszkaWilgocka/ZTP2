@@ -1,7 +1,8 @@
 <?php
 /**
- * Favourite controller
+ * Favourite controller.
  */
+
 namespace App\Controller;
 
 use App\Entity\Favourite;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Class FavouriteController
+ * Class FavouriteController.
  */
 #[Route(
     '/favourite'
@@ -24,21 +25,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class FavouriteController extends AbstractController
 {
     /**
-     * Favourite Service Interface
-     *
-     * @var FavouriteService
+     * Favourite Service Interface.
      */
     private FavouriteService $favouriteService;
 
     /**
-     * Translator
-     *
-     * @var TranslatorInterface
+     * Translator.
      */
     private TranslatorInterface $translator;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param FavouriteService    $favouriteService Favourite service
      * @param TranslatorInterface $translator       Translator
@@ -50,7 +47,7 @@ class FavouriteController extends AbstractController
     }
 
     /**
-     * Function index
+     * Function index.
      *
      * @param Request $request HTTP Request
      *
@@ -70,9 +67,8 @@ class FavouriteController extends AbstractController
         return $this->render('favourite/own.html.twig', ['pagination' => $pagination]);
     }
 
-
     /**
-     * Function create favourite
+     * Function create favourite.
      *
      * @param Request $request HTTP Request
      *
@@ -111,12 +107,12 @@ class FavouriteController extends AbstractController
     }
 
     /**
-     * Function delete favourite
+     * Function delete favourite.
      *
      * @param Request   $request   HTTP Request
      * @param Favourite $favourite Favourite entity
      *
-     * @return Response
+     * @return Response HTTP Response
      */
     #[Route(
         '/{id}/delete',

@@ -51,7 +51,6 @@ class BookFixtures extends AbstractBaseFixtures implements DependentFixtureInter
      * Function getDependencies.
      *
      * @return string[] of dependencies
-     *
      */
     public function getDependencies(): array
     {

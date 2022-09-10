@@ -16,11 +16,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 class ChangePasswordType extends AbstractType
 {
     /**
-     * Builds the form
+     * Builds the form.
      *
      * @param FormBuilderInterface $builder Builder
      * @param array                $options Options
-     *
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

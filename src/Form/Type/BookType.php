@@ -1,7 +1,8 @@
 <?php
 /**
- * Book type
+ * Book type.
  */
+
 namespace App\Form\Type;
 
 use App\Entity\Book;
@@ -14,14 +15,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class BookType
+ * Class BookType.
  */
 class BookType extends AbstractType
 {
     /**
-     * Tags data transformer
-     *
-     * @var TagsDataTransformer
+     * Tags data transformer.
      */
     private TagsDataTransformer $tagsDataTransformer;
 
@@ -36,7 +35,7 @@ class BookType extends AbstractType
     }
 
     /**
-     * Builds the form
+     * Builds the form.
      *
      * @param FormBuilderInterface $builder Builder
      * @param array                $options Options

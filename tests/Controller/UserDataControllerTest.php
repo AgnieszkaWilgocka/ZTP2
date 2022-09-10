@@ -1,7 +1,8 @@
 <?php
 /**
- * UserData controller test
+ * UserData controller test.
  */
+
 namespace App\Tests\Controller;
 
 use App\Entity\User;
@@ -12,16 +13,24 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class UserDataControllerTest
+ * Class UserDataControllerTest.
  */
 class UserDataControllerTest extends WebTestCase
 {
+    /**
+     * Test route.
+     *
+     * @const string
+     */
     public const TEST_ROUTE = '/userData';
 
+    /**
+     * Test client.
+     */
     private KernelBrowser $httpClient;
 
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp(): void
     {
@@ -29,11 +38,11 @@ class UserDataControllerTest extends WebTestCase
     }
 
     /**
-     * Edit user data test
+     * Edit user data test.
      */
     public function testEditUserData(): void
     {
-        //given
+        // given
         $user = $this->createUser('edit');
         $this->httpClient->loginUser($user);
 
@@ -44,26 +53,25 @@ class UserDataControllerTest extends WebTestCase
         $expectedUserDataId = $expectedUserData->getId();
         $expectedUserDataEditedNick = 'EditedTitle';
 
-        $this->httpClient->request('GET',self::TEST_ROUTE.'/'.$expectedUserDataId.'/edit');
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$expectedUserDataId.'/edit');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Save',
             ['userData' => ['nick' => $expectedUserDataEditedNick]]
         );
 
-        //then
+        // then
         $editedUserData = $userDataRepository->findOneById($expectedUserDataId);
         $this->assertEquals($expectedUserDataEditedNick, $editedUserData->getNick());
-
     }
 
     /**
-     * Create user for tests
+     * Create user for tests.
      *
-     * @param string $name
+     * @param string $name Name
      *
-     * @return User
+     * @return User User entity
      */
     private function createUser(string $name): User
     {

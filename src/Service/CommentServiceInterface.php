@@ -16,7 +16,6 @@ interface CommentServiceInterface
      * Action save.
      *
      * @param Comment $comment Comment
-     *
      */
     public function save(Comment $comment): void;
 
@@ -24,7 +23,6 @@ interface CommentServiceInterface
      * Action delete.
      *
      * @param Comment $comment Comment
-     *
      */
     public function delete(Comment $comment): void;
 }

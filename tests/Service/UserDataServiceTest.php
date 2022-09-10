@@ -1,7 +1,8 @@
 <?php
 /**
- * UserData service test
+ * UserData service test.
  */
+
 namespace App\Tests\Service;
 
 use App\Entity\UserData;
@@ -11,16 +12,26 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class UserDataServiceTest
+ * Class UserDataServiceTest.
  */
 class UserDataServiceTest extends KernelTestCase
 {
+    /**
+     * Test entity manager.
+     *
+     * @var EntityManagerInterface|object|null
+     */
     private ?EntityManagerInterface $entityManager;
 
+    /**
+     * Test user data service.
+     *
+     * @var UserDataService|object|null
+     */
     private ?UserDataService $userDataService;
 
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp(): void
     {
@@ -29,21 +40,21 @@ class UserDataServiceTest extends KernelTestCase
     }
 
     /**
-     * UserData save test
+     * UserData save test.
      *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function testUserDataSave(): void
     {
-        //given
+        // given
         $expectedUserData = new UserData();
         $expectedUserData->setNick('testUserData');
 
-        //when
+        // when
         $this->userDataService->save($expectedUserData);
 
-        //then
+        // then
         $expectedUserDataId = $expectedUserData->getId();
         $resultUserData = $this->entityManager->createQueryBuilder()
             ->select('userData')

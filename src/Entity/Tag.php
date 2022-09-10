@@ -1,20 +1,20 @@
 <?php
 /**
- * Tag entity
+ * Tag entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\TagRepository;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 #[ORM\Table(name: 'ztp_tags')]
 /**
- * Class tag
+ * Class tag.
  */
 class Tag
 {
@@ -40,7 +40,7 @@ class Tag
     private ?string $title;
 
     /**
-     * Created At
+     * Created At.
      *
      * @var DateTimeImmutable|null Created at
      */
@@ -64,7 +64,7 @@ class Tag
     private $books;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -72,7 +72,7 @@ class Tag
     }
 
     /**
-     * Getter for id
+     * Getter for id.
      *
      * @return int|null Id
      */
@@ -82,7 +82,7 @@ class Tag
     }
 
     /**
-     * Getter for title
+     * Getter for title.
      *
      * @return string|null Title
      */
@@ -92,10 +92,9 @@ class Tag
     }
 
     /**
-     * Setter for title
+     * Setter for title.
      *
      * @param string $title Title
-     *
      */
     public function setTitle(string $title): void
     {
@@ -113,10 +112,9 @@ class Tag
     }
 
     /**
-     * Setter for created at
+     * Setter for created at.
      *
      * @param DateTimeImmutable $createdAt Created at
-     *
      */
     public function setCreatedAt(DateTimeImmutable $createdAt): void
     {
@@ -124,7 +122,7 @@ class Tag
     }
 
     /**
-     * Getter for updated at
+     * Getter for updated at.
      *
      * @return DateTimeImmutable|null Updated at
      */
@@ -134,10 +132,9 @@ class Tag
     }
 
     /**
-     * Setter for updated at
+     * Setter for updated at.
      *
      * @param DateTimeImmutable $updatedAt Updated at
-     *
      */
     public function setUpdatedAt(DateTimeImmutable $updatedAt): void
     {
@@ -145,7 +142,7 @@ class Tag
     }
 
     /**
-     * Add book
+     * Add book.
      *
      * @param Book $book Book
      *
@@ -162,7 +159,7 @@ class Tag
     }
 
     /**
-     * Remove book
+     * Remove book.
      *
      * @param Book $book Book
      *

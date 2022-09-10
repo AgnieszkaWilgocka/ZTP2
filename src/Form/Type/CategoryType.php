@@ -17,11 +17,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CategoryType extends AbstractType
 {
     /**
-     * Builds the form
+     * Builds the form.
      *
      * @param FormBuilderInterface $builder Builder
      * @param array                $options Options
-     *
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -40,7 +39,6 @@ class CategoryType extends AbstractType
      * Configures the options for this type.
      *
      * @param OptionsResolver $resolver The resolver for the options
-     *
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

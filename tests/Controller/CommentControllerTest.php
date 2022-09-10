@@ -1,7 +1,8 @@
 <?php
 /**
- * Comment controller test
+ * Comment controller test.
  */
+
 namespace App\Tests\Controller;
 
 use App\Entity\Book;
@@ -16,17 +17,21 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class CommentControllerTest
+ * Class CommentControllerTest.
  */
 class CommentControllerTest extends WebTestCase
 {
-
+    /**
+     * Test route.
+     *
+     * @const string
+     */
     public const TEST_ROUTE = '/comment';
 
     private KernelBrowser $httpClient;
 
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp(): void
     {
@@ -34,11 +39,11 @@ class CommentControllerTest extends WebTestCase
     }
 
     /**
-     * Delete comment test
+     * Delete comment test.
      */
     public function testDeleteComment(): void
     {
-        //given
+        // given
         $user = $this->createUser('userForTest');
         $this->httpClient->loginUser($user);
 
@@ -52,21 +57,21 @@ class CommentControllerTest extends WebTestCase
 
         $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$commentToDelete->getId().'/delete');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Usun'
         );
 
-        //then
+        // then
         $this->assertNull($commentRepository->findOneByBook($book));
     }
 
     /**
-     * Create category for comment's tests
+     * Create category for comment's tests.
      *
-     * @param string $title
+     * @param string $title Title
      *
-     * @return Category
+     * @return Category Category entity
      */
     private function createCategory(string $title): Category
     {
@@ -82,12 +87,12 @@ class CommentControllerTest extends WebTestCase
     }
 
     /**
-     * Create book for comment's tests
+     * Create book for comment's tests.
      *
-     * @param string $title
-     * @param Category $category
+     * @param string   $title    Title
+     * @param Category $category Category
      *
-     * @return Book
+     * @return Book Book entity
      */
     private function createBook(string $title, Category $category): Book
     {
@@ -102,13 +107,12 @@ class CommentControllerTest extends WebTestCase
         return $book;
     }
 
-
     /**
-     * Create user for comment's tests
+     * Create user for comment's tests.
      *
-     * @param string $name
+     * @param string $name Name
      *
-     * @return User
+     * @return User User
      */
     private function createUser(string $name): User
     {

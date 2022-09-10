@@ -1,7 +1,8 @@
 <?php
 /**
- * Registration controller test
+ * Registration controller test.
  */
+
 namespace App\Tests\Controller;
 
 use App\Entity\User;
@@ -12,14 +13,17 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class RegistrationControllerTest
+ * Class RegistrationControllerTest.
  */
 class RegistrationControllerTest extends WebTestCase
 {
+    /**
+     * Test client.
+     */
     private KernelBrowser $httpClient;
 
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp(): void
     {
@@ -27,47 +31,43 @@ class RegistrationControllerTest extends WebTestCase
     }
 
     /**
-     * Registration test
+     * Registration test.
      */
     public function testRegistration(): void
     {
-
-        //given
+        // given
         $emailForNewUser = 'register@example.com';
         $userRepository = static::getContainer()->get(UserRepository::class);
 
         $this->httpClient->request('GET', '/registration');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Zapisz',
-            ['registration' => [
+            [
+                'registration' => [
                 'email' => $emailForNewUser,
                 'password' => [
                     'first' => '1234',
-                    'second' => '1234'
-                ]
-
-//                'password' => ['first_options' => '1234'],
-//                    ['second_options' => '1234']
-                ]]
+                    'second' => '1234',
+                ],
+                ], ]
         );
 
-        //then
+        // then
         $result = $userRepository->findOneByEmail('register@example.com');
         $this->assertEquals($emailForNewUser, $result->getEmail());
     }
 
-
     /**
-     * Create user for tests
+     * Create user for tests.
      *
-     * @param $name
-     * @param UserData $userData
+     * @param string   $name     Name
+     * @param UserData $userData UserData
      *
-     * @return User
+     * @return User User
      */
-    public function createUser($name, UserData $userData): User
+    public function createUser(string $name, UserData $userData): User
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');
 
@@ -87,7 +87,12 @@ class RegistrationControllerTest extends WebTestCase
         return $user;
     }
 
-    private function createUserData($nick): UserData
+    /**
+     * @param string $nick Nick
+     *
+     * @return UserData UserData entity
+     */
+    private function createUserData(string $nick): UserData
     {
         $userData = new UserData();
         $userData->setNick($nick);

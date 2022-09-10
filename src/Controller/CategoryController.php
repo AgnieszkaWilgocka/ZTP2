@@ -1,7 +1,8 @@
 <?php
 /**
- * Category controller
+ * Category controller.
  */
+
 namespace App\Controller;
 
 use App\Form\Type\CategoryType;
@@ -17,26 +18,23 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Category Controller
+ * Category Controller.
  */
-
 #[Route('/category')]
 class CategoryController extends AbstractController
 {
     /**
-     * Translator
-     *
-     * @var TranslatorInterface
+     * Translator.
      */
     private TranslatorInterface $translator;
 
     /**
-     * CategoryServiceInterface
+     * CategoryServiceInterface.
      */
     private CategoryServiceInterface $categoryService;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param TranslatorInterface $translator      Translator
      * @param CategoryService     $categoryService Category Service
@@ -48,7 +46,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * Function index
+     * Function index.
      *
      * @param Request $request HTTP Request
      *
@@ -67,10 +65,8 @@ class CategoryController extends AbstractController
         return $this->render('category/index.html.twig', ['pagination' => $pagination]);
     }
 
-
-
     /**
-     * Show action
+     * Show action.
      *
      * @param Category $category Category entity
      *
@@ -91,7 +87,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * Function create category
+     * Function create category.
      *
      * @param Request $request HTTP Request
      *
@@ -130,12 +126,12 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * Function edit category
+     * Function edit category.
      *
      * @param Request  $request  HTTP Request
      * @param Category $category Category entity
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */
@@ -177,12 +173,12 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * Function delete category
+     * Function delete category.
      *
      * @param Request  $request  HTTP Request
      * @param Category $category Category entity
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */

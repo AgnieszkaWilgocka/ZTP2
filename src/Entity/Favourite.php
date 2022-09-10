@@ -26,7 +26,7 @@ class Favourite
     private ?int $id;
 
     /**
-     * User
+     * User.
      *
      * @var User|null Author
      */
@@ -65,7 +65,6 @@ class Favourite
      * Setter for author.
      *
      * @param User|null $author Author
-     *
      */
     public function setAuthor(?User $author): void
     {
@@ -86,7 +85,6 @@ class Favourite
      * Setter for book.
      *
      * @param Book|null $book Book
-     *
      */
     public function setBook(?Book $book): void
     {

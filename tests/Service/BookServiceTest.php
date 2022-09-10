@@ -1,7 +1,8 @@
 <?php
 /**
- * Book service test
+ * Book service test.
  */
+
 namespace App\Tests\Service;
 
 use App\Entity\Book;
@@ -12,17 +13,26 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class BookServiceTest
+ * Class BookServiceTest.
  */
 class BookServiceTest extends KernelTestCase
 {
-
+    /**
+     * Test entity manager.
+     *
+     * @var EntityManagerInterface|object|null
+     */
     private ?EntityManagerInterface $entityManager;
 
+    /**
+     * Test book service.
+     *
+     * @var BookService|object|null
+     */
     private ?BookService $bookService;
 
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp(): void
     {
@@ -32,14 +42,14 @@ class BookServiceTest extends KernelTestCase
     }
 
     /**
-     * Save test
+     * Save test.
      *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function testSave(): void
     {
-        //given
+        // given
         $testCategory = new Category();
         $testCategory->setCreatedAt(new \DateTimeImmutable());
         $testCategory->setUpdatedAt(new \DateTimeImmutable());
@@ -52,10 +62,10 @@ class BookServiceTest extends KernelTestCase
         $expectedBook->setTitle('Test Book');
         $expectedBook->setAuthor('Test Author');
 
-        //when
+        // when
         $this->bookService->save($expectedBook);
 
-        //then
+        // then
         $expectedBookId = $expectedBook->getId();
         $resultBook = $this->entityManager->createQueryBuilder()
             ->select('book')
@@ -69,13 +79,13 @@ class BookServiceTest extends KernelTestCase
     }
 
     /**
-     * Delete test
+     * Delete test.
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function testDelete(): void
     {
-        //given
+        // given
         $testCategoryForBook = new Category();
         $testCategoryForBook->setCreatedAt(new \DateTimeImmutable());
         $testCategoryForBook->setUpdatedAt(new \DateTimeImmutable());
@@ -91,10 +101,10 @@ class BookServiceTest extends KernelTestCase
         $this->entityManager->flush();
         $deletedBookId = $bookToDelete->getId();
 
-        //when
+        // when
         $this->bookService->delete($bookToDelete);
 
-        //then
+        // then
         $resultBook = $this->entityManager->createQueryBuilder()
             ->select('book')
             ->from(Book::class, 'book')

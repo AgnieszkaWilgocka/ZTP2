@@ -1,7 +1,8 @@
 <?php
 /**
- * Tag service test
+ * Tag service test.
  */
+
 namespace App\Tests\Service;
 
 use App\Entity\Tag;
@@ -13,16 +14,26 @@ use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class TagServiceTest
+ * Class TagServiceTest.
  */
 class TagServiceTest extends KernelTestCase
 {
+    /**
+     * Test entity manager.
+     *
+     * @var EntityManagerInterface|object|null
+     */
     private ?EntityManagerInterface $entityManager;
 
+    /**
+     * Test tag service.
+     *
+     * @var TagService|object|null
+     */
     private ?TagService $tagService;
 
     /**
-     * Set up test
+     * Set up test.
      *
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
@@ -35,23 +46,23 @@ class TagServiceTest extends KernelTestCase
     }
 
     /**
-     * Save test
+     * Save test.
      *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function testSave(): void
     {
-        //given
+        // given
         $expectedTag = new Tag();
         $expectedTag->setCreatedAt(new \DateTimeImmutable());
         $expectedTag->setUpdatedAt(new \DateTimeImmutable());
         $expectedTag->setTitle('Tag Test');
 
-        //when
+        // when
         $this->tagService->save($expectedTag);
 
-        //then
+        // then
         $expectedTagId = $expectedTag->getId();
         $resultTag = $this->entityManager->createQueryBuilder()
             ->select('tag')
@@ -65,13 +76,13 @@ class TagServiceTest extends KernelTestCase
     }
 
     /**
-     * Delete test
+     * Delete test.
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function testDelete(): void
     {
-        //given
+        // given
         $tagToDelete = new Tag();
         $tagToDelete->setCreatedAt(new \DateTimeImmutable());
         $tagToDelete->setUpdatedAt(new \DateTimeImmutable());
@@ -81,10 +92,10 @@ class TagServiceTest extends KernelTestCase
         $this->entityManager->flush();
         $deletedTagId = $tagToDelete->getId();
 
-        //when
+        // when
         $this->tagService->delete($tagToDelete);
 
-        //then
+        // then
         $resultTag = $this->entityManager->createQueryBuilder()
             ->select('tag')
             ->from(Tag::class, 'tag')
@@ -97,12 +108,11 @@ class TagServiceTest extends KernelTestCase
     }
 
     /**
-     * Paginated list test
-     *
+     * Paginated list test.
      */
     public function testPaginatedList(): void
     {
-        //given
+        // given
         $page = 1;
         $dataSetSize = 3;
         $expectedResultSize = 3;
@@ -119,20 +129,19 @@ class TagServiceTest extends KernelTestCase
             ++$counter;
         }
 
-        //when
+        // when
         $result = $this->tagService->getPaginatedList($page);
 
-        //then
+        // then
         $this->assertEquals($expectedResultSize, $result->count());
     }
 
     /**
-     * Find one by id test
-     *
+     * Find one by id test.
      */
     public function testFindOneById(): void
     {
-        //given
+        // given
         $expectedTag = new Tag();
         $expectedTag->setCreatedAt(new \DateTimeImmutable());
         $expectedTag->setUpdatedAt(new \DateTimeImmutable());
@@ -141,21 +150,19 @@ class TagServiceTest extends KernelTestCase
         $this->entityManager->flush();
         $expectedTagId = $expectedTag->getId();
 
-        //when
+        // when
         $resultTag = $this->tagService->findOneById($expectedTagId);
 
-        //then
+        // then
         $this->assertEquals($expectedTag, $resultTag);
-
     }
 
     /**
-     * Find one by title test
-     *
+     * Find one by title test.
      */
     public function testFindOneByTitle(): void
     {
-        //given
+        // given
         $expectedTag = new Tag();
         $expectedTag->setCreatedAt(new \DateTimeImmutable());
         $expectedTag->setUpdatedAt(new \DateTimeImmutable());
@@ -164,10 +171,10 @@ class TagServiceTest extends KernelTestCase
         $this->entityManager->flush();
         $expectedTagTitle = $expectedTag->getTitle();
 
-        //when
+        // when
         $resultTag = $this->tagService->findOneByTitle($expectedTagTitle);
 
-        //then
+        // then
         $this->assertEquals($expectedTag, $resultTag);
     }
 }

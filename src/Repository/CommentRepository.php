@@ -35,7 +35,6 @@ class CommentRepository extends ServiceEntityRepository
      * Action save.
      *
      * @param Comment $comment Comment
-     *
      */
     public function save(Comment $comment)
     {
@@ -47,7 +46,6 @@ class CommentRepository extends ServiceEntityRepository
      * Action delete.
      *
      * @param Comment $comment Comment
-     *
      */
     public function delete(Comment $comment)
     {

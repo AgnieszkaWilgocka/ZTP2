@@ -1,22 +1,23 @@
 <?php
 /**
- * Category fixtures
+ * Category fixtures.
  */
+
 namespace App\DataFixtures;
 
 use App\Entity\Category;
 use DateTimeImmutable;
 
-//use Doctrine\Persistence\ObjectManager;
-//use App\DataFixtures\AbstractBaseFixtures;
+// use Doctrine\Persistence\ObjectManager;
+// use App\DataFixtures\AbstractBaseFixtures;
 
 /**
- * Class CategoryFixtures
+ * Class CategoryFixtures.
  */
 class CategoryFixtures extends AbstractBaseFixtures
 {
     /**
-     * Load data
+     * Load data.
      */
     public function loadData(): void
     {
@@ -32,7 +33,6 @@ class CategoryFixtures extends AbstractBaseFixtures
 
             return $category;
         });
-
 
         $this->manager->flush();
     }

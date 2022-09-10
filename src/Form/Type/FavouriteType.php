@@ -18,11 +18,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class FavouriteType extends AbstractType
 {
     /**
-     * Builds the form
+     * Builds the form.
      *
      * @param FormBuilderInterface $builder builder Builder
      * @param array                $options options Options
-     *
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

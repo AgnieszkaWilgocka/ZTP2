@@ -60,7 +60,6 @@ class UserData
      * Setter for nick.
      *
      * @param string|null $nick Nick
-     *
      */
     public function setNick(?string $nick): void
     {

@@ -35,7 +35,6 @@ class FavouriteFixtures extends AbstractBaseFixtures implements DependentFixture
      * Function getDependencies.
      *
      * @return string[] of dependencies
-     *
      */
     public function getDependencies(): array
     {

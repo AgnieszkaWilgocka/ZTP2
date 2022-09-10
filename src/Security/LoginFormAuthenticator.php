@@ -1,7 +1,8 @@
 <?php
 /**
- * LoginFormAuthenticator
+ * LoginFormAuthenticator.
  */
+
 namespace App\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,35 +19,33 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 /**
- * Class LoginFormAuthenticator
+ * Class LoginFormAuthenticator.
  */
 class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
     /**
-     * Login route
+     * Login route.
      *
      * @const string
      */
     public const LOGIN_ROUTE = 'app_login';
 
     /**
-     * Default route
+     * Default route.
      *
      * @const string
      */
     public const DEFAULT_ROUTE = 'category_index';
 
     /**
-     * URL Generator
-     *
-     * @var UrlGeneratorInterface
+     * URL Generator.
      */
     private UrlGeneratorInterface $urlGenerator;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param UrlGeneratorInterface $urlGenerator Url Generator
      */
@@ -56,7 +55,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
-     * Supports function
+     * Supports function.
      *
      * @param Request $request HTTP Request
      *
@@ -69,7 +68,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
-     * Authenticate function
+     * Authenticate function.
      *
      * @param Request $request HTTP Request
      *
@@ -91,7 +90,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
-     * AuthenticationSuccess function
+     * AuthenticationSuccess function.
      *
      * @param Request        $request      HTTP Request
      * @param TokenInterface $token        Token
@@ -112,7 +111,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
-     * Getting login url
+     * Getting login url.
      *
      * @param Request $request HTTP Request
      *

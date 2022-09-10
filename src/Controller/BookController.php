@@ -1,8 +1,9 @@
 <?php
 
 /**
- * Book controller
+ * Book controller.
  */
+
 namespace App\Controller;
 
 use App\Entity\Comment;
@@ -20,30 +21,25 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Book Controller
+ * Book Controller.
  */
-
 #[Route('book')]
 class BookController extends AbstractController
 {
     /**
-     * Book Service Interface
-     *
-     * @var BookServiceInterface
+     * Book Service Interface.
      */
     private BookServiceInterface $bookService;
 
     /**
-     * Translator
-     *
-     * @var TranslatorInterface
+     * Translator.
      */
     private TranslatorInterface $translator;
 
     private CommentService $commentService;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param BookServiceInterface $bookService    Book Service
      * @param TranslatorInterface  $translator     Translator
@@ -57,7 +53,7 @@ class BookController extends AbstractController
     }
 
     /**
-     * Function index
+     * Function index.
      *
      * @param Request $request HTTP Request
      *
@@ -79,7 +75,7 @@ class BookController extends AbstractController
     }
 
     /**
-     * Function get filters
+     * Function get filters.
      *
      * @param Request $request HTTP Request
      *
@@ -97,12 +93,12 @@ class BookController extends AbstractController
     }
 
     /**
-     * Function show book
+     * Function show book.
      *
      * @param Request $request HTTP Request
      * @param Book    $book    Book entity
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_USER")
      */
@@ -138,7 +134,7 @@ class BookController extends AbstractController
     }
 
     /**
-     * Function create book
+     * Function create book.
      *
      * @param Request $request HTTP Request
      *
@@ -175,12 +171,12 @@ class BookController extends AbstractController
     }
 
     /**
-     * Function edit book
+     * Function edit book.
      *
      * @param Request $request HTTP Request
      * @param Book    $book    Book entity
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */
@@ -224,12 +220,12 @@ class BookController extends AbstractController
     }
 
     /**
-     * Function delete book
+     * Function delete book.
      *
      * @param Request $request HTTP Request
      * @param Book    $book    Book entity
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("ROLE_ADMIN")
      */

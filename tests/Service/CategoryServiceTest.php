@@ -10,27 +10,30 @@ use App\Service\CategoryService;
 use App\Service\CategoryServiceInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class CategoryServiceTest
+ * Class CategoryServiceTest.
  */
 class CategoryServiceTest extends KernelTestCase
 {
-
+    /**
+     * Test entity manager.
+     *
+     * @var EntityManagerInterface|object|null
+     */
     private ?EntityManagerInterface $entityManager;
 
     /**
-     * Category service.
+     * Test category service.
      */
     private ?CategoryServiceInterface $categoryService;
 
     /**
-     * Set up test
+     * Set up test.
      *
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
@@ -43,7 +46,7 @@ class CategoryServiceTest extends KernelTestCase
     }
 
     /**
-     * Test save
+     * Test save.
      *
      * @throws ORMException
      */
@@ -72,13 +75,13 @@ class CategoryServiceTest extends KernelTestCase
     }
 
     /**
-     * Delete test
+     * Delete test.
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function testDelete(): void
     {
-        //given
+        // given
         $categoryToDelete = new Category();
         $categoryToDelete->setCreatedAt(new \DateTimeImmutable());
         $categoryToDelete->setUpdatedAt(new \DateTimeImmutable());
@@ -87,15 +90,15 @@ class CategoryServiceTest extends KernelTestCase
         $this->entityManager->flush();
         $deletedCategoryId = $categoryToDelete->getId();
 
-        //when
+        // when
         $this->categoryService->delete($categoryToDelete);
 
-        //then
+        // then
         $resultCategory = $this->entityManager->createQueryBuilder()
             ->select('category')
             ->from(Category::class, 'category')
             ->where('category.id = :id')
-            ->setParameter('id', $deletedCategoryId,Types::INTEGER)
+            ->setParameter('id', $deletedCategoryId, Types::INTEGER)
             ->getQuery()
             ->getOneOrNullResult();
 
@@ -103,11 +106,11 @@ class CategoryServiceTest extends KernelTestCase
     }
 
     /**
-     * Test get paginated list
+     * Test get paginated list.
      */
-    public function testGetPaginatedList():void
+    public function testGetPaginatedList(): void
     {
-        //given
+        // given
         $page = 1;
         $dataSetSize = 3;
         $expectedResultSize = 3;
@@ -123,16 +126,19 @@ class CategoryServiceTest extends KernelTestCase
             ++$counter;
         }
 
-        //when
+        // when
         $result = $this->categoryService->getPaginatedList($page);
 
-        //then
+        // then
         $this->assertEquals($expectedResultSize, $result->count());
     }
 
+    /**
+     * Test find one by id.
+     */
     public function testFindOneById(): void
     {
-        //given
+        // given
         $category = new Category();
         $category->setTitle('find_one_by_id_test');
         $category->setCreatedAt(new \DateTimeImmutable());
@@ -143,11 +149,10 @@ class CategoryServiceTest extends KernelTestCase
 
         $expectedCategoryId = $category->getId();
 
-        //when
+        // when
         $resultCategory = $this->categoryService->findOneById($expectedCategoryId);
 
-        //then
+        // then
         $this->assertEquals($expectedCategoryId, $resultCategory->getId());
-
     }
 }

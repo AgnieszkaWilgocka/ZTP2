@@ -1,7 +1,8 @@
 <?php
 /**
- * User service test
+ * User service test.
  */
+
 namespace App\Tests\Service;
 
 use App\Entity\User;
@@ -13,18 +14,33 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class UserServiceTest
+ * Class UserServiceTest.
  */
 class UserServiceTest extends KernelTestCase
 {
+    /**
+     * Test entity manager.
+     *
+     * @var EntityManager|object|null
+     */
     private ?EntityManager $entityManager;
 
+    /**
+     * Test user service.
+     *
+     * @var UserService|object|null
+     */
     private ?UserService $userService;
 
+    /**
+     * Test user data service.
+     *
+     * @var UserDataService|object|null
+     */
     private ?UserDataService $userDataService;
 
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp(): void
     {
@@ -35,11 +51,11 @@ class UserServiceTest extends KernelTestCase
     }
 
     /**
-     * Paginated list test
+     * Paginated list test.
      */
     public function testPaginatedList(): void
     {
-        //given
+        // given
         $page = 1;
         $dataSetSize = 3;
         $expectedResultSize = 3;
@@ -62,16 +78,15 @@ class UserServiceTest extends KernelTestCase
             ++$counter;
         }
 
-        //when
+        // when
         $result = $this->userService->getPaginatedList($page);
 
-        //then
+        // then
         $this->assertEquals($expectedResultSize, $result->count());
     }
 
-
     /**
-     * Save test
+     * Save test.
      *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
@@ -91,11 +106,11 @@ class UserServiceTest extends KernelTestCase
         $userData = $this->createUserData('testSave');
         $user->setUserData($userData);
 
-        //when
+        // when
         $this->userService->save($user);
         $userId = $user->getId();
 
-        //then
+        // then
         $result = $this->entityManager->createQueryBuilder()
             ->select('user')
             ->from(User::class, 'user')
@@ -105,12 +120,10 @@ class UserServiceTest extends KernelTestCase
             ->getSingleResult();
 
         $this->assertEquals($user, $result);
-
-
     }
 
     /**
-     * Delete test
+     * Delete test.
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
@@ -131,10 +144,10 @@ class UserServiceTest extends KernelTestCase
         $this->userService->save($user);
         $userId = $user->getId();
 
-        //when
+        // when
         $this->userService->delete($user);
 
-        //then
+        // then
         $result = $this->entityManager->createQueryBuilder()
             ->select('user')
             ->from(User::class, 'user')
@@ -147,12 +160,13 @@ class UserServiceTest extends KernelTestCase
     }
 
     /**
-     * Create user data test
-     * @param $nick
+     * Create user data test.
      *
-     * @return UserData
+     * @param string $nick Nick
+     *
+     * @return UserData UserData entity
      */
-    private function createUserData($nick): UserData
+    private function createUserData(string $nick): UserData
     {
         $userData = new UserData();
         $userData->setNick($nick);

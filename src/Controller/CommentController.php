@@ -1,7 +1,8 @@
 <?php
 /**
- * Comment controller
+ * Comment controller.
  */
+
 namespace App\Controller;
 
 use App\Entity\Comment;
@@ -14,22 +15,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class CommentController
+ * Class CommentController.
  */
 #[Route(
-    "/comment"
+    '/comment'
 )]
 class CommentController extends AbstractController
 {
     /**
-     * Comment Service Interface
-     *
-     * @var CommentServiceInterface
+     * Comment Service Interface.
      */
     private CommentServiceInterface $commentService;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param CommentServiceInterface $commentService Comment service
      */
@@ -39,12 +38,12 @@ class CommentController extends AbstractController
     }
 
     /**
-     * Function delete comment
+     * Function delete comment.
      *
      * @param Request $request HTTP Request
      * @param Comment $comment Comment entity
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @IsGranted("DELETE", subject="comment")
      */
@@ -52,7 +51,7 @@ class CommentController extends AbstractController
         '/{id}/delete',
         name: 'comment_delete',
         requirements: ['id' => '[1-9]\d*'],
-        methods: "GET|DELETE"
+        methods: 'GET|DELETE'
     )]
     public function delete(Request $request, Comment $comment): Response
     {
@@ -76,7 +75,6 @@ class CommentController extends AbstractController
             'comment/delete.html.twig',
             [
                 'form' => $form->createView(),
-
             ]
         );
     }

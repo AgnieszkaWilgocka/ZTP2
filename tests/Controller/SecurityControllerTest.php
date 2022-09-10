@@ -1,27 +1,25 @@
 <?php
 /**
- * Security controller test
+ * Security controller test.
  */
+
 namespace App\Tests\Controller;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
-use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\OptimisticLockException;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class SecurityControllerTest
+ * Class SecurityControllerTest.
  */
 class SecurityControllerTest extends WebTestCase
 {
+    /**
+     * Test client.
+     */
     private KernelBrowser $httpClient;
 
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp(): void
     {
@@ -29,34 +27,34 @@ class SecurityControllerTest extends WebTestCase
     }
 
     /**
-     * Test log in route
+     * Test log in route.
      */
     public function testLogInRoute(): void
     {
-        //given
+        // given
         $expectedStatusCode = 200;
 
-        //when
+        // when
         $this->httpClient->request('GET', '/login');
 
-        //then
+        // then
         $result = $this->httpClient->getResponse()->getStatusCode();
 
         $this->assertEquals($expectedStatusCode, $result);
     }
 
     /**
-     * Test log out route
+     * Test log out route.
      */
     public function testLogOutRoute(): void
     {
-        //given
+        // given
         $expectedStatusCode = 302;
 
-        //when
+        // when
         $this->httpClient->request('GET', '/logout');
 
-        //then
+        // then
         $result = $this->httpClient->getResponse()->getStatusCode();
         $this->assertEquals($expectedStatusCode, $result);
     }

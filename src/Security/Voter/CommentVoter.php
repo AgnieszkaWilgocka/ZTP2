@@ -1,7 +1,8 @@
 <?php
 /**
- * Comment voter
+ * Comment voter.
  */
+
 namespace App\Security\Voter;
 
 use App\Entity\Comment;
@@ -12,27 +13,24 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class CommentVoter
- *
+ * Class CommentVoter.
  */
 class CommentVoter extends Voter
 {
     /**
-     * Delete permission
+     * Delete permission.
      *
      * @const string
      */
     public const DELETE = 'DELETE';
 
     /**
-     * Security
-     *
-     * @var Security
+     * Security.
      */
     private Security $security;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param Security $security Security
      */
@@ -44,12 +42,12 @@ class CommentVoter extends Voter
 //    public const VIEW = 'POST_VIEW';
 
     /**
-     * Determines if the attribute and subject are supported by this voter
+     * Determines if the attribute and subject are supported by this voter.
      *
      * @param string $attribute Attribute
      * @param        $subject
      *
-     * @return bool
+     * @return bool Bool
      */
     protected function supports(string $attribute, $subject): bool
     {
@@ -61,13 +59,13 @@ class CommentVoter extends Voter
 
     /**
      * Perform a single access check operation on a given attribute, subject and token.
-     * It is safe to assume that $attribute and $subject already passed the "supports()" method check
+     * It is safe to assume that $attribute and $subject already passed the "supports()" method check.
      *
      * @param string         $attribute Attribute
      * @param                $subject
      * @param TokenInterface $token     Token
      *
-     * @return bool
+     * @return bool Bool
      */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
@@ -95,8 +93,8 @@ class CommentVoter extends Voter
      *
      * @return bool Bool
      */
-    private function canDelete(Comment $comment, User $user):bool
+    private function canDelete(Comment $comment, User $user): bool
     {
-        return $comment->getAuthor() === $user || $this->security->isGranted("ROLE_ADMIN", $user);
+        return $comment->getAuthor() === $user || $this->security->isGranted('ROLE_ADMIN', $user);
     }
 }

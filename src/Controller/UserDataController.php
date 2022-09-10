@@ -1,7 +1,8 @@
 <?php
 /**
- * UserData controller
+ * UserData controller.
  */
+
 namespace App\Controller;
 
 use App\Entity\UserData;
@@ -14,30 +15,25 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Class UserDataController
+ * Class UserDataController.
  */
 #[Route(
     '/userData'
 )]
 class UserDataController extends AbstractController
 {
-
     /**
-     * UserData Service Interface
-     *
-     * @var UserDataServiceInterface
+     * UserData Service Interface.
      */
     private UserDataServiceInterface $userDataService;
 
     /**
-     * Translator
-     *
-     * @var TranslatorInterface
+     * Translator.
      */
     private TranslatorInterface $translator;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param UserDataServiceInterface $userDataService UserData service
      * @param TranslatorInterface      $translator      Translator
@@ -49,12 +45,12 @@ class UserDataController extends AbstractController
     }
 
     /**
-     * Function edit user data
+     * Function edit user data.
      *
      * @param Request  $request  HTTP Request
      * @param UserData $userData UserData entity
      *
-     * @return Response
+     * @return Response HTTP Response
      */
     #[Route(
         '/{id}/edit',

@@ -1,7 +1,8 @@
 <?php
 /**
- * Tag controller test
+ * Tag controller test.
  */
+
 namespace App\Tests\Controller;
 
 use App\Entity\Tag;
@@ -12,16 +13,24 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class TagControllerTest
+ * Class TagControllerTest.
  */
 class TagControllerTest extends WebTestCase
 {
+    /**
+     * Test route.
+     *
+     * @const string
+     */
     public const TEST_ROUTE = '/tag';
 
+    /**
+     * Test client.
+     */
     private KernelBrowser $httpClient;
 
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp(): void
     {
@@ -29,30 +38,30 @@ class TagControllerTest extends WebTestCase
     }
 
     /**
-     * Test index route
+     * Test index route.
      */
     public function testRouteIndex(): void
     {
-        //given
+        // given
         $expectedStatusCode = 200;
 
         $user = $this->createUser('indexTest');
         $this->httpClient->loginUser($user);
 
-        //when
+        // when
         $this->httpClient->request('GET', self::TEST_ROUTE);
         $result = $this->httpClient->getResponse()->getStatusCode();
 
-        //then
+        // then
         $this->assertEquals($expectedStatusCode, $result);
     }
 
     /**
-     * Show tag test
+     * Show tag test.
      */
     public function testShowTag(): void
     {
-        //given
+        // given
         $expectedStatusCode = 200;
         $user = $this->createUser('ShowTest');
         $this->httpClient->loginUser($user);
@@ -65,24 +74,23 @@ class TagControllerTest extends WebTestCase
         $tagRepository->save($tag);
         $tagId = $tag->getId();
 
-        //when
+        // when
         $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$tagId);
         $this->assertNotNull($tag->getCreatedAt());
         $this->assertNotNull($tag->getUpdatedAt());
 
-
-        //then
+        // then
         $result = $this->httpClient->getResponse()->getStatusCode();
 
         $this->assertEquals($expectedStatusCode, $result);
     }
 
     /**
-     * Create tag test
+     * Create tag test.
      */
     public function testCreateTag(): void
     {
-        //given
+        // given
         $user = $this->createUser('createTagTest');
         $this->httpClient->loginUser($user);
 
@@ -91,24 +99,23 @@ class TagControllerTest extends WebTestCase
 
         $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Zapisz',
             ['tag' => ['title' => $titleForCreateTag]]
         );
 
-        //then
+        // then
         $createdTag = $tagRepository->findOneByTitle($titleForCreateTag);
         $this->assertEquals($titleForCreateTag, $createdTag->getTitle());
     }
 
     /**
-     * Edit tag test
-     *
+     * Edit tag test.
      */
     public function testEditTag(): void
     {
-        //given
+        // given
         $user = $this->createUser('editTest');
         $this->httpClient->loginUser($user);
 
@@ -123,24 +130,23 @@ class TagControllerTest extends WebTestCase
 
         $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$tagToEditId.'/edit');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Save',
             ['tag' => ['title' => $expectedTagEditedTitle]]
         );
 
-        //then
+        // then
         $editedTag = $tagRepository->findOneById($tagToEdit->getId());
         $this->assertEquals($expectedTagEditedTitle, $editedTag->getTitle());
     }
 
     /**
-     * Delete tag test
-     *
+     * Delete tag test.
      */
     public function testDeleteTag(): void
     {
-        //given
+        // given
         $user = $this->createUser('deleteTest');
         $this->httpClient->loginUser($user);
 
@@ -155,21 +161,21 @@ class TagControllerTest extends WebTestCase
 
         $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$tagToDeleteId.'/delete');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Usun'
         );
 
-        //then
+        // then
         $this->assertNull($tagRepository->findOneByTitle('TestDeleteTag'));
     }
 
     /**
-     * Create user for tag's tests
+     * Create user for tag's tests.
      *
-     * @param string $name
+     * @param string $name Name
      *
-     * @return User
+     * @return User User
      */
     private function createUser(string $name): User
     {

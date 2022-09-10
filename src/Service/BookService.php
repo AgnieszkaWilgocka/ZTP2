@@ -1,7 +1,8 @@
 <?php
 /**
- * Book service
+ * Book service.
  */
+
 namespace App\Service;
 
 use App\Entity\Book;
@@ -14,49 +15,37 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * Class BookService
+ * Class BookService.
  */
 class BookService implements BookServiceInterface
 {
     /**
-     * Book Repository
-     *
-     * @var BookRepository
+     * Book Repository.
      */
     private BookRepository $bookRepository;
 
     /**
-     * Paginator
-     *
-     * @var PaginatorInterface
+     * Paginator.
      */
     private PaginatorInterface $paginator;
 
     /**
-     * CategoryRepository
-     *
-     * @var CategoryRepository
+     * CategoryRepository.
      */
     private CategoryRepository $categoryRepository;
 
-
     /**
-     * Tag Service
-     *
-     * @var TagService
+     * Tag Service.
      */
     private TagService $tagService;
 
     /**
-     * Category Service
-     *
-     * @var CategoryService
+     * Category Service.
      */
     private CategoryService $categoryService;
 
-
     /**
-     * Constructor
+     * Constructor.
      *
      * @param BookRepository     $bookRepository     Book repository
      * @param PaginatorInterface $paginator          Paginator
@@ -74,12 +63,12 @@ class BookService implements BookServiceInterface
     }
 
     /**
-     * Paginated list
+     * Paginated list.
      *
      * @param int   $page    Page
      * @param array $filters Filters
      *
-     * @return PaginationInterface
+     * @return PaginationInterface Pagination Interface
      */
     public function getPaginatedList(int $page, array $filters = []): PaginationInterface
     {
@@ -93,10 +82,9 @@ class BookService implements BookServiceInterface
     }
 
     /**
-     * Action save
+     * Action save.
      *
      * @param Book $book Book
-     *
      */
     public function save(Book $book)
     {
@@ -104,10 +92,9 @@ class BookService implements BookServiceInterface
     }
 
     /**
-     * Action delete
+     * Action delete.
      *
      * @param Book $book Book
-     *
      */
     public function delete(Book $book)
     {
@@ -115,12 +102,11 @@ class BookService implements BookServiceInterface
     }
 
     /**
-     * Prepare filters function
+     * Prepare filters function.
      *
      * @param array $filters Filters
      *
      * @return \App\Entity\Tag[] Tag
-     *
      */
     public function prepareFilters(array $filters): array
     {

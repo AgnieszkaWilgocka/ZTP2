@@ -34,7 +34,6 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
      * Function getDependencies.
      *
      * @return string[] of dependencies
-     *
      */
     public function getDependencies(): array
     {

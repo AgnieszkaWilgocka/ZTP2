@@ -1,7 +1,8 @@
 <?php
 /**
- * Favourite controller test
+ * Favourite controller test.
  */
+
 namespace App\Tests\Controller;
 
 use App\Entity\Book;
@@ -20,16 +21,24 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class FavouriteControllerTest
+ * Class FavouriteControllerTest.
  */
 class FavouriteControllerTest extends WebTestCase
 {
+    /**
+     * Test route.
+     *
+     * @const string
+     */
     public const TEST_ROUTE = '/favourite';
 
+    /**
+     * Test client.
+     */
     private KernelBrowser $httpClient;
 
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp(): void
     {
@@ -37,35 +46,34 @@ class FavouriteControllerTest extends WebTestCase
     }
 
     /**
-     * Test index route
+     * Test index route.
      */
     public function testRouteIndex(): void
     {
-        //given
+        // given
         $user = null;
         $expectedStatusCode = 200;
 
         try {
             $user = $this->createUser('index');
         } catch (OptimisticLockException|NotFoundExceptionInterface|ContainerExceptionInterface|ORMException $e) {
-
         }
         $this->httpClient->loginUser($user);
 
-        //when
+        // when
         $this->httpClient->request('GET', self::TEST_ROUTE);
         $result = $this->httpClient->getResponse()->getStatusCode();
 
-        //then
+        // then
         $this->assertEquals($expectedStatusCode, $result);
     }
 
-    /*
-     * Create favourite test
+    /**
+     * Create favourite test.
      */
     public function testCreateFavourite(): void
     {
-        //given
+        // given
         $expectedStatusCode = 200;
         $user = $this->createUser('create');
         $this->httpClient->loginUser($user);
@@ -79,10 +87,10 @@ class FavouriteControllerTest extends WebTestCase
         $favouriteRepository = static::getContainer()->get(FavouriteRepository::class);
         $favouriteRepository->save($newFavourite);
 
-        //when
+        // when
         $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
 
-        //then
+        // then
         $result = $this->httpClient->getResponse()->getStatusCode();
 
         $this->assertEquals($expectedStatusCode, $result);
@@ -90,18 +98,17 @@ class FavouriteControllerTest extends WebTestCase
     }
 
     /**
-     * Delete favourite test
-     *
+     * Delete favourite test.
      */
     public function testDeleteFavourite(): void
     {
-        //given
+        // given
         $user = $this->createUser('deleteFavourite');
         $this->httpClient->loginUser($user);
 
         $favouriteToDelete = new Favourite();
         $favouriteToDelete->setAuthor($user);
-        $favouriteToDelete->setBook($this->createBook('deleteTest', $this->createCategory('categoryForBook')) );
+        $favouriteToDelete->setBook($this->createBook('deleteTest', $this->createCategory('categoryForBook')));
         $favouriteRepository = static::getContainer()->get(FavouriteRepository::class);
         $book = $favouriteToDelete->getBook();
         $favouriteRepository->save($favouriteToDelete);
@@ -109,21 +116,21 @@ class FavouriteControllerTest extends WebTestCase
 
         $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$favouriteToDeleteId.'/delete');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Usun'
         );
 
-        //then
+        // then
         $this->assertNull($favouriteRepository->findOneByBook($book));
     }
 
     /**
-     * Create category for favourite's tests
+     * Create category for favourite's tests.
      *
-     * @param string $title
+     * @param string $title Title
      *
-     * @return Category
+     * @return Category Category
      */
     private function createCategory(string $title): Category
     {
@@ -139,14 +146,14 @@ class FavouriteControllerTest extends WebTestCase
     }
 
     /**
-     * Create book for favourite's tests
+     * Create book for favourite's tests.
      *
-     * @param string $title
-     * @param Category $category
+     * @param string   $title    Title
+     * @param Category $category Category
      *
-     * @return Book
+     * @return Book Book entity
      */
-    public function createBook(string $title, Category $category): Book
+    private function createBook(string $title, Category $category): Book
     {
         $book = new Book();
         $book->setTitle($title);
@@ -160,11 +167,11 @@ class FavouriteControllerTest extends WebTestCase
     }
 
     /**
-     * Create user for favourite's tests
+     * Create user for favourite's tests.
      *
-     * @param string $name
+     * @param string $name Name
      *
-     * @return User
+     * @return User User entity
      */
     private function createUser(string $name): User
     {

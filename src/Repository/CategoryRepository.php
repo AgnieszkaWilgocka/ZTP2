@@ -33,7 +33,6 @@ class CategoryRepository extends ServiceEntityRepository
      * Constructor.
      *
      * @param ManagerRegistry $registry Manager registry
-     *
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -72,7 +71,6 @@ class CategoryRepository extends ServiceEntityRepository
      * Action save.
      *
      * @param Category $category Category
-     *
      */
     public function save(Category $category): void
     {
@@ -84,7 +82,6 @@ class CategoryRepository extends ServiceEntityRepository
      * Action delete.
      *
      * @param Category $category Category
-     *
      */
     public function delete(Category $category): void
     {

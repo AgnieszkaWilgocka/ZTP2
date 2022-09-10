@@ -1,19 +1,20 @@
 <?php
 /**
- * BookService interface
+ * BookService interface.
  */
+
 namespace App\Service;
 
 use App\Entity\Book;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
- * Class BookServiceInterface
+ * Class BookServiceInterface.
  */
 interface BookServiceInterface
 {
     /**
-     * Paginated list
+     * Paginated list.
      *
      * @param int $page Page
      *
@@ -22,7 +23,7 @@ interface BookServiceInterface
     public function getPaginatedList(int $page): PaginationInterface;
 
     /**
-     * Action save
+     * Action save.
      *
      * @param Book $book Book
      *
@@ -31,15 +32,14 @@ interface BookServiceInterface
     public function save(Book $book);
 
     /**
-     * Action delete
+     * Action delete.
      *
      * @param Book $book Book
-     *
      */
     public function delete(Book $book);
 
     /**
-     * Prepare filters
+     * Prepare filters.
      *
      * @param array $filters Filters
      *

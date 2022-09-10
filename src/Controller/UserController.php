@@ -1,7 +1,8 @@
 <?php
 /**
- * User controller
+ * User controller.
  */
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -16,29 +17,23 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Class UserController
+ * Class UserController.
  */
 #[Route('user')]
 class UserController extends AbstractController
 {
-
     /**
-     * Translator
-     *
-     * @var TranslatorInterface
+     * Translator.
      */
     private TranslatorInterface $translator;
 
-
     /**
-     * User Service Interface
-     *
-     * @var UserServiceInterface
+     * User Service Interface.
      */
     private UserServiceInterface $userService;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param UserServiceInterface $userService User service
      * @param TranslatorInterface  $translator  Translator
@@ -50,7 +45,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * Function index
+     * Function index.
      *
      * @param Request $request HTTP Request
      *
@@ -72,7 +67,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * Function show user
+     * Function show user.
      *
      * @param User $user User entity
      *
@@ -95,7 +90,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * Function change password
+     * Function change password.
      *
      * @param Request                     $request        HTTP Request
      * @param User                        $user           User entity
@@ -134,7 +129,6 @@ class UserController extends AbstractController
                 'success',
                 $this->translator->trans('message.updated_successfully')
             );
-
 
             return $this->redirectToRoute('book_index');
         }

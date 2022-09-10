@@ -1,37 +1,42 @@
 <?php
 /**
- * Comment service test
+ * Comment service test.
  */
+
 namespace App\Test\Service;
 
 use App\Entity\Book;
 use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\User;
-use App\Service\BookService;
-use App\Service\CategoryService;
 use App\Service\CommentService;
-use App\Service\UserService;
 use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class CommentServiceTest
+ * Class CommentServiceTest.
  */
 class CommentServiceTest extends KernelTestCase
 {
-
+    /**
+     * Test entity manager.
+     *
+     * @var EntityManagerInterface|object|null
+     */
     private ?EntityManagerInterface $entityManager;
 
+    /**
+     * Test comment service.
+     *
+     * @var CommentService|object|null
+     */
     private ?CommentService $commentService;
 
-
     /**
-     * Set up test
+     * Set up test.
      *
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
@@ -41,19 +46,17 @@ class CommentServiceTest extends KernelTestCase
         $container = static::getContainer();
         $this->entityManager = $container->get('doctrine.orm.entity_manager');
         $this->commentService = $container->get(CommentService::class);
-
     }
 
-
     /**
-     * Save test
+     * Save test.
      *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function testSave(): void
     {
-        //given
+        // given
         $testUser = new User();
         $testUser->setEmail('testUser2@example.com');
         $testUser->setPassword('testUser1234');
@@ -80,10 +83,10 @@ class CommentServiceTest extends KernelTestCase
         $expectedComment->setAuthor($testUser);
         $expectedComment->setContent('Comment Test');
 
-        //when
+        // when
         $this->commentService->save($expectedComment);
 
-        //then
+        // then
         $expectedCommentId = $expectedComment->getId();
         $resultComment = $this->entityManager->createQueryBuilder()
             ->select('comment')
@@ -97,13 +100,13 @@ class CommentServiceTest extends KernelTestCase
     }
 
     /**
-     * Delete test
+     * Delete test.
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function testDelete(): void
     {
-        //given
+        // given
         $testUser = new User();
         $testUser->setEmail('testUser3@example.com');
         $testUser->setPassword('testUser1234');
@@ -133,10 +136,10 @@ class CommentServiceTest extends KernelTestCase
         $this->entityManager->flush();
         $deletedCommentId = $commentToDelete->getId();
 
-        //when
+        // when
         $this->commentService->delete($commentToDelete);
 
-        //then
+        // then
         $resultComment = $this->entityManager->createQueryBuilder()
             ->select('comment')
             ->from(Comment::class, 'comment')
@@ -146,6 +149,5 @@ class CommentServiceTest extends KernelTestCase
             ->getOneOrNullResult();
 
         $this->assertNull($resultComment);
-
     }
 }

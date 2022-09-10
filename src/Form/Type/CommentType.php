@@ -15,11 +15,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 class CommentType extends AbstractType
 {
     /**
-     * Builds the form
+     * Builds the form.
      *
      * @param FormBuilderInterface $builder Builder
      * @param array                $options Options
-     *
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

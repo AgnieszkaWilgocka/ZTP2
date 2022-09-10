@@ -1,7 +1,8 @@
 <?php
 /**
- * Book entity
+ * Book entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\BookRepository;
@@ -11,16 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Book
+ * Class Book.
  */
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 #[ORM\Table(name: 'ztp_books')]
 class Book
 {
     /**
-     * Primary key
-     *
-     * @var int|null
+     * Primary key.
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,9 +27,7 @@ class Book
     private ?int $id;
 
     /**
-     * Title
-     *
-     * @var string|null
+     * Title.
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -39,9 +36,7 @@ class Book
     private ?string $title;
 
     /**
-     * Author
-     *
-     * @var string|null
+     * Author.
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -50,14 +45,14 @@ class Book
     private ?string $author;
 
     /**
-     * Category
+     * Category.
      */
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category;
 
     /**
-     * Tags
+     * Tags.
      *
      * @var ArrayCollection
      */
@@ -69,7 +64,7 @@ class Book
     private $comments;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -78,7 +73,7 @@ class Book
     }
 
     /**
-     * Getter for id
+     * Getter for id.
      *
      * @return int|null Id
      */
@@ -88,7 +83,7 @@ class Book
     }
 
     /**
-     * Getter for title
+     * Getter for title.
      *
      * @return string|null String
      */
@@ -98,10 +93,9 @@ class Book
     }
 
     /**
-     * Setter for title
+     * Setter for title.
      *
      * @param string $title Title
-     *
      */
     public function setTitle(string $title): void
     {
@@ -109,7 +103,7 @@ class Book
     }
 
     /**
-     * Getter for author
+     * Getter for author.
      *
      * @return string|null Sting
      */
@@ -119,10 +113,9 @@ class Book
     }
 
     /**
-     * Setter for author
+     * Setter for author.
      *
      * @param string $author Author
-     *
      */
     public function setAuthor(string $author): void
     {
@@ -130,7 +123,7 @@ class Book
     }
 
     /**
-     * Getter for category
+     * Getter for category.
      *
      * @return Category|null Category
      */
@@ -140,10 +133,9 @@ class Book
     }
 
     /**
-     * Setter for category
+     * Setter for category.
      *
      * @param Category|null $category Category
-     *
      */
     public function setCategory(?Category $category): void
     {
@@ -151,7 +143,7 @@ class Book
     }
 
     /**
-     * Getter for tags
+     * Getter for tags.
      *
      * @return Collection<int, Tag> Collection
      */
@@ -161,7 +153,7 @@ class Book
     }
 
     /**
-     * Add tag
+     * Add tag.
      *
      * @param Tag $tag Tag
      *
@@ -177,7 +169,7 @@ class Book
     }
 
     /**
-     * Remove tag
+     * Remove tag.
      *
      * @param Tag $tag Tag
      *
@@ -191,7 +183,7 @@ class Book
     }
 
     /**
-     * Getter for comments
+     * Getter for comments.
      *
      * @return Collection<int, Comment>
      */
@@ -201,7 +193,7 @@ class Book
     }
 
     /**
-     * Add comment
+     * Add comment.
      *
      * @param Comment $comment Comment
      *
@@ -218,7 +210,7 @@ class Book
     }
 
     /**
-     * Remove comment
+     * Remove comment.
      *
      * @param Comment $comment Comment
      *

@@ -19,7 +19,7 @@ class Comment
     /**
      * Primary key.
      *
-     * @var int|null
+     * @var int|null Id
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,7 +29,7 @@ class Comment
     /**
      * Content.
      *
-     * @var string|null
+     * @var string|null Content
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -40,7 +40,7 @@ class Comment
     /**
      * Book.
      *
-     * @var Book|null
+     * @var Book|null Book
      */
     #[ORM\ManyToOne(targetEntity: Book::class, inversedBy: 'comments')]
     private ?Book $book;
@@ -72,7 +72,7 @@ class Comment
     }
 
     /**
-     * Setter for content
+     * Setter for content.
      *
      * @param string $content Content
      */

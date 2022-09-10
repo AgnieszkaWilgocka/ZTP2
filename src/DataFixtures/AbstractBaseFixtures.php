@@ -1,7 +1,8 @@
 <?php
 /**
- * Base fixtures
+ * Base fixtures.
  */
+
 namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -12,27 +13,24 @@ use InvalidArgumentException;
 use LogicException;
 
 /**
- * Class AbstractBaseFixtures
+ * Class AbstractBaseFixtures.
  */
 abstract class AbstractBaseFixtures extends Fixture
 {
     /**
-     * Faker
+     * Faker.
      */
     protected Generator $faker;
 
     /**
-     * Persistence object manager
-     *
-     * @var ObjectManager $manager
+     * Persistence object manager.
      */
     protected ObjectManager $manager;
 
     /**
-     * Load
+     * Load.
      *
      * @param ObjectManager $manager Persistence object manager
-     *
      */
 
     /**
@@ -43,10 +41,9 @@ abstract class AbstractBaseFixtures extends Fixture
     private array $referencesIndex = [];
 
     /**
-     * Load
+     * Load.
      *
      * @param ObjectManager $manager Object manager
-     *
      */
     public function load(ObjectManager $manager): void
     {
@@ -56,19 +53,18 @@ abstract class AbstractBaseFixtures extends Fixture
     }
 
     /**
-     * Load data
+     * Load data.
      */
     abstract protected function loadData(): void;
 
     /**
-     * Create many objects at once
+     * Create many objects at once.
      *
      * @param int      $count     Number of object to create
      * @param string   $groupName Tag these created objects with this group name,
      *                            and use this later with getRandomReference(s)
      *                            to fetch only from this specific group
      * @param callable $factory   Defines method of creating objects
-     *
      */
     protected function createMany(int $count, string $groupName, callable $factory): void
     {
@@ -86,7 +82,7 @@ abstract class AbstractBaseFixtures extends Fixture
     }
 
     /**
-     * Set random reference to the object
+     * Set random reference to the object.
      *
      * @param string $groupName Objects group name
      *
@@ -114,7 +110,7 @@ abstract class AbstractBaseFixtures extends Fixture
     }
 
     /**
-     * Get array of objects references based on count
+     * Get array of objects references based on count.
      *
      * @param string $groupName Object group name
      * @param int    $count     Number of references

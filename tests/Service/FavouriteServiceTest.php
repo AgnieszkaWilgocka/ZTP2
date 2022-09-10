@@ -1,8 +1,8 @@
 <?php
 /**
- * Favourite service test
- *
+ * Favourite service test.
  */
+
 namespace App\Tests\Service;
 
 use App\Entity\Book;
@@ -20,22 +20,47 @@ use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * FavouriteServiceTest class
+ * FavouriteServiceTest class.
  */
 class FavouriteServiceTest extends KernelTestCase
 {
+    /**
+     * Test entity manager.
+     *
+     * @var EntityManagerInterface|object|null
+     */
     private ?EntityManagerInterface $entityManager;
 
+    /**
+     * Test favourite service.
+     *
+     * @var FavouriteService|object|null
+     */
     private ?FavouriteService $favouriteService;
 
+    /**
+     * Test user service.
+     *
+     * @var UserService|object|null
+     */
     private ?UserService $userService;
 
+    /**
+     * Test book service.
+     *
+     * @var BookService|object|null
+     */
     private ?BookService $bookService;
 
+    /**
+     * Test category service.
+     *
+     * @var CategoryService|object|null
+     */
     private ?CategoryService $categoryService;
 
     /**
-     * Set up test
+     * Set up test.
      *
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
@@ -51,15 +76,15 @@ class FavouriteServiceTest extends KernelTestCase
     }
 
     /**
-     * Save test
+     * Save test.
      *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function testSave():void
+    public function testSave(): void
     {
-        //given
-        //create entity for favourite
+        // given
+        // create entity for favourite
         $testCategory = $this->createCategory('favourite_save');
         $testUser = $this->createUser('favourite_save');
         $testBook = $this->createBook('favourite_save', $testCategory);
@@ -68,10 +93,10 @@ class FavouriteServiceTest extends KernelTestCase
         $expectedFavourite->setAuthor($testUser);
         $expectedFavourite->setBook($testBook);
 
-        //when
+        // when
         $this->favouriteService->save($expectedFavourite);
 
-        //then
+        // then
         $expectedFavouriteId = $expectedFavourite->getId();
         $resultFavourite = $this->entityManager->createQueryBuilder()
             ->select('favourite')
@@ -85,13 +110,13 @@ class FavouriteServiceTest extends KernelTestCase
     }
 
     /**
-     * Delete test
+     * Delete test.
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function testDelete():void
+    public function testDelete(): void
     {
-        //given
+        // given
         $testCategory = $this->createCategory('favouriteDelete');
         $testUser = $this->createUser('favourite_delete');
         $testBook = $this->createBook('favourite_delete', $testCategory);
@@ -103,10 +128,10 @@ class FavouriteServiceTest extends KernelTestCase
         $this->entityManager->flush();
         $deletedFavouriteId = $favouriteToDelete->getId();
 
-        //when
+        // when
         $this->favouriteService->delete($favouriteToDelete);
 
-        //then
+        // then
         $resultFavourite = $this->entityManager->createQueryBuilder()
         ->select('favourite')
         ->from(Favourite::class, 'favourite')
@@ -119,11 +144,11 @@ class FavouriteServiceTest extends KernelTestCase
     }
 
     /**
-     * Create category for favourite's tests
+     * Create category for favourite's tests.
      *
-     * @param string $name
+     * @param string $name Name
      *
-     * @return Category
+     * @return Category Category entity
      */
     private function createCategory(string $name): Category
     {
@@ -137,12 +162,12 @@ class FavouriteServiceTest extends KernelTestCase
     }
 
     /**
-     * Create book for favourite's tests
+     * Create book for favourite's tests.
      *
-     * @param string $title
-     * @param Category $category
+     * @param string   $title    Title
+     * @param Category $category Category entity
      *
-     * @return Book
+     * @return Book Book entity
      */
     private function createBook(string $title, Category $category): Book
     {
@@ -157,13 +182,13 @@ class FavouriteServiceTest extends KernelTestCase
     }
 
     /**
-     * Create user for favourite's tests
+     * Create user for favourite's tests.
      *
-     * @param $name
+     * @param string $name Name
      *
-     * @return User
+     * @return User User entity
      */
-    private function createUser($name): User
+    private function createUser(string $name): User
     {
         $user = new User();
         $user->setEmail($name.'@example.com');

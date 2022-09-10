@@ -1,24 +1,25 @@
 <?php
 /**
- * TagsData transformer
+ * TagsData transformer.
  */
+
 namespace App\Form\DataTransformer;
 
 use App\Entity\Tag;
 use App\Service\TagService;
 use Symfony\Component\Form\DataTransformerInterface;
+
 use function PHPUnit\Framework\isEmpty;
 
 /**
- * Class TagsDataTransformer
- *
+ * Class TagsDataTransformer.
  */
 class TagsDataTransformer implements DataTransformerInterface
 {
     private TagService $tagService;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param TagService $tagService Tag service
      */
@@ -28,7 +29,7 @@ class TagsDataTransformer implements DataTransformerInterface
     }
 
     /**
-     * Transform
+     * Transform.
      *
      * @param $value $value Tags entity collection
      *
@@ -50,7 +51,7 @@ class TagsDataTransformer implements DataTransformerInterface
     }
 
     /**
-     * ReverseTransform
+     * ReverseTransform.
      *
      * @param string $value String of tag names
      *

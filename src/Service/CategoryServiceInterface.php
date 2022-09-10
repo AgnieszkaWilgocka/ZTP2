@@ -1,19 +1,20 @@
 <?php
 /**
- * CategoryService interface
+ * CategoryService interface.
  */
+
 namespace App\Service;
 
 use App\Entity\Category;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
- * Class CategoryServiceInterface
+ * Class CategoryServiceInterface.
  */
 interface CategoryServiceInterface
 {
     /**
-     * Paginated list
+     * Paginated list.
      *
      * @param int $page Page
      *
@@ -22,7 +23,7 @@ interface CategoryServiceInterface
     public function getPaginatedList(int $page): PaginationInterface;
 
     /**
-     * Action save
+     * Action save.
      *
      * @param Category $category Category
      *
@@ -31,7 +32,7 @@ interface CategoryServiceInterface
     public function save(Category $category);
 
     /**
-     * Action delete
+     * Action delete.
      *
      * @param Category $category Category
      *
@@ -40,7 +41,7 @@ interface CategoryServiceInterface
     public function delete(Category $category);
 
     /**
-     * Can be deleted
+     * Can be deleted.
      *
      * @param Category $category Category
      *
@@ -49,7 +50,7 @@ interface CategoryServiceInterface
     public function canBeDeleted(Category $category): bool;
 
     /**
-     * Find One By Id
+     * Find One By Id.
      *
      * @param int $id Id
      *

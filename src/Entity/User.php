@@ -1,7 +1,8 @@
 <?php
 /**
- * User entity
+ * User entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class User
+ * Class User.
  */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table('ztp_users')]
@@ -19,22 +20,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
-     * Role user
+     * Role user.
      *
      * @var string
      */
-    const ROLE_USER = 'ROLE_USER';
+    public const ROLE_USER = 'ROLE_USER';
 
     /**
-     * Role admin
+     * Role admin.
      *
      * @var string
      */
-    const ROLE_ADMIN = 'ROLE_ADMIN';
-
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
-     * Primary key
+     * Primary key.
      *
      * @var int|null Id
      */
@@ -44,7 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id;
 
     /**
-     * Email
+     * Email.
      *
      * @var string|null Email
      */
@@ -54,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email;
 
     /**
-     * Roles
+     * Roles.
      *
      * @var array Roles
      */
@@ -62,7 +62,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     /**
-     * Password
+     * Password.
      *
      * @var string|null Password
      */
@@ -72,7 +72,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password;
 
     /**
-     * UserData entity
+     * UserData entity.
      *
      * @var UserData|null UserData
      */
@@ -80,7 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?UserData $userData;
 
     /**
-     * Getter for id
+     * Getter for id.
      *
      * @return int|null Id
      */
@@ -90,7 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Getter for email
+     * Getter for email.
      *
      * @return string|null Email
      */
@@ -100,7 +100,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Setter for email
+     * Setter for email.
      *
      * @param string $email Email
      */
@@ -122,7 +122,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Getter for username
+     * Getter for username.
      *
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      *
@@ -134,7 +134,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Getter for roles
+     * Getter for roles.
      *
      * @see UserInterface
      *
@@ -150,7 +150,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Setter for roles
+     * Setter for roles.
      *
      * @param array $roles Roles
      */
@@ -160,7 +160,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Getter for password
+     * Getter for password.
      *
      * @see PasswordAuthenticatedUserInterface
      *
@@ -172,10 +172,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Setter for password
+     * Setter for password.
      *
      * @param string $password Password
-     *
      */
     public function setPassword(string $password): void
     {
@@ -183,7 +182,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     *
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
@@ -197,7 +195,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Erase Credentials
+     * Erase Credentials.
      *
      * @see UserInterface
      */
@@ -208,7 +206,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Getter for User Data
+     * Getter for User Data.
      *
      * @return UserData|null UserData
      */
@@ -218,7 +216,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Setter for User Data
+     * Setter for User Data.
      *
      * @param UserData|null $userData UserData
      */

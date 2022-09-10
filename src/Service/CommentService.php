@@ -1,36 +1,31 @@
 <?php
 /**
- * Comment service
+ * Comment service.
  */
+
 namespace App\Service;
 
 use App\Entity\Comment;
 use App\Repository\CommentRepository;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * Class CommentService
- *
+ * Class CommentService.
  */
 class CommentService implements CommentServiceInterface
 {
     /**
-     * Comment repository
-     *
-     * @var CommentRepository
+     * Comment repository.
      */
     private CommentRepository $commentRepository;
 
     /**
-     * Paginator
-     *
-     * @var PaginatorInterface
+     * Paginator.
      */
     private PaginatorInterface $paginator;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param CommentRepository  $commentRepository Comment repository
      * @param PaginatorInterface $paginator         Paginator
@@ -42,10 +37,9 @@ class CommentService implements CommentServiceInterface
     }
 
     /**
-     * Action save
+     * Action save.
      *
      * @param Comment $comment Comment
-     *
      */
     public function save(Comment $comment): void
     {
@@ -53,10 +47,9 @@ class CommentService implements CommentServiceInterface
     }
 
     /**
-     * Action delete
+     * Action delete.
      *
      * @param Comment $comment Comment
-     *
      */
     public function delete(Comment $comment): void
     {

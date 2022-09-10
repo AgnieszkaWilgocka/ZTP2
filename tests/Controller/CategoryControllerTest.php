@@ -1,7 +1,8 @@
 <?php
 /**
- * Category controller test
+ * Category controller test.
  */
+
 namespace App\Tests\Category;
 
 use App\Entity\Book;
@@ -14,26 +15,24 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class CategoryControllerTest
+ * Class CategoryControllerTest.
  */
 class CategoryControllerTest extends WebTestCase
 {
-
     /**
-     * Test route
+     * Test route.
      *
      * @const string
      */
     public const TEST_ROUTE = '/category';
 
     /**
-     * Test client
+     * Test client.
      */
     private KernelBrowser $httpClient;
 
-
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp(): void
     {
@@ -41,23 +40,23 @@ class CategoryControllerTest extends WebTestCase
     }
 
     /**
-     * Test index route for anonymous user
+     * Test index route for anonymous user.
      */
     public function testIndexRouteAnonymousUser(): void
     {
-        //given
+        // given
         $expectedStatusCode = 200;
 
-        //when
+        // when
         $this->httpClient->request('GET', self::TEST_ROUTE);
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
-        //then
+        // then
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
     /**
-     * Test index route for admin
+     * Test index route for admin.
      */
     public function testIndexRouteAdminUser(): void
     {
@@ -75,9 +74,8 @@ class CategoryControllerTest extends WebTestCase
         $this->assertEquals($expectedStatusCode, $resultStatusCode);
     }
 
-
     /**
-     * Test create route for admin
+     * Test create route for admin.
      */
     public function testCreateForAdmin(): void
     {
@@ -85,22 +83,22 @@ class CategoryControllerTest extends WebTestCase
         $user = $this->createUser('create');
         $this->httpClient->loginUser($user);
 
-        //when
+        // when
         $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
 
-        //then
+        // then
         $result = $this->httpClient->getResponse()->getStatusCode();
         $this->assertEquals($expectedStatusCode, $result);
     }
 
     /**
-     * Test create route for anonymous
+     * Test create route for anonymous.
      */
     public function testCreateForAnonymous(): void
     {
         $expectedStatusCode = 302;
 
-        //when
+        // when
         $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
 
         $result = $this->httpClient->getResponse()->getStatusCode();
@@ -108,11 +106,11 @@ class CategoryControllerTest extends WebTestCase
     }
 
     /**
-     * Show category test
+     * Show category test.
      */
     public function testShowCategory(): void
     {
-        //given
+        // given
         $expectedCategory = new Category();
         $createdAt = new \DateTimeImmutable();
         $updatedAt = new \DateTimeImmutable();
@@ -122,54 +120,49 @@ class CategoryControllerTest extends WebTestCase
         $categoryRepository = static::getContainer()->get(CategoryRepository::class);
         $categoryRepository->save($expectedCategory);
 
-
-        //when
-        $this->httpClient->request('GET', self::TEST_ROUTE. '/'.$expectedCategory->getId());
+        // when
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$expectedCategory->getId());
         $result = $this->httpClient->getResponse();
 
-        //then
+        // then
         $this->assertEquals(200, $result->getStatusCode());
         $this->assertSelectorTextContains('html title', $expectedCategory->getId());
         $this->assertEquals($createdAt, $expectedCategory->getCreatedAt());
         $this->assertEquals($updatedAt, $expectedCategory->getUpdatedAt());
-
     }
 
     /**
-     * Create category test
+     * Create category test.
      */
     public function testCreateCategory(): void
     {
-
-        //given
+        // given
 
         $user = $this->createUser('testCreate');
         $this->httpClient->loginUser($user);
-
-
 
         $createCategoryTitle = 'createCategoryTest';
         $categoryRepository = static::getContainer()->get(CategoryRepository::class);
 
         $this->httpClient->request('GET', self::TEST_ROUTE.'/create');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Zapisz',
             ['category' => ['title' => $createCategoryTitle]]
         );
 
-        //then
+        // then
         $category = $categoryRepository->findOneByTitle($createCategoryTitle);
         $this->assertEquals($createCategoryTitle, $category->getTitle());
     }
 
     /**
-     * Category edit test
+     * Category edit test.
      */
     public function testCategoryEdit(): void
     {
-        //given
+        // given
         $user = $this->createUser('UserForTestEditMethod');
         $this->httpClient->loginUser($user);
 
@@ -184,23 +177,23 @@ class CategoryControllerTest extends WebTestCase
 
         $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$categoryToEdit->getId().'/edit');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Save',
             ['category' => ['title' => $expectedEditedCategoryTitle]]
         );
 
-        //then
+        // then
         $editedCategory = $categoryRepository->findOneById($categoryToEdit->getId());
         $this->assertEquals($expectedEditedCategoryTitle, $editedCategory->getTitle());
     }
 
     /**
-     * Delete category test
+     * Delete category test.
      */
     public function testDeleteCategory(): void
     {
-        //given
+        // given
         $user = $this->createUser('UserForTestDeleteMethod');
         $this->httpClient->loginUser($user);
 
@@ -215,21 +208,21 @@ class CategoryControllerTest extends WebTestCase
 
         $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$categoryToDeleteId.'/delete');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Usun'
         );
 
-        //then
+        // then
         $this->assertNull($categoryRepository->findOneByTitle('TestCategoryToDelete'));
     }
 
     /**
-     * Delete category test
+     * Delete category test.
      */
     public function testCanDeleteCategory(): void
     {
-        //given
+        // given
         $user = $this->createUser('testCanDelete');
         $this->httpClient->loginUser($user);
 
@@ -245,24 +238,23 @@ class CategoryControllerTest extends WebTestCase
 
         $this->createBook($categoryToDelete);
 
-        //when
+        // when
         $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$categoryToDeleteId.'/delete');
 
-        //then
+        // then
         $result = $this->httpClient->getResponse()->getStatusCode();
         $this->assertEquals($expectedStatusCode, $result);
         $this->assertNotNull($categoryRepository->findOneByTitle('testCanDelete'));
-
     }
 
     /**
-     * Create user for category's tests
+     * Create user for category's tests.
      *
-     * @param $name
+     * @param string $name Name
      *
-     * @return User
+     * @return User User
      */
-    private function createUser($name): User
+    private function createUser(string $name): User
     {
         $user = new User();
         $user->setRoles(['ROLE_ADMIN']);
@@ -275,10 +267,11 @@ class CategoryControllerTest extends WebTestCase
     }
 
     /**
-     * Create book for category's tests
-     * @param Category $category
+     * Create book for category's tests.
      *
-     * @return Book
+     * @param Category $category Category
+     *
+     * @return Book Book entity
      */
     private function createBook(Category $category): Book
     {

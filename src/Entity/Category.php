@@ -1,7 +1,8 @@
 <?php
 /**
- * Category entity
+ * Category entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
@@ -13,10 +14,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Category
+ * Class Category.
  */
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-#[ORM\Table(name:'ztp_categories')]
+#[ORM\Table(name: 'ztp_categories')]
 #[UniqueEntity(fields: ['title'])]
 class Category
 {
@@ -31,7 +32,7 @@ class Category
     private ?int $id;
 
     /**
-     * Created at
+     * Created at.
      *
      * @var DateTimeImmutable|null Created at
      */
@@ -40,7 +41,7 @@ class Category
     private ?DateTimeImmutable $createdAt;
 
     /**
-     * Updated at
+     * Updated at.
      *
      * @var DateTimeImmutable|null Updated at
      */
@@ -49,7 +50,7 @@ class Category
     private ?DateTimeImmutable $updatedAt;
 
     /**
-     * Title
+     * Title.
      *
      * @var string|null Title
      */
@@ -59,12 +60,11 @@ class Category
     #[Assert\Length(min: 3, max: 64)]
     private ?string $title;
 
-
 //    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Book::class)]
 //    private $books;
 
     /**
-     * Constructor
+     * Constructor.
      */
 //    public function __construct()
 //    {
@@ -72,9 +72,9 @@ class Category
 //    }
 
     /**
-     * Return for Id
+     * Return for Id.
      *
-     * @return int|null
+     *  @return int|null Id
      */
     public function getId(): ?int
     {
@@ -82,7 +82,7 @@ class Category
     }
 
     /**
-     * Getter for created at
+     * Getter for created at.
      *
      * @return DateTimeImmutable|null Created at
      */
@@ -92,10 +92,9 @@ class Category
     }
 
     /**
-     * Setter for created at
+     * Setter for created at.
      *
      * @param DateTimeImmutable|null $createdAt Created at
-     *
      */
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
     {
@@ -103,7 +102,7 @@ class Category
     }
 
     /**
-     * Getter for updated at
+     * Getter for updated at.
      *
      * @return DateTimeImmutable|null Updated at
      */
@@ -113,10 +112,9 @@ class Category
     }
 
     /**
-     * Setter for updated at
+     * Setter for updated at.
      *
      * @param DateTimeImmutable|null $updatedAt Updated at
-     *
      */
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
@@ -124,7 +122,7 @@ class Category
     }
 
     /**
-     * Getter for title
+     * Getter for title.
      *
      * @return string|null Title
      */
@@ -134,10 +132,9 @@ class Category
     }
 
     /**
-     * Setter for title
+     * Setter for title.
      *
      * @param string $title Title
-     *
      */
     public function setTitle(string $title): void
     {

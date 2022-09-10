@@ -1,20 +1,21 @@
 <?php
+
 //
 //
-///**
+// /**
 // * Tests for Calculator.
 // */
 //
-//namespace App\Tests\Util;
+// namespace App\Tests\Util;
 //
-//use App\Util\Calculator;
-//use PHPUnit\Framework\TestCase;
+// use App\Util\Calculator;
+// use PHPUnit\Framework\TestCase;
 //
-///**
+// /**
 // * Class CalculatorTest.
 // */
-//class CalculatorTest extends TestCase
-//{
+// class CalculatorTest extends TestCase
+// {
 //    /**
 //     * Test add() method.
 //     */
@@ -26,5 +27,5 @@
 //        // assert that your calculator added the numbers correctly!
 //        $this->assertEquals(42, $result);
 //    }
-//}
+// }
 //
