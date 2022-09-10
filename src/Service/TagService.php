@@ -15,8 +15,18 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class TagService implements TagServiceInterface
 {
+    /**
+     * Tag repository
+     *
+     * @var TagRepository
+     */
     private TagRepository $tagRepository;
 
+    /**
+     * Paginator
+     *
+     * @var PaginatorInterface
+     */
     private PaginatorInterface $paginator;
 
     /**

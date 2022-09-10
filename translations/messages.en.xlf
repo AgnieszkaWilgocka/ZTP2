@@ -66,6 +66,10 @@
          <source>label.author</source>
          <target>Author</target>
       </trans-unit>
+      <trans-unit id="label.book">
+          <source>label.book</source>
+          <target>Book</target>
+      </trans-unit>
       <trans-unit id="label.book_catalog">
           <source>label.book_catalog</source>
           <target>Book catalog</target>
@@ -73,6 +77,10 @@
       <trans-unit id="label.categories">
           <source>label.categories</source>
           <target>Categories</target>
+      </trans-unit>
+      <trans-unit id="label.category">
+           <source>label.category</source>
+           <target>Category</target>
       </trans-unit>
       <trans-unit id="label.content">
           <source>label.content</source>
@@ -83,14 +91,13 @@
          <target>Comments</target>
       </trans-unit>
       <trans-unit id="label.createdAt">
-               <source>label.created_at</source>
-               <target>CreatedAt</target>
+          <source>label.created_at</source>
+          <target>CreatedAt</target>
       </trans-unit>
       <trans-unit id="label.email">
           <source>label.email</source>
           <target>Email</target>
       </trans-unit>
-
       <trans-unit id="label.id">
         <source>label.id</source>
         <target>Id</target>
@@ -103,9 +110,17 @@
         <source>label.nick</source>
         <target>Nick</target>
       </trans-unit>
+      <trans-unit id="label.none">
+         <source>label.none</source>
+         <target>None</target>
+      </trans-unit>
       <trans-unit id="label.password">
         <source>label.password</source>
         <target>Password</target>
+      </trans-unit>
+      <trans-unit id="label.repeat_password">
+         <source>label.repeat_password</source>
+         <target>Repeat password</target>
       </trans-unit>
       <trans-unit id="label.tags">
         <source>label.tags</source>

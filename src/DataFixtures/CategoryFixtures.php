@@ -16,7 +16,7 @@ use DateTimeImmutable;
 class CategoryFixtures extends AbstractBaseFixtures
 {
     /**
-     *Load data
+     * Load data
      */
     public function loadData(): void
     {

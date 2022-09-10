@@ -12,6 +12,8 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class BookRepository
+ *
  * @extends ServiceEntityRepository<Book>
  *
  * @method Book|null find($id, $lockMode = null, $lockVersion = null)
@@ -74,6 +76,11 @@ class BookRepository extends ServiceEntityRepository
         if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
             $queryBuilder->andWhere('tags IN (:tag)')
                 ->setParameter('tag', $filters['tag']);
+        }
+
+        if (isset($filters['category']) && $filters['category'] instanceof Category) {
+            $queryBuilder->andWhere('category IN (:category)')
+                ->setParameter('category', $filters['category']);
         }
 
         return $queryBuilder;

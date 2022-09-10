@@ -23,8 +23,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 )]
 class FavouriteController extends AbstractController
 {
+    /**
+     * Favourite Service Interface
+     *
+     * @var FavouriteService
+     */
     private FavouriteService $favouriteService;
 
+    /**
+     * Translator
+     *
+     * @var TranslatorInterface
+     */
     private TranslatorInterface $translator;
 
     /**

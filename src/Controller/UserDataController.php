@@ -22,6 +22,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class UserDataController extends AbstractController
 {
 
+    /**
+     * UserData Service Interface
+     *
+     * @var UserDataServiceInterface
+     */
     private UserDataServiceInterface $userDataService;
 
     /**

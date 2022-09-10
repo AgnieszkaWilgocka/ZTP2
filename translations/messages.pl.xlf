@@ -66,6 +66,10 @@
          <source>label.author</source>
          <target>Autor</target>
       </trans-unit>
+      <trans-unit id="label.book">
+           <source>label.book</source>
+           <target>Książka</target>
+      </trans-unit>
       <trans-unit id="label.book_catalog">
           <source>label.book_catalog</source>
           <target>Katalog książek</target>
@@ -74,9 +78,13 @@
           <source>label.categories</source>
           <target>Kategorie</target>
       </trans-unit>
+      <trans-unit id="label.category">
+          <source>label.category</source>
+          <target>Kategoria</target>
+      </trans-unit>
       <trans-unit id="label.content">
-              <source>label.content</source>
-              <target>Content</target>
+          <source>label.content</source>
+          <target>Content</target>
       </trans-unit>
       <trans-unit id="label.comments">
         <source>label.comments</source>
@@ -103,9 +111,17 @@
         <source>label.nick</source>
         <target>Nick</target>
       </trans-unit>
+      <trans-unit id="label.none">
+          <source>label.none</source>
+          <target>Brak</target>
+      </trans-unit>
       <trans-unit id="label.password">
          <source>label.password</source>
          <target>Hasło</target>
+      </trans-unit>
+      <trans-unit id="label.repeat_password">
+         <source>label.repeat_password</source>
+         <target>Powtórz hasło</target>
       </trans-unit>
       <trans-unit id="label.tags">
         <source>label.tags</source>

@@ -71,6 +71,11 @@ class CategoryServiceTest extends KernelTestCase
         $this->assertEquals($expectedCategory, $resultCategory);
     }
 
+    /**
+     * Delete test
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function testDelete(): void
     {
         //given
@@ -97,6 +102,9 @@ class CategoryServiceTest extends KernelTestCase
         $this->assertNull($resultCategory);
     }
 
+    /**
+     * Test get paginated list
+     */
     public function testGetPaginatedList():void
     {
         //given
@@ -122,6 +130,24 @@ class CategoryServiceTest extends KernelTestCase
         $this->assertEquals($expectedResultSize, $result->count());
     }
 
+    public function testFindOneById(): void
+    {
+        //given
+        $category = new Category();
+        $category->setTitle('find_one_by_id_test');
+        $category->setCreatedAt(new \DateTimeImmutable());
+        $category->setUpdatedAt(new \DateTimeImmutable());
 
+        $this->entityManager->persist($category);
+        $this->entityManager->flush();
 
+        $expectedCategoryId = $category->getId();
+
+        //when
+        $resultCategory = $this->categoryService->findOneById($expectedCategoryId);
+
+        //then
+        $this->assertEquals($expectedCategoryId, $resultCategory->getId());
+
+    }
 }

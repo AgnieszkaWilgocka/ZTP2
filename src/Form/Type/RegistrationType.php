@@ -29,7 +29,7 @@ class RegistrationType extends AbstractType
             'email',
             EmailType::class,
             [
-                'label' => 'email',
+                'label' => 'label.email',
                 'required' => true,
                 'attr' => ['max_length' => 64],
             ]
@@ -40,8 +40,8 @@ class RegistrationType extends AbstractType
             RepeatedType::class,
             [
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
+                'first_options' => ['label' => 'label.password'],
+                'second_options' => ['label' => 'label.repeat_password'],
                 'required' => true,
             ]
         );

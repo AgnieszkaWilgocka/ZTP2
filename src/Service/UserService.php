@@ -15,8 +15,18 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class UserService implements UserServiceInterface
 {
+    /**
+     * User repository
+     *
+     * @var UserRepository
+     */
     private UserRepository $userRepository;
 
+    /**
+     * Paginator
+     *
+     * @var PaginatorInterface
+     */
     private PaginatorInterface $paginator;
 
     /**

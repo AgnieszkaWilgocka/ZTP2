@@ -5,7 +5,7 @@
 namespace App\Tests\Form;
 
 use App\Entity\Category;
-use App\Form\Type\categoryType;
+use App\Form\Type\CategoryType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
@@ -26,7 +26,7 @@ class CategoryTypeTest extends TypeTestCase
         ];
 
         $model = new Category();
-        $form = $this->factory->create(categoryType::class, $model);
+        $form = $this->factory->create(CategoryType::class, $model);
 
         $expected = new Category();
 //        $expected->setCreatedAt($dateTime);

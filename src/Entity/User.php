@@ -122,6 +122,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Getter for username
+     *
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      *
      * @return string
@@ -195,6 +197,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Erase Credentials
+     *
      * @see UserInterface
      */
     public function eraseCredentials()

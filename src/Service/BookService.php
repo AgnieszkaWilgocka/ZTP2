@@ -47,19 +47,30 @@ class BookService implements BookServiceInterface
      */
     private TagService $tagService;
 
+    /**
+     * Category Service
+     *
+     * @var CategoryService
+     */
+    private CategoryService $categoryService;
+
 
     /**
+     * Constructor
+     *
      * @param BookRepository     $bookRepository
      * @param PaginatorInterface $paginator
      * @param CategoryRepository $categoryRepository
      * @param TagService         $tagService
+     * @param CategoryService    $categoryService
      */
-    public function __construct(BookRepository $bookRepository, PaginatorInterface $paginator, CategoryRepository $categoryRepository, TagService $tagService)
+    public function __construct(BookRepository $bookRepository, PaginatorInterface $paginator, CategoryRepository $categoryRepository, TagService $tagService, CategoryService $categoryService)
     {
         $this->bookRepository = $bookRepository;
         $this->paginator = $paginator;
         $this->categoryRepository = $categoryRepository;
         $this->tagService = $tagService;
+        $this->categoryService = $categoryService;
     }
 
     /**
@@ -106,6 +117,8 @@ class BookService implements BookServiceInterface
     }
 
     /**
+     * Prepare filters function
+     *
      * @param array $filters
      *
      * @return \App\Entity\Tag[]
@@ -120,6 +133,13 @@ class BookService implements BookServiceInterface
             $tag = $this->tagService->findOneById($filters['tag_id']);
             if (null !== $tag) {
                 $resultFilters['tag'] = $tag;
+            }
+        }
+
+        if (!empty($filters['category_id'])) {
+            $category = $this->categoryService->findOneById($filters['category_id']);
+            if (null !== $category) {
+                $resultFilters['category'] = $category;
             }
         }
 

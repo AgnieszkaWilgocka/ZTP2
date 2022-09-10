@@ -4,7 +4,7 @@
  */
 namespace App\Controller;
 
-use App\Form\Type\categoryType;
+use App\Form\Type\CategoryType;
 use App\Service\CategoryService;
 use App\Service\CategoryServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -108,7 +108,7 @@ class CategoryController extends AbstractController
     public function create(Request $request): Response
     {
         $category = new Category();
-        $form = $this->createForm(categoryType::class, $category);
+        $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -148,7 +148,7 @@ class CategoryController extends AbstractController
     )]
     public function edit(Request $request, Category $category): Response
     {
-        $form = $this->createForm(categoryType::class, $category, ['method' => 'PUT',
+        $form = $this->createForm(CategoryType::class, $category, ['method' => 'PUT',
             'action' => $this->generateUrl(
                 'category_edit',
                 ['id' => $category->getId()]
@@ -203,9 +203,6 @@ class CategoryController extends AbstractController
 
             return $this->redirectToRoute('category_index');
         }
-
-
-
 
         $form = $this->createForm(FormType::class, $category, [
             'method' => 'DELETE',

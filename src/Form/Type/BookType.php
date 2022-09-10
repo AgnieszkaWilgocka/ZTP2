@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * class BookType
+ * Class BookType
  */
 class BookType extends AbstractType
 {
@@ -49,7 +49,7 @@ class BookType extends AbstractType
             'title',
             TextType::class,
             [
-                'label' => 'label_title',
+                'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 64],
             ]
@@ -59,7 +59,7 @@ class BookType extends AbstractType
             'author',
             TextType::class,
             [
-                'label' => 'label_author',
+                'label' => 'label.author',
                 'required' => true,
                 'attr' => ['max_length' => 64],
             ]
@@ -83,7 +83,7 @@ class BookType extends AbstractType
             'tags',
             TextType::class,
             [
-                'label' => 'label_tags',
+                'label' => 'label.tags',
                 'required' => false,
                 'attr' => ['max_length' => 64],
             ]

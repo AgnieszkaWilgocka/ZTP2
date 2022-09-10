@@ -54,7 +54,7 @@ class CategoryRepository extends ServiceEntityRepository
                 'partial category.{id, title, createdAt, updatedAt}',
                 //                'partial books.{id, title, author}'
             )
-            ->leftJoin('category.books', 'books')
+//            ->leftJoin('category.books', 'books')
             ->orderBy('category.title', 'DESC');
     }
 

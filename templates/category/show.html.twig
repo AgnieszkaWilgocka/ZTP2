@@ -13,14 +13,14 @@
     <dl>
         <dt>{{ 'label.title'|trans }}</dt>
         <dd>{{ category.title }}</dd>
-        <dt>{{ 'title.book_list'|trans }}</dt>
-        <dd>
-        {% for books in category.books %}
-        <a href="{{ url('book_show', { id: books.id }) }}" title="{{ books.title }}">
-            {{ books.title }}
-        </a>
-        </dd>
-        {% endfor %}
+{#        <dt>{{ 'title.book_list'|trans }}</dt>#}
+{#        <dd>#}
+{#        {% for books in category.books %}#}
+{#        <a href="{{ url('book_show', { id: books.id }) }}" title="{{ books.title }}">#}
+{#            {{ books.title }}#}
+{#        </a>#}
+{#        </dd>#}
+{#        {% endfor %}#}
         <dt>{{ 'label.actions'|trans }}</dt>
         <dd>
             <a class="btn btn-primary"  href="{{ url('category_index') }}" role="button">

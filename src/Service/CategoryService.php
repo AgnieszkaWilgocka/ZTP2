@@ -18,10 +18,25 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class CategoryService implements CategoryServiceInterface
 {
+    /**
+     * Category repository
+     *
+     * @var CategoryRepository
+     */
     private CategoryRepository $categoryRepository;
 
+    /**
+     * Paginator
+     *
+     * @var PaginatorInterface
+     */
     private PaginatorInterface $paginator;
 
+    /**
+     * Book repository
+     *
+     * @var BookRepository
+     */
     private BookRepository $bookRepository;
 
     /**
@@ -92,5 +107,17 @@ class CategoryService implements CategoryServiceInterface
         } catch (NoResultException|NonUniqueResultException) {
             return false;
         }
+    }
+
+    /**
+     * Find one by id
+     *
+     * @param int $id
+     *
+     * @return Category|null
+     */
+    public function findOneById(int $id): ?Category
+    {
+        return $this->categoryRepository->findOneById($id);
     }
 }

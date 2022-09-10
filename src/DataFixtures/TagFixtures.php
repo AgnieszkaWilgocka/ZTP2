@@ -10,7 +10,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use DateTimeImmutable;
 
 /**
- *
+ * Class TagFixtures
  */
 class TagFixtures extends AbstractBaseFixtures
 {

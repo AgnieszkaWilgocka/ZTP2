@@ -24,8 +24,18 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
+    /**
+     * Login route
+     *
+     * @const string
+     */
     public const LOGIN_ROUTE = 'app_login';
 
+    /**
+     * Default route
+     *
+     * @const string
+     */
     public const DEFAULT_ROUTE = 'category_index';
 
     private UrlGeneratorInterface $urlGenerator;
@@ -41,6 +51,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
+     * Supports function
+     *
      * @param Request $request
      *
      * @return bool
@@ -52,6 +64,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
+     * Authenticate function
+     *
      * @param Request $request
      *
      * @return Passport
@@ -72,6 +86,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
+     * AuthenticationSuccess function
+     *
      * @param Request        $request
      * @param TokenInterface $token
      * @param string         $firewallName
@@ -91,6 +107,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
+     * Getting login url
+     *
      * @param Request $request
      *
      * @return string

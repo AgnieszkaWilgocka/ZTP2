@@ -21,7 +21,13 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/tag')]
 class TagController extends AbstractController
 {
+    /**
+     * Tag Service Interface
+     *
+     * @var TagServiceInterface
+     */
     private TagServiceInterface $tagService;
+
     /**
      * Translator
      *
@@ -111,8 +117,6 @@ class TagController extends AbstractController
             $tag->setUpdatedAt(new \DateTimeImmutable());
 
             $this->tagService->save($tag);
-
-
 
             $this->addFlash(
                 'success',

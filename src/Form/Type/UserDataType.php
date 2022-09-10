@@ -28,7 +28,7 @@ class UserDataType extends AbstractType
             'nick',
             TextType::class,
             [
-               'label' => 'label_nick',
+               'label' => 'label.nick',
                'required' => true,
                'attr' => ['max_length' => 64],
             ]

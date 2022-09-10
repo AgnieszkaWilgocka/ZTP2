@@ -34,7 +34,7 @@ class FavouriteType extends AbstractType
                     return $book->getTitle();
                 },
                 'label' => 'label.book',
-                'placeholder' => 'label_none',
+                'placeholder' => 'label.none',
                 'required' => true,
             ]
         );

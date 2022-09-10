@@ -19,7 +19,6 @@ abstract class AbstractBaseFixtures extends Fixture
     /**
      * Faker
      */
-
     protected Generator $faker;
 
     /**
@@ -57,7 +56,7 @@ abstract class AbstractBaseFixtures extends Fixture
     }
 
     /**
-     *Load data
+     * Load data
      */
     abstract protected function loadData(): void;
 
@@ -69,12 +68,12 @@ abstract class AbstractBaseFixtures extends Fixture
      * @param callable $factory
      *
      */
-    public function createMany(int $count, string $groupName, callable $factory): void
+    protected function createMany(int $count, string $groupName, callable $factory): void
     {
         for ($i = 0; $i < $count; ++$i) {
             $entity = $factory($i);
 
-            if (null == $entity) {
+            if (null === $entity) {
                 throw new LogicException('Did you forget to return the entity object from your callback to BaseFixture::createMany()?');
             }
 

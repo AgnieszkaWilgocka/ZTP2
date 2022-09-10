@@ -18,6 +18,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Book
 {
     /**
+     * Primary key
+     *
      * @var int|null
      */
     #[ORM\Id]
@@ -50,10 +52,15 @@ class Book
     /**
      * Category
      */
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'books')]
+    #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category;
 
+    /**
+     * Tags
+     *
+     * @var ArrayCollection
+     */
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'books')]
     #[ORM\JoinColumn(name: 'ztp_books_ztp_tags')]
     private $tags;
@@ -144,6 +151,8 @@ class Book
     }
 
     /**
+     * Getter for tags
+     *
      * @return Collection<int, Tag>
      */
     public function getTags(): Collection
@@ -152,6 +161,8 @@ class Book
     }
 
     /**
+     * Add tag
+     *
      * @param Tag $tag
      *
      * @return $this
@@ -166,6 +177,8 @@ class Book
     }
 
     /**
+     * Remove tag
+     *
      * @param Tag $tag
      *
      * @return $this
@@ -178,6 +191,8 @@ class Book
     }
 
     /**
+     * Getter for comments
+     *
      * @return Collection<int, Comment>
      */
     public function getComments(): Collection
@@ -186,6 +201,8 @@ class Book
     }
 
     /**
+     * Add comment
+     *
      * @param Comment $comment
      *
      * @return $this
@@ -201,6 +218,8 @@ class Book
     }
 
     /**
+     * Remove comment
+     *
      * @param Comment $comment
      *
      * @return $this

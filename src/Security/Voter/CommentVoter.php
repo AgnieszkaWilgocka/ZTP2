@@ -17,8 +17,18 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class CommentVoter extends Voter
 {
+    /**
+     * Delete permission
+     *
+     * @const string
+     */
     public const DELETE = 'DELETE';
 
+    /**
+     * Security
+     *
+     * @var Security
+     */
     private Security $security;
 
     /**

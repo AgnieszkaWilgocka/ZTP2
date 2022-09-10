@@ -145,6 +145,8 @@ class Tag
     }
 
     /**
+     * Add book
+     *
      * @param Book $book
      *
      * @return $this
@@ -160,6 +162,8 @@ class Tag
     }
 
     /**
+     * Remove book
+     *
      * @param Book $book
      *
      * @return $this

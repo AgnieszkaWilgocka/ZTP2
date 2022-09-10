@@ -15,8 +15,18 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class CommentService implements CommentServiceInterface
 {
+    /**
+     * Comment repository
+     *
+     * @var CommentRepository
+     */
     private CommentRepository $commentRepository;
 
+    /**
+     * Paginator
+     *
+     * @var PaginatorInterface
+     */
     private PaginatorInterface $paginator;
 
     /**

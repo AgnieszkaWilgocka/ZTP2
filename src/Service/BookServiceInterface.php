@@ -31,6 +31,8 @@ interface BookServiceInterface
     public function save(Book $book);
 
     /**
+     * Action delete
+     *
      * @param Book $book
      *
      */

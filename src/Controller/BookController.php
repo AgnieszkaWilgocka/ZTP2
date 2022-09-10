@@ -26,6 +26,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('book')]
 class BookController extends AbstractController
 {
+    /**
+     * Book Service Interface
+     *
+     * @var BookServiceInterface
+     */
     private BookServiceInterface $bookService;
 
     /**
@@ -86,6 +91,7 @@ class BookController extends AbstractController
     {
         $filters = [];
         $filters['tag_id'] = $request->query->getInt('filters_tag_id');
+        $filters['category_id'] = $request->query->getInt('filters_category_id');
 
         return $filters;
     }
@@ -98,7 +104,7 @@ class BookController extends AbstractController
      *
      * @return Response
      *
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
     #[Route(
         '/{id}',
@@ -138,7 +144,7 @@ class BookController extends AbstractController
      *
      * @return Response
      *
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      */
     #[Route(
         '/create',

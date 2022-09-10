@@ -60,16 +60,16 @@ class Category
     private ?string $title;
 
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Book::class)]
-    private $books;
+//    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Book::class)]
+//    private $books;
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
-        $this->books = new ArrayCollection();
-    }
+//    public function __construct()
+//    {
+//        $this->books = new ArrayCollection();
+//    }
 
     /**
      * Return for Id
@@ -144,49 +144,49 @@ class Category
         $this->title = $title;
     }
 
-    /**
-     * Getter for books
-     *
-     * @return Collection<int, Book>
-     */
-    public function getBooks(): Collection
-    {
-        return $this->books;
-    }
+//    /**
+//     * Getter for books
+//     *
+//     * @return Collection<int, Book>
+//     */
+//    public function getBooks(): Collection
+//    {
+//        return $this->books;
+//    }
 
-    /**
-     * Add for book
-     *
-     * @param Book $book
-     *
-     * @return $this
-     */
-    public function addBook(Book $book): self
-    {
-        if (!$this->books->contains($book)) {
-            $this->books[] = $book;
-            $book->setCategory($this);
-        }
+//    /**
+//     * Add for book
+//     *
+//     * @param Book $book
+//     *
+//     * @return $this
+//     */
+//    public function addBook(Book $book): self
+//    {
+//        if (!$this->books->contains($book)) {
+//            $this->books[] = $book;
+//            $book->setCategory($this);
+//        }
+//
+//        return $this;
+//    }
 
-        return $this;
-    }
-
-    /**
-     * Remove for book
-     *
-     * @param Book $book
-     *
-     * @return $this
-     */
-    public function removeBook(Book $book): self
-    {
-        if ($this->books->removeElement($book)) {
-            // set the owning side to null (unless already changed)
-            if ($book->getCategory() === $this) {
-                $book->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
+//    /**
+//     * Remove for book
+//     *
+//     * @param Book $book
+//     *
+//     * @return $this
+//     */
+//    public function removeBook(Book $book): self
+//    {
+//        if ($this->books->removeElement($book)) {
+//            // set the owning side to null (unless already changed)
+//            if ($book->getCategory() === $this) {
+//                $book->setCategory(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 }

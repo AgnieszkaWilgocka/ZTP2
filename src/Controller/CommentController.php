@@ -22,6 +22,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentController extends AbstractController
 {
     /**
+     * Comment Service Interface
+     *
      * @var CommentServiceInterface
      */
     private CommentServiceInterface $commentService;

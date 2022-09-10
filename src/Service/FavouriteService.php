@@ -16,8 +16,18 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class FavouriteService implements FavouriteServiceInterface
 {
+    /**
+     * Favourite repository
+     *
+     * @var FavouriteRepository
+     */
     private FavouriteRepository $favouriteRepository;
 
+    /**
+     * Paginator
+     *
+     * @var PaginatorInterface
+     */
     private PaginatorInterface $paginator;
 
     /**
