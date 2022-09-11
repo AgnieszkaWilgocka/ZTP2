@@ -7,8 +7,6 @@ namespace App\Entity;
 
 use App\Repository\CategoryRepository;
 use DateTimeImmutable;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -59,17 +57,6 @@ class Category
     #[Assert\NotBlank]
     #[Assert\Length(min: 3, max: 64)]
     private ?string $title;
-
-//    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Book::class)]
-//    private $books;
-
-    /**
-     * Constructor.
-     */
-//    public function __construct()
-//    {
-//        $this->books = new ArrayCollection();
-//    }
 
     /**
      * Return for Id.
@@ -140,50 +127,4 @@ class Category
     {
         $this->title = $title;
     }
-
-//    /**
-//     * Getter for books
-//     *
-//     * @return Collection<int, Book>
-//     */
-//    public function getBooks(): Collection
-//    {
-//        return $this->books;
-//    }
-
-//    /**
-//     * Add for book
-//     *
-//     * @param Book $book
-//     *
-//     * @return $this
-//     */
-//    public function addBook(Book $book): self
-//    {
-//        if (!$this->books->contains($book)) {
-//            $this->books[] = $book;
-//            $book->setCategory($this);
-//        }
-//
-//        return $this;
-//    }
-
-//    /**
-//     * Remove for book
-//     *
-//     * @param Book $book
-//     *
-//     * @return $this
-//     */
-//    public function removeBook(Book $book): self
-//    {
-//        if ($this->books->removeElement($book)) {
-//            // set the owning side to null (unless already changed)
-//            if ($book->getCategory() === $this) {
-//                $book->setCategory(null);
-//            }
-//        }
-//
-//        return $this;
-//    }
 }

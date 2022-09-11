@@ -29,8 +29,8 @@
     {% for tag in pagination.items %}
     <tr>
         <td>{{ tag.id }}</td>
-        <td>{{ tag.createdAt|date('Y/m/d') }}</td>
-        <td>{{ tag.updatedAt|date('Y/m/d') }}</td>
+        <td>{{ tag.createdAt|format_date('long') }}</td>
+        <td>{{ tag.updatedAt|format_date('long') }}</td>
         <td>{{ tag.title }}</td>
 
         <td>

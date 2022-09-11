@@ -191,6 +191,10 @@
         <source>title.category_list</source>
         <target>Lista kategorii</target>
       </trans-unit>
+      <trans-unit id="title.comment_create">
+          <source>title.comment_create</source>
+          <target>Tworzenie komentarza</target>
+      </trans-unit>
       <trans-unit id="title.comment_delete">
           <source>title.comment_delete</source>
           <target>Usuwanie komentarza</target>

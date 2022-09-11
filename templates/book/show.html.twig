@@ -20,20 +20,15 @@
             {% if comments.author.userData.nick is defined and comments.author.userData.nick is not null %}
             <li class="list-group-item">
                 {{ comments.author.userData.nick }}: {{ comments.content }}
-{#            </li>#}
                 {% else %}
-{#                    <li class="list-group-item">#}
                     {{ comments.author.email }}:: {{ comments.content }}
-{#                    </li>#}
                     {% endif %}
                 {% if is_granted('DELETE', comments)  %}
                     <a href="{{ url('comment_delete', {id: comments.id}) }}" title="{{ 'action.delete'|trans }}">
-{#                        {{ 'action.delete'|trans }}#}
                         <span class="material-symbols-outlined">delete</span>
                     </a>
                 {% endif %}
             </li>
-{#            {% endif %}#}
             {% endfor %}
         </ul>
         <div class="card-body">
